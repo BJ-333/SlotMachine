@@ -1,7 +1,43 @@
 #BlueJ class context
-#Sat Aug 22 19:24:41 COT 2026
+#Sat Aug 22 23:09:10 COT 2026
 comment0.target=SlotMachine
-comment0.text=\r\n Write a description of class SlotMachine here.\r\n \r\n @author (your name) \r\n @version (a version number or a date)\r\n
+comment0.text=\r\n Simula una maquina tragamonedas, compuesta por ruedas que a su vez\r\n contienen simbolos identificados por colores.\r\n \r\n @author Brenda Guerrero - Alexandra Barragan \r\n @version 1.0\r\n
 comment1.target=SlotMachine()
-comment1.text=\r\n Constructor for objects of class SlotMachine\r\n
-numComments=2
+comment1.text=\r\n Constructor de la clase SlotMachine\r\n\r\n
+comment10.target=int distinctSymbols()
+comment10.text=\r\n distinctSymbols() cuenta la cantidad e colores unicos(no repetidos)\r\n
+comment11.target=java.lang.String[] configuration()
+comment11.text=\r\n configuration() genera arreglo de los simbolos visibles en cada una de las ruedas\r\n
+comment12.target=boolean isJackpot()
+comment12.text=\r\n isJackpot() compara los simbolos visibles de cada una de las ruedas, si son iguales es\r\n ganardo, de lo contrario es perdedor.\r\n
+comment13.target=void makeVisible()
+comment13.text=\r\n makeVisible() \r\n
+comment14.target=void makeInvisible()
+comment14.text=\r\n makeInvisible() \r\n
+comment15.target=void exit()
+comment15.text=\r\n exit()\r\n \r\n
+comment16.target=void updateBoxColor()
+comment16.text=\r\n \r\n
+comment2.params=pos
+comment2.target=void addWheel(int)
+comment2.text=\r\n addWheel() a\u00F1adir rueda dada una posicion, si la posicion es menor a 1 se asume como posicion\r\n 1; si es mayor al maximo, se unsa la posicion m\u00E1xima.\r\n @param pos Es la posicion que el usuario donde desea a\u00F1adir la rueda\r\n
+comment3.params=pos
+comment3.target=void delWheel(int)
+comment3.text=\r\n delWheel () eliminar rueda dada una posicion, si la posicion es menor a 1 se asume como posicion\r\n 1; si es mayor al maximo, se unsa la posicion m\u00E1xima.\r\n @param pos Es la posicion de la rueda que el usuario desea eliminar\r\n
+comment4.params=pos color
+comment4.target=void addSymbol(int, java.lang.String)
+comment4.text=\r\n addSymbol () a\u00F1adir simbolo, el simbolo se a\u00F1ade a todas las ruedas existentes \r\n @param pos posicion del simbolo en las ruedas\r\n @param color color del simbolo\r\n
+comment5.params=symbol
+comment5.target=void delSymbol(java.lang.String)
+comment5.text=\r\n delSymbol() elimina el simbolo, el simbolo se elimida de todas las ruedas existentes.\r\n @param symbol color del simbolo\r\n
+comment6.params=wheel symbol
+comment6.target=void placeSymbol(int, java.lang.String)
+comment6.text=\r\n plasceSymbol() coloca manualmente el simbolo del color indicado como el simbolo\r\n visible de una rueda especifica, sin necesidad de girarla al azar.\r\n Si el color indicado no existe en esa rueda, la operacion no tiene\r\n efecto y ok() retornara false.\r\n @param wheel posicion de la rueda donde se desea colocar el simbolo, contada a partir de 1\r\n @param symbol color del simbolo que se desea dejar visible\r\n
+comment7.params=wheel
+comment7.target=void spin(int)
+comment7.text=\r\n spin() hace girar la rueda indicada por el usuario\r\n @param wheel la posicion de la rueda que desea rotar\r\n
+comment8.target=void spin()
+comment8.text=\r\n spin () hace girar todas las ruedas de la maquina tragamonedas\r\n
+comment9.target=java.lang.String[] symbols()
+comment9.text=\r\n \r\n\r\n
+numComments=17
