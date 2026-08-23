@@ -67,16 +67,23 @@ public class SlotMachine
      * @param pos Es la posicion de la rueda que el usuario desea eliminar
      */
     public void delWheel(int pos){
-        Wheel namewheel = wheels.get(pos-1);
-        
-        if (visible == true) {
-            namewheel.makeInvisible();
+        if(pos >= 1 && pos <= wheels.size()){
+            Wheel namewheel = wheels.get(pos-1);
+            
+            if (visible == true) {
+                namewheel.makeInvisible();
+            }
+            
+            wheels.remove(pos-1);
+            ok = true;
         }
+        else{
+            ok=false;
+             if(visible == true){
+                JOptionPane.showMessageDialog(null,"No existe una rueda en la posición " + pos);
+            }
         
-        wheels.remove(pos-1);
-        ok = true;
-    
-    
+        }
     }
     
     /**
@@ -88,6 +95,7 @@ public class SlotMachine
         for (Wheel wheel : wheels) {
             wheel.addSymbol(pos,color);
         }
+        ok=true;
     }
     
     /**
@@ -111,9 +119,16 @@ public class SlotMachine
      * @param symbol color del simbolo que se desea dejar visible
      */
     public void placeSymbol(int wheel , String symbol){
-        Wheel namewheel= wheels.get(wheel-1);
-        namewheel.place(symbol);
-        ok = true;
+        if (wheel >= 1 && wheel <= wheels.size()){
+            Wheel namewheel= wheels.get(wheel-1);
+            namewheel.place(symbol);
+            ok = true;
+            if(!ok){
+                if (visible == true){
+                    JOptionPane.showMessageDialog(null, "El color \"" + symbol + "\" no existe en la rueda " + wheel);
+                }
+            }
+        }
     }
     
     
@@ -122,9 +137,18 @@ public class SlotMachine
      * @param wheel la posicion de la rueda que desea rotar
      */
     public void spin(int wheel) {
-        Wheel namewheel= wheels.get(wheel-1);
-        namewheel.spin();
-        ok = true;
+        if(wheel >= 1 && wheel <= wheels.size()){
+            Wheel namewheel= wheels.get(wheel-1);
+            namewheel.spin();
+            ok = true;          
+        }
+        
+        else{
+            ok = false;
+            if (visible == true){
+                JOptionPane.showMessageDialog(null, "No existe una rueda en la posición " + wheel);
+            }
+        }
     }
     
     /**
