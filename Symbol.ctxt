@@ -1,0 +1,14 @@
+#BlueJ class context
+#Sat Aug 22 23:16:11 COT 2026
+comment0.target=Symbol
+comment0.text=\r\n Representa un simbolo de la maquita tragamonedas, identificado por color. Se apoya en un Circulo\r\n del paquete de shapes para dibujarlo.\r\n \r\n @author Brenda Guerrero  - Alexandra Barragan \r\n @version 1.0\r\n
+comment1.params=color
+comment1.target=Symbol(java.lang.String)
+comment1.text=\r\n Constructor de la clase Symbol\r\n Crea un simbolo del color indicado, asociado con la clase circle de shapes\r\n "param color color del simbolo\r\n
+comment2.target=java.lang.String color()
+comment2.text=\r\n color () retorna el color del simbolo\r\n @return color del simbolo\r\n
+comment3.target=void makeVisible()
+comment3.text=\r\n makeVisible() hace visible el simbolo en canvas\r\n
+comment4.target=void makeInvisible()
+comment4.text=\r\n makeInvisible() hace no visible el simbolo en canvas\r\n
+numComments=5
