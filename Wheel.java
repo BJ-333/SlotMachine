@@ -7,9 +7,8 @@ import java.util.ArrayList;
 
 public class Wheel {
 
-    private ArrayList<String> symbols;
+    private ArrayList<Symbol> symbols;
     private int indexSymbolUp; // cuando no hay simbolo el indice es cero
-    private String name;
     private boolean visible;
 
 public Wheel(){
@@ -81,16 +80,34 @@ public String [] symbols(){
  * Indica cuantos simbolos(colores) diferentes hay dentro de la rueda 
  */
 public int  distintSymbols(){
+    ArrayList<String> distinct = new ArrayList<String>();
+        for (Symbol s : symbols) {
+            if (!distinct.contains(s.color())) {
+                distinct.add(s.color());
+            }
+        }
+        return distinct.size();
+    }
 
 }
 public String colorSymbolUp(){
-
+    if (indexSymbolUp == 0){
+        return null;
+    }
+    return symbols.get(indexSymbolUp - 1).color();
 }
-public void makeVsible(){
+public void makeVisible(){
+    for (Symbol s : symbols){
+        s.makeVisible();
+    }
+    visible = true;
 
 }
 public void makeInvisible(){
-
+    for (Symbol s: symbols){
+        s.makeInvisible();
+    }
+    visible = false;
 }
 }
 
