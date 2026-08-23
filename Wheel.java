@@ -12,9 +12,8 @@ public class Wheel {
     private boolean visible;
 
 public Wheel(){
-    symbols = new ArrayList<String>();
+    symbols = new ArrayList<Symbol>();
     indexSymbolUp = 0;
-    name = null;
     visible = true; 
 }
 
@@ -88,14 +87,19 @@ public int  distintSymbols(){
         }
         return distinct.size();
     }
-
 }
+/**
+ * Da el color del simbolo que hay en la rueda.
+ */
 public String colorSymbolUp(){
     if (indexSymbolUp == 0){
         return null;
     }
     return symbols.get(indexSymbolUp - 1).color();
 }
+/**
+ * Muestra la rueda creada
+ */
 public void makeVisible(){
     for (Symbol s : symbols){
         s.makeVisible();
@@ -103,6 +107,9 @@ public void makeVisible(){
     visible = true;
 
 }
+/**
+ * Oculta la rueda creada 
+ */
 public void makeInvisible(){
     for (Symbol s: symbols){
         s.makeInvisible();
