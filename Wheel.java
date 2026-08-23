@@ -13,13 +13,15 @@ public class Wheel {
     private boolean ok;
     private String name;
     private Random random;
+    private int xPosition;
 
 public Wheel(String name){
     symbols = new ArrayList<Symbol>();
     indexSymbolUp = 0;
     this.name = name;
-    visible = true;
+    visible = false;
     random = new Random();
+    xPosition =20;
 }
 
 /**
@@ -27,7 +29,10 @@ public Wheel(String name){
  */
 public void addSymbol(int pos , String color){
     if (pos >= 0 && pos <= symbols.size()){
-        symbols.add(pos, new Symbol(color));
+        Symbol symbol = new Symbol(color);
+        symbol.moveHorizontal(xPosition - 20);
+        symbol.moveVertical(10);
+        symbols.add(pos, symbol);
         ok = true;
     }
     else{
@@ -117,7 +122,10 @@ public int  distinctSymbols(){
         }
         return distinct.size();
     }
-
+/**
+ * Retorna el color del simbolo
+ * 
+ */
 
 public String colorSymbolUp(){
     if (symbols.isEmpty()){
@@ -125,11 +133,17 @@ public String colorSymbolUp(){
     }
     return symbols.get(indexSymbolUp).color();
 }
+/**
+ * Hace visible el simbolo
+ */
 public void makeVisible(){
+    visible = true;
     if (!symbols.isEmpty()){
         symbols.get(indexSymbolUp).makeVisible();
     }
-    visible = true;
+/**
+ * Hace invisisble el simbolo
+ */
 }
 public void makeInvisible(){
     if (!symbols.isEmpty()){
@@ -137,5 +151,25 @@ public void makeInvisible(){
     }
     visible = false;
 }
+/**
+ * mueve horizontalmente 
+ * @param distance indica la "distancia que debe moverse la rueda"
+ */
+public void moveHorizontal(int distance){
+    for (Symbol symbol : symbols) {
+        symbol.moveHorizontal(distance);
+    }
+
+    xPosition += distance;
+}
+/**
+ * Mueve la rueda a una posicion horizontal determinada 
+ * @param newX indica la nueva posicion que va tener 
+ */
+public void moveTo(int newX){
+    int distance = newX - xPosition;
+    moveHorizontal(distance);
+}
+
 }
 

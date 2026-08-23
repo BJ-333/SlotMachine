@@ -60,6 +60,15 @@ public class Symbol
     }
     
     /**
-     * 
+     * mover horizontalmente
      */
+    public void moveHorizontal(int distance){
+        figure.moveHorizontal(distance);
+    }
+    /**
+     * mover verticalmente
+     */
+    public void moveVertical(int distance){
+        figure.moveVertical(distance);
+    }
 }
