@@ -1,5 +1,5 @@
 #BlueJ class context
-#Sat Aug 22 23:09:10 COT 2026
+#Sun Aug 23 01:28:50 COT 2026
 comment0.target=SlotMachine
 comment0.text=\r\n Simula una maquina tragamonedas, compuesta por ruedas que a su vez\r\n contienen simbolos identificados por colores.\r\n \r\n @author Brenda Guerrero - Alexandra Barragan \r\n @version 1.0\r\n
 comment1.target=SlotMachine()

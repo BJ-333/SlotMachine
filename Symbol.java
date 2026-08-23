@@ -23,6 +23,7 @@ public class Symbol
         figure = new Circle();
         figure.changeColor(color);
         
+        
         /*falta pensar en las posiciones de los symbolos que de por si cada columna es una rueda      
          no necesariamente visible pero wheel le pasaria las posiciones*/
          

@@ -51,7 +51,7 @@ public class SlotMachine
         if (!wheels.isEmpty()){
             String[] existingColors = wheels.get(0).symbols();
             for (int i = 0; i < existingColors.length;i++ ){
-                wheel.addSymbol(existingColors[i]);
+                wheel.addSymbol(i,existingColors[i]);
             }
         }
         
@@ -145,7 +145,7 @@ public class SlotMachine
      */
     public String[] symbols(){
         //si wheels esta vacía la operacion no se realiza
-        if (wheels.isEmpy()){
+        if (wheels.isEmpty()){
             ok = false;
             return new String[0];
         }
@@ -160,7 +160,7 @@ public class SlotMachine
      */
     public int distinctSymbols(){
         //si wheels esta vacía la operacion no se realiza
-        if (wheels.isEmpy()){
+        if (wheels.isEmpty()){
             ok = false;
             return 0;
         }
