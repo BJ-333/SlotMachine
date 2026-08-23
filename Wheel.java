@@ -22,7 +22,7 @@ public Wheel(){
  */
 public void addSymbol(int pos , String color){
     if (pos >= 0 && pos <= symbols.size()){
-        symbols.add(pos, color);
+        symbols.add(pos, new Symbol(color));
     }
 }
 /**
@@ -71,7 +71,7 @@ public void place(int symbol){
 public String [] symbols(){
     String [] colors = new String[symbols.size()];
     for (int i = 0; i < symbols.size(); i++){
-        colors[i] = symbols.get(i);
+        colors[i] = symbols.get(i).color();
     }
     return colors;
 }
