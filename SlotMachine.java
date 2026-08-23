@@ -25,6 +25,7 @@ public class SlotMachine
     {
         wheels = new ArrayList<Wheel>();
         box = new Rectangle();
+        box.changeSize(60, 70);
         visible = false;
         ok = true;
         jackpot = false; 
@@ -45,7 +46,7 @@ public class SlotMachine
         else if (pos > wheels.size() + 1 ){
             pos = wheels.size() + 1;
         }
-        Wheel wheel = new Wheel("Rueda"+pos);
+        Wheel wheel = new Wheel("Rueda" + pos);
         
         // copiamos los simbolos si ya exiten otras ruedas
         if (!wheels.isEmpty()){
@@ -56,9 +57,20 @@ public class SlotMachine
         }
         
         wheels.add(pos -1,wheel);
+
+        /**
+         * Reorganizamos las ruedas
+         */
+        for (int i =0; i < wheels.size(); i++){
+            int newX = 80+(i*40);
+            wheels.get(i).moveTo(newX);
+        }
+        /**
+         * la maquina se estira o encoge dependiendo de la cant de ruedas
+         */
+        int newWidht = 10 + wheels.size()*40;
+        box.changeSize(50,newWidht);
         ok = true;
-        
-      
     }
     
     /**
@@ -66,18 +78,34 @@ public class SlotMachine
      * 1; si es mayor al maximo, se unsa la posicion máxima.
      * @param pos Es la posicion de la rueda que el usuario desea eliminar
      */
-    public void delWheel(int pos){
-        Wheel namewheel = wheels.get(pos-1);
-        
-        if (visible == true) {
-            namewheel.makeInvisible();
-        }
-        
-        wheels.remove(pos-1);
-        ok = true;
-    
-    
+    public void delWheel(int pos) {
+
+    if (pos < 1 || pos > wheels.size()) {
+        ok = false;
+        return;
     }
+    Wheel namewheel = wheels.get(pos - 1);
+    if (visible) {
+        namewheel.makeInvisible();
+    }
+    wheels.remove(pos - 1);
+
+    /*
+     * Reorganizar las ruedas restantes.
+     */
+    for (int i = 0; i < wheels.size(); i++) {
+        int newX = 80 + (i * 50);
+        wheels.get(i).moveTo(newX);
+    }
+
+    /*
+     * Achicar la máquina.
+     */
+    int newWidth = 10 + wheels.size() * 40;
+    box.changeSize(50, newWidth);
+    ok = true;
+}
+    
     
     /**
      * addSymbol () añadir simbolo, el simbolo se añade a todas las ruedas existentes 

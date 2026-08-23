@@ -1,11 +1,18 @@
 #BlueJ class context
-#Sun Aug 23 01:44:55 COT 2026
+#Sun Aug 23 16:07:54 COT 2026
 comment0.target=Wheel
 comment0.text=\r\n Representa de una rueda de la maquina tragamonedas. \r\n
 comment1.params=name
 comment1.target=Wheel(java.lang.String)
 comment10.target=void makeVisible()
+comment10.text=\r\n Hace visible el simbolo\r\n
 comment11.target=void makeInvisible()
+comment12.params=distance
+comment12.target=void moveHorizontal(int)
+comment12.text=\r\n mueve horizontalmente \r\n @param distance\r\n
+comment13.params=newX
+comment13.target=void moveTo(int)
+comment13.text=\r\n Mueve la rueda a una posicion horizontal determinada \r\n @param newX\r\n
 comment2.params=pos color
 comment2.target=void addSymbol(int, java.lang.String)
 comment2.text=\r\n Agrega un simbolo, con la posicion determinada \r\n
@@ -23,4 +30,5 @@ comment7.text=\r\n Retorna los colores de todos los simbolos que contiene la rue
 comment8.target=int distinctSymbols()
 comment8.text=\r\n Indica cuantos simbolos(colores) diferentes hay dentro de la rueda \r\n
 comment9.target=java.lang.String colorSymbolUp()
-numComments=12
+comment9.text=\r\n Retorna el color del simbolo\r\n \r\n
+numComments=14
