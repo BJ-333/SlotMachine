@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Wheel {
 
     private ArrayList<Symbol> symbols;
-    private int indexSymbolUp; // cuando no hay simbolo el indice es cero
+    private int indexSymbolUp; // cuando no hay simbolo el indice es -1
     private boolean visible;
     private boolean ok;
     private String name;
@@ -28,16 +28,18 @@ public Wheel(String name){
  * Agrega un simbolo, con la posicion determinada 
  */
 public void addSymbol(int pos , String color){
-    if (pos >= 0 && pos <= symbols.size()){
-        Symbol symbol = new Symbol(color);
-        symbol.moveHorizontal(xPosition - 20);
-        symbol.moveVertical(10);
-        symbols.add(pos, symbol);
-        ok = true;
+    if(pos < 1){
+        pos = 1;
     }
-    else{
-        ok= false;
+    if (pos > symbols.size() +1 ){
+        pos = symbols.size() +1;
     }
+    Symbol symbol = new Symbol(color);
+    symbol.moveHorizontal(xPosition - 20);
+    symbol.moveVertical(10);
+    symbols.add(pos - 1, symbol);   
+    ok = true;
+    
 }
 /**
  * Elimina un simbolo de la rueda
@@ -48,14 +50,19 @@ public void delSymbol(String symbol){
     for (int i = 0; i < symbols.size(); i++){
         if (symbols.get(i).color().equals(symbol)){
             pos = i;
+            break;
         }
     }
     
     if (pos>=0){
+        if(visible){
+            symbols.get(pos).makeInvisible();
+        }
         symbols.remove(pos);
         if (symbols.isEmpty()){
             indexSymbolUp = 0;
-        } else if(indexSymbolUp >= symbols.size()){
+        } 
+        else if(indexSymbolUp >= symbols.size()){
             indexSymbolUp = 0;
         }
         ok=true;

@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 /**
  * Simula una maquina tragamonedas, compuesta por ruedas que a su vez
  * contienen simbolos identificados por colores.
@@ -82,6 +83,7 @@ public class SlotMachine
 
     if (pos < 1 || pos > wheels.size()) {
         ok = false;
+        JOptionPane.showMessageDialog(null, "No existe una rueda en la posicion"+pos);
         return;
     }
     Wheel namewheel = wheels.get(pos - 1);
@@ -116,6 +118,7 @@ public class SlotMachine
         for (Wheel wheel : wheels) {
             wheel.addSymbol(pos,color);
         }
+        ok=true;
     }
     
     /**
@@ -123,10 +126,17 @@ public class SlotMachine
      * @param symbol color del simbolo
      */
     public void delSymbol(String symbol){
+        boolean encontrado = false;
         for (Wheel wheel : wheels) {
             wheel.delSymbol(symbol);
+            if (wheel.ok()){
+                encontrado = true;
+            }
         }
-        ok = true;
+        ok = encontrado;
+        if (!ok){
+            JOptionPane.showMessageDialog(null, "El simbolo no exite en la maquina");
+        }
         
     }
     
@@ -141,7 +151,10 @@ public class SlotMachine
     public void placeSymbol(int wheel , String symbol){
         Wheel namewheel= wheels.get(wheel-1);
         namewheel.place(symbol);
-        ok = true;
+        ok = namewheel.ok();
+        if (!ok){
+            JOptionPane.showMessageDialog(null, "El simbolo no exite en esa rueda");
+        }
     }
     
     
@@ -280,8 +293,10 @@ public class SlotMachine
     }
     
     /**
-     * 
+     * ok() retornamos el valor booleana de si se realizo la ultima operacion 
      */
-    
+    public boolean ok(){
+        return ok;
+    }
     
 }   
