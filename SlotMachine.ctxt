@@ -1,5 +1,5 @@
 #BlueJ class context
-#Sun Aug 23 16:29:06 COT 2026
+#Sun Aug 23 19:23:14 COT 2026
 comment0.target=SlotMachine
 comment0.text=\r\n Simula una maquina tragamonedas, compuesta por ruedas que a su vez\r\n contienen simbolos identificados por colores.\r\n \r\n @author Brenda Guerrero - Alexandra Barragan \r\n @version 1.0\r\n
 comment1.target=SlotMachine()
@@ -18,6 +18,8 @@ comment15.target=void exit()
 comment15.text=\r\n exit()\r\n \r\n
 comment16.target=void updateBoxColor()
 comment16.text=\r\n \r\n
+comment17.target=boolean ok()
+comment17.text=\r\n ok() retornamos el valor booleana de si se realizo la ultima operacion \r\n
 comment2.params=pos
 comment2.target=void addWheel(int)
 comment2.text=\r\n addWheel() a\u00F1adir rueda dada una posicion, si la posicion es menor a 1 se asume como posicion\r\n 1; si es mayor al maximo, se unsa la posicion m\u00E1xima.\r\n @param pos Es la posicion que el usuario donde desea a\u00F1adir la rueda\r\n
@@ -40,4 +42,4 @@ comment8.target=void spin()
 comment8.text=\r\n spin () hace girar todas las ruedas de la maquina tragamonedas\r\n
 comment9.target=java.lang.String[] symbols()
 comment9.text=\r\n \r\n\r\n
-numComments=17
+numComments=18
