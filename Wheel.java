@@ -50,17 +50,17 @@ public class Wheel {
 
             this.machine = machine;
             
-            // Ocultamos la rueda local para evitar duplicados flotantes
+            // Ocultamos la rueda local para evitar duplicados 
             makeInvisible();
             
-            // Guardamos los colores que tenía configurados esta rueda
+            // Guardamos los colores que tenía la rueda
             String[] myColors = this.symbols();
             
             // Calculamos la coordenada X exacta que asigna SlotMachine para esa posición
             int targetX = 80 + ((pos - 1) * 40);
             this.moveTo(targetX);
             
-            //  Le pedimos a la SlotMachine que agregue la rueda
+            // agregar la rueda en slotmachine
             this.machine.addWheel(pos);
             
             // Transferimos los símbolos a la SlotMachine para que los tengan todas las ruedas
