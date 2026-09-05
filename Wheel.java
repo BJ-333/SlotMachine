@@ -39,25 +39,30 @@ public class Wheel {
      * @param pos Posición donde se quiere ubicar (1-based).
      */
     public void addToMachine(SlotMachine machine, int pos) {
-        if (machine != null) {
-            this.machine = machine;
-            
-            // Si la rueda ya tenía símbolos antes de agregarse, los pasamos a la SlotMachine
-            String[] myColors = this.symbols();
-            
-            // Agregamos la rueda a la SlotMachine usando su método existente
-            this.machine.addWheel(pos);
-            
-            // Si teníamos símbolos configurados en esta Wheel, se los enviamos a la SlotMachine
-            for (int i = 0; i < myColors.length; i++) {
-                this.machine.addSymbol(i + 1, myColors[i]);
-            }
-            
-            this.ok = this.machine.ok();
-        } else {
-            this.ok = false;
+    if (machine != null) {
+        this.machine = machine;
+        
+        // Guardamos los símbolos que ya tenía esta rueda
+        String[] myColors = this.symbols();
+        
+        // Calculamos la coordenada X real según la fórmula de SlotMachine
+        // Como 'pos' es basado en 1, el índice es (pos - 1)
+        int newX = 80 + ((pos - 1) * 40);
+        this.moveTo(newX);
+        
+        // 3. Agregamos la rueda a la máquina
+        this.machine.addWheel(pos);
+        
+        // 4. Sincronizamos los símbolos
+        for (int i = 0; i < myColors.length; i++) {
+            this.machine.addSymbol(i + 1, myColors[i]);
         }
+        
+        this.ok = this.machine.ok();
+    } else {
+        this.ok = false;
     }
+}
 
     /**
      * Agrega un símbolo a esta rueda. Si la rueda está vinculada a una SlotMachine,
