@@ -2,29 +2,66 @@ import java.util.Random;
 import java.util.ArrayList;
 
 /**
- * Representa una rueda de la maquina tragamonedas. 
+ * Representa una rueda de la máquina tragamonedas.
  */
 public class Wheel {
 
     private ArrayList<Symbol> symbols;
-    private int indexSymbolUp; // cuando no hay simbolo el indice es -1
+    private int indexSymbolUp; // cuando no hay símbolo el índice es 0
     private boolean visible;
     private boolean ok;
     private String name;
     private Random random;
     private int xPosition;
+    
+    // Referencia a la SlotMachine contenedora
+    private SlotMachine machine;
 
+    /**
+     * Constructor de la rueda
+     */
     public Wheel(String name) {
         symbols = new ArrayList<Symbol>();
         indexSymbolUp = 0;
         this.name = name;
         visible = false;
         random = new Random();
-        xPosition = 20; // Posición base inicial
+        xPosition = 20;
+        machine = null;
     }
 
     /**
-     * Agrega un simbolo en la posicion determinada y lo ubica en la posición X actual de la rueda.
+     * Vincula esta rueda a una SlotMachine en la posición indicada.
+     * Utiliza los métodos nativos de SlotMachine para que la rueda quede
+     * integrada visualmente dentro de la máquina.
+     * 
+     * @param machine Instancia de SlotMachine donde se insertará esta rueda.
+     * @param pos Posición donde se quiere ubicar (1-based).
+     */
+    public void addToMachine(SlotMachine machine, int pos) {
+        if (machine != null) {
+            this.machine = machine;
+            
+            // Si la rueda ya tenía símbolos antes de agregarse, los pasamos a la SlotMachine
+            String[] myColors = this.symbols();
+            
+            // Agregamos la rueda a la SlotMachine usando su método existente
+            this.machine.addWheel(pos);
+            
+            // Si teníamos símbolos configurados en esta Wheel, se los enviamos a la SlotMachine
+            for (int i = 0; i < myColors.length; i++) {
+                this.machine.addSymbol(i + 1, myColors[i]);
+            }
+            
+            this.ok = this.machine.ok();
+        } else {
+            this.ok = false;
+        }
+    }
+
+    /**
+     * Agrega un símbolo a esta rueda. Si la rueda está vinculada a una SlotMachine,
+     * refleja el cambio en la máquina.
      */
     public void addSymbol(int pos, String color) {
         if (pos < 1) {
@@ -35,29 +72,30 @@ public class Wheel {
         }
         
         Symbol symbol = new Symbol(color);
-        
-        // Ajustamos la posición horizontal del símbolo a la posición X actual de la rueda
-        // Asumiendo que la posición inicial del Symbol recién creado es X = 20, Y = 0
         symbol.moveHorizontal(xPosition - 20);
         symbol.moveVertical(10);
         
         symbols.add(pos - 1, symbol); 
         
-        // Si es el primer símbolo que ingresa, aseguramos que indexSymbolUp apunte a él (0)
         if (symbols.size() == 1) {
             indexSymbolUp = 0;
         }
 
-        // Si la rueda ya estaba marcada como visible y este símbolo queda en la cara superior (visible)
         if (visible && (symbols.size() == 1 || (pos - 1) == indexSymbolUp)) {
             symbol.makeVisible();
         }
         
-        ok = true;
+        // Si pertenece a una SlotMachine, delegamos para que se aplique visualmente en la máquina
+        if (machine != null) {
+            machine.addSymbol(pos, color);
+            this.ok = machine.ok();
+        } else {
+            ok = true;
+        }
     }
 
     /**
-     * Elimina un simbolo de la rueda
+     * Elimina un símbolo de esta rueda. Si pertenece a una SlotMachine, lo elimina de ella.
      */
     public void delSymbol(String symbol) {
         int pos = -1;
@@ -82,14 +120,21 @@ public class Wheel {
                     symbols.get(indexSymbolUp).makeVisible();
                 }
             }
-            ok = true;
+            
+            // Reflejamos el cambio en la máquina
+            if (machine != null) {
+                machine.delSymbol(symbol);
+                this.ok = machine.ok();
+            } else {
+                ok = true;
+            }
         } else {
             ok = false;
         }
     }
 
     /**
-     * Girar la rueda en una posicion aleatoria
+     * Gira la rueda para cambiar el símbolo visible de forma aleatoria.
      */
     public void spin() {
         if (symbols.size() > 0) {
@@ -100,12 +145,14 @@ public class Wheel {
             if (visible) {
                 symbols.get(indexSymbolUp).makeVisible();    
             }
-        } 
+            ok = true;
+        } else {
+            ok = false;
+        }
     }
 
     /**
-     * Obtiene el simbolo que quiere visualizar el usuario segun el color indicado
-     * sin tener que girar la maquina aleatoriamente.
+     * Establece manualmente qué símbolo (por color) debe quedar visible en esta rueda.
      */
     public void place(String symbol) {
         int pos = -1;
@@ -135,7 +182,7 @@ public class Wheel {
     }
 
     /**
-     * Retorna los colores de todos los simbolos que contiene la rueda
+     * Retorna los colores de todos los símbolos que contiene la rueda.
      */
     public String[] symbols() {
         String[] colors = new String[symbols.size()];
@@ -146,7 +193,7 @@ public class Wheel {
     }
 
     /**
-     * Indica cuantos simbolos(colores) diferentes hay dentro de la rueda 
+     * Indica cuántos símbolos (colores) diferentes hay dentro de la rueda.
      */
     public int distinctSymbols() {
         ArrayList<String> distinct = new ArrayList<String>();
@@ -159,7 +206,7 @@ public class Wheel {
     }
 
     /**
-     * Retorna el color del simbolo visible actualmente
+     * Retorna el color del símbolo visible actualmente.
      */
     public String colorSymbolUp() {
         if (symbols.isEmpty() || indexSymbolUp < 0 || indexSymbolUp >= symbols.size()) {
@@ -169,7 +216,7 @@ public class Wheel {
     }
 
     /**
-     * Hace visible el simbolo superior
+     * Hace visible el símbolo superior de la rueda.
      */
     public void makeVisible() {
         visible = true;
@@ -179,7 +226,7 @@ public class Wheel {
     }
 
     /**
-     * Hace invisible el simbolo superior
+     * Oculta el símbolo superior de la rueda.
      */
     public void makeInvisible() {
         if (!symbols.isEmpty() && indexSymbolUp >= 0 && indexSymbolUp < symbols.size()) {
@@ -189,8 +236,7 @@ public class Wheel {
     }
 
     /**
-     * Mueve horizontalmente todos los símbolos de la rueda
-     * @param distance indica la distancia en X a desplazar
+     * Mueve horizontalmente la posición visual de la rueda y sus símbolos.
      */
     public void moveHorizontal(int distance) {
         for (Symbol symbol : symbols) {
@@ -200,12 +246,10 @@ public class Wheel {
     }
 
     /**
-     * Mueve la rueda a una posicion horizontal X determinada
-     * @param newX indica la nueva coordenada X absoluta
+     * Mueve la rueda a una coordenada X.
      */
     public void moveTo(int newX) {
         int distance = newX - xPosition;
         moveHorizontal(distance);
     }
 }
-
