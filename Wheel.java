@@ -16,9 +16,9 @@ public class Wheel {
     private String name;
     private Random random;
     private int xPosition;
-    
     // Referencia a la SlotMachine contenedora
     private SlotMachine machine;
+    private boolean locked = false;
 
     /**
      * Constructor de la clase Wheel
@@ -279,5 +279,23 @@ public class Wheel {
     public void moveTo(int newX) {
         int distance = newX - xPosition;
         moveHorizontal(distance);
+    }
+    /**
+     * Cambia el estado de la rueda a bloqueado
+     */
+    public void lock(){
+        locked = true;
+    }
+    /**
+     * cambia el estado de la rueda a desbloqueada
+     */
+    public void unlock(){
+        locked = false;
+    }
+    /**
+     * devuelve si la rueda esta bloqueada o no 
+     */
+    public boolean isLocked(){
+        return locked;
     }
 }
