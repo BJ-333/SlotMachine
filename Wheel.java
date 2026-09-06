@@ -321,6 +321,7 @@ public class Wheel {
     
     public int indexSymbolArriba () {
         return indexSymbolUp;
+    }
     /**
      * Cambia el estado de la rueda a bloqueado
      */

@@ -1,5 +1,5 @@
 #BlueJ class context
-#Sat Sep 05 20:25:11 COT 2026
+#Sat Sep 05 21:00:16 COT 2026
 comment0.target=Wheel
 comment0.text=\r\n Representa una rueda de la maquina tragamonedas. \r\n \r\n @author Brenda Guerrero - Alexandra Barragan\r\n @version 1.1\r\n
 comment1.params=name
@@ -21,6 +21,12 @@ comment15.target=void moveTo(int)
 comment15.text=\r\n Mueve la rueda a una coordenada X determinada.\r\n @param newX Nueva coordenada X.\r\n
 comment16.target=int indexSymbolArriba()
 comment16.text=\r\n Retorna lista de indice simbolo up\r\n
+comment17.target=void lock()
+comment17.text=\r\n Cambia el estado de la rueda a bloqueado\r\n
+comment18.target=void unlock()
+comment18.text=\r\n cambia el estado de la rueda a desbloqueada\r\n
+comment19.target=boolean isLocked()
+comment19.text=\r\n devuelve si la rueda esta bloqueada o no \r\n
 comment2.params=machine pos
 comment2.target=void addToMachine(SlotMachine, int)
 comment2.text=\r\n Registra esta rueda en la SlotMachine y alinea su posici\u00F3n visual\r\n dentro de la caja de la m\u00E1quina tragamonedas.\r\n \r\n @param machine La SlotMachine donde se desea vincular la rueda.\r\n @param pos Posici\u00F3n en la m\u00E1quina donde ir\u00E1 la rueda (se ajusta a 1 si es menor a 1).\r\n
@@ -42,4 +48,4 @@ comment8.target=boolean ok()
 comment8.text=\r\n Retorna el estado de la \u00FAltima operaci\u00F3n realizada.\r\n @return true si fue exitosa, false de lo contrario.\r\n
 comment9.target=java.lang.String[] symbols()
 comment9.text=\r\n Retorna los colores de todos los s\u00EDmbolos que contiene la rueda.\r\n
-numComments=17
+numComments=20
