@@ -39,7 +39,19 @@ public class Circle{
         erase();
         isVisible = false;
     }
-
+    
+    public void esperarC(int tiempo){
+        if(isVisible) {
+            Canvas micanva = Canvas.getCanvas();
+            micanva.draw(this, color, 
+                new Ellipse2D.Double(xPosition, yPosition, 
+                diameter, diameter));
+            micanva.wait(tiempo);
+        
+        }
+    }
+    
+    
     private void draw(){
         if(isVisible) {
             Canvas canvas = Canvas.getCanvas();

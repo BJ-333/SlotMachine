@@ -163,9 +163,16 @@ public class SlotMachine
      * @param wheel la posicion de la rueda que desea rotar
      */
     public void spin(int wheel) {
-        Wheel namewheel= wheels.get(wheel-1);
-        namewheel.spin();
-        ok = true;
+        if(wheel >= 0 || wheel <= wheels.size()){
+            Wheel namewheel= wheels.get(wheel);
+            namewheel.spin();
+            this.ok = true;
+        }
+        else{
+            this.ok =false;
+        
+        }
+        
     }
     
     /**
@@ -179,6 +186,78 @@ public class SlotMachine
         }
     
     }
+    
+    
+    
+    /**
+     * spinStep () hace rotar una rueda un número de pasos
+     * @param wheel posicion (int) de la rueda a la que se le quiere accionar esta funcion
+     * @param steps cantidad de pasos (int)
+     */
+    
+    public void spinStep(int wheel, int steps){
+        Wheel namewheel = wheels.get(wheel);
+        namewheel.spinS(steps); //este metodo spinS es como el spinStep de wheel
+        
+    
+    }
+    
+    /**
+     * spinConfi() Dejar la máquina en una configuración dada
+     * @param setSymbols es la lista de simbolos de cada rueda que estran visible si es que estan en la rueda
+     * 
+     */
+    
+    public void spinConfi(String [] setSymbols){
+        if(wheels.size() == 0){
+            JOptionPane.showMessageDialog(null,"No hay ruedas");
+            ok = false;
+           
+            
+        }
+        else{
+            for(int i = 0;i < wheels.size();i++){
+                Wheel ruedita = wheels.get(i);
+                String[] symbolos = ruedita.symbols();
+                
+                boolean existe = false;
+                int posicion = 0;
+                
+                porSimbolos: for(int j = 0;j < symbolos.length;j++){
+                    //System.out.println(symbolos[j]);
+                                
+                    if(symbolos[j] == setSymbols[i] ){
+                        existe = true;
+                        posicion = j;
+                        break porSimbolos;
+                    }
+                    
+                }
+                
+                if (!existe){
+                        JOptionPane.showMessageDialog(null,"No existe el simbolo " + setSymbols[i] +" de la rueda número " + i);
+                        ok = false;
+                        break;
+                    
+                    }
+                if(ruedita.indexSymbolArriba() < posicion){
+                    int pasos = posicion -ruedita.indexSymbolArriba();
+                    spinStep(i,pasos);
+                                
+                }
+                else if(ruedita.indexSymbolArriba() > posicion){
+                    int pasos = (symbolos.length - ruedita.indexSymbolArriba())+posicion;
+                    spinStep(i,pasos);
+                }
+            
+            }
+            ok = true;
+        
+        }
+    }
+    
+    
+    
     
     /**
      * 
@@ -298,5 +377,6 @@ public class SlotMachine
     public boolean ok(){
         return ok;
     }
+    
     
 }   

@@ -32,6 +32,11 @@ public class Symbol
         
         
     }
+    
+    public void esperarS(int tiempo){
+        this.figure.esperarC(tiempo);
+    
+    }
 
     /**
      * color () retorna el color del simbolo
