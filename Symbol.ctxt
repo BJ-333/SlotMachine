@@ -1,5 +1,5 @@
 #BlueJ class context
-#Sat Sep 05 18:26:30 COT 2026
+
 comment0.target=Symbol
 comment0.text=\r\n Representa un simbolo de la maquita tragamonedas, identificado por color. Se apoya en un Circulo\r\n del paquete de shapes para dibujarlo.\r\n \r\n @author Brenda Guerrero  - Alexandra Barragan \r\n @version 1.0\r\n
 comment1.params=color
