@@ -163,10 +163,15 @@ public class SlotMachine
      * @param wheel la posicion de la rueda que desea rotar
      */
     public void spin(int wheel) {
+        
         if(wheel >= 0 || wheel <= wheels.size()){
+            
             Wheel namewheel= wheels.get(wheel);
-            namewheel.spin();
-            this.ok = true;
+            boolean esta_bloqueada = namewheel.isLocked();
+            if (esta_bloqueada == false){
+                namewheel.spin();
+                this.ok = true;
+            }
         }
         else{
             this.ok =false;
@@ -180,9 +185,18 @@ public class SlotMachine
      */
     
     public void spin(){
-        for(Wheel wheel: wheels) {
-            wheel.spin();
-            ok = true;
+        
+        ciclo:for(Wheel wheel: wheels) {
+            boolean esta_bloqueada = wheel.isLocked();
+            if ( esta_bloqueada == false){
+                wheel.spin();
+                ok = true;
+            }
+            else{
+                JOptionPane.showMessageDialog(null,"hay una fila fija ");
+                ok = false;
+                break ciclo;
+            }
         }
     
     }
@@ -197,8 +211,10 @@ public class SlotMachine
     
     public void spinStep(int wheel, int steps){
         Wheel namewheel = wheels.get(wheel);
-        namewheel.spinS(steps); //este metodo spinS es como el spinStep de wheel
-        
+        boolean esta_bloqueada = namewheel.isLocked();
+        if ( esta_bloqueada == false){
+            namewheel.spinS(steps); //este metodo spinS es como el spinStep de wheel
+        }
     
     }
     

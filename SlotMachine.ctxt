@@ -1,5 +1,5 @@
 #BlueJ class context
-#Sat Sep 05 20:25:11 COT 2026
+#Sat Sep 05 21:22:38 COT 2026
 comment0.target=SlotMachine
 comment0.text=\r\n Simula una maquina tragamonedas, compuesta por ruedas que a su vez\r\n contienen simbolos identificados por colores.\r\n \r\n @author Brenda Guerrero - Alexandra Barragan \r\n @version 1.0\r\n
 comment1.target=SlotMachine()
@@ -28,6 +28,15 @@ comment19.text=\r\n ok() retornamos el valor booleana de si se realizo la ultima
 comment2.params=pos
 comment2.target=void addWheel(int)
 comment2.text=\r\n addWheel() a\u00F1adir rueda dada una posicion, si la posicion es menor a 1 se asume como posicion\r\n 1; si es mayor al maximo, se unsa la posicion m\u00E1xima.\r\n @param pos Es la posicion que el usuario donde desea a\u00F1adir la rueda\r\n
+comment20.params=wheel1 wheel2
+comment20.target=void swap(int, int)
+comment20.text=\r\n Este metodo intercambia la posicion de dos reudas que se encuentren dentro de slotmachine\r\n @param wheel1 posicion (indice) de la primera rueda a intercambiar \r\n @param wheel2 posicion (indice) de la segunda rueda a intercambiar \r\n
+comment21.params=wheel
+comment21.target=void lock(int)
+comment21.text=\r\n Cambia el estado de una rueda que el ususario desee  bloqueada \r\n es decir que esa rueda en especifico no deba girar \r\n @param wheel posicion(indice) de la rueda que se quiere bloquear \r\n
+comment22.params=wheel
+comment22.target=void unlock(int)
+comment22.text=\r\n cambia el estado de una rueda que bloqueada a desbloqueada para que pueda volver a girar \r\n @param wheel poscion (indice) de la rueda que se encuentra bloqueada para desbloquearla\r\n
 comment3.params=pos
 comment3.target=void delWheel(int)
 comment3.text=\r\n delWheel () eliminar rueda dada una posicion, si la posicion es menor a 1 se asume como posicion\r\n 1; si es mayor al maximo, se unsa la posicion m\u00E1xima.\r\n @param pos Es la posicion de la rueda que el usuario desea eliminar\r\n
@@ -48,4 +57,4 @@ comment8.text=\r\n spin () hace girar todas las ruedas de la maquina tragamoneda
 comment9.params=wheel steps
 comment9.target=void spinStep(int, int)
 comment9.text=\r\n spinStep () hace rotar una rueda un n\u00FAmero de pasos\r\n @param wheel posicion (int) de la rueda a la que se le quiere accionar esta funcion\r\n @param steps cantidad de pasos (int)\r\n
-numComments=20
+numComments=23
