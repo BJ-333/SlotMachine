@@ -1,5 +1,5 @@
 #BlueJ class context
-#Sat Sep 05 21:22:39 COT 2026
+#Sun Sep 06 01:58:12 COT 2026
 comment0.target=SlotMachineTest
 comment0.text=\r\n The test class SlotMachineTest.\r\n\r\n @author  (your name)\r\n @version (a version number or a date)\r\n
 comment1.target=SlotMachineTest()
@@ -28,10 +28,20 @@ comment2.target=void setUp()
 comment2.text=\r\n Sets up the test fixture.\r\n\r\n Called before every test case method.\r\n
 comment20.target=void testExit()
 comment20.text=\r\n Prueba para salir del simulador\r\n
-comment21.target=void tearDown()
-comment21.text=\r\n Tears down the test fixture.\r\n\r\n Called after every test case method.\r\n
+comment21.target=void testDeberiaCambiar()
+comment21.text=\r\n Prueba de intercambio de dos ruedas\r\n
+comment22.target=void testBloquearRueda()
+comment23.target=void testBloquearRueda_posicionInvalida()
+comment24.target=void testDesbloquearRueda()
+comment25.target=void testUnlock_posicionInvalida()
+comment26.target=void testSpinStep_avanzaCorrectamente()
+comment27.target=void testSpinStep_ruedaBloqueada_noAvanza()
+comment28.target=void testSpinConfi_configuracionValida()
+comment29.target=void testSpinConfi_sinRuedas_falla()
 comment3.target=void testCrearMaquina()
 comment3.text=\r\n Prueba al crear maquina\r\n
+comment30.target=void tearDown()
+comment30.text=\r\n Tears down the test fixture.\r\n\r\n Called after every test case method.\r\n
 comment4.target=void testAgregarRueda()
 comment4.text=\r\n Prueba para agregar rueda.\r\n
 comment5.target=void testAgregarRuedaPosNegativa()
@@ -44,4 +54,4 @@ comment8.target=void testAgregarSimbol()
 comment8.text=\r\n Prueba de a\u00F1adri simbolo\r\n
 comment9.target=void testEliminarSimbol()
 comment9.text=\r\n Prueba de eliminar simbolo\r\n
-numComments=22
+numComments=31

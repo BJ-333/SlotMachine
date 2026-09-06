@@ -33,7 +33,16 @@ public class SlotMachine
 
         
     }
-
+    
+    
+    /**
+     * 
+     */
+    
+    public int listSizeWheel(){
+        return wheels.size();
+    
+    }
     /**
      * addWheel() añadir rueda dada una posicion, si la posicion es menor a 1 se asume como posicion
      * 1; si es mayor al maximo, se unsa la posicion máxima.
@@ -57,7 +66,7 @@ public class SlotMachine
             }
         }
         
-        wheels.add(pos -1,wheel);
+        wheels.add(pos-1,wheel);
 
         /**
          * Reorganizamos las ruedas
@@ -163,42 +172,37 @@ public class SlotMachine
      * @param wheel la posicion de la rueda que desea rotar
      */
     public void spin(int wheel) {
-        
-        if(wheel >= 0 || wheel <= wheels.size()){
-            
-            Wheel namewheel= wheels.get(wheel);
-            boolean esta_bloqueada = namewheel.isLocked();
-            if (esta_bloqueada == false){
-                namewheel.spin();
-                this.ok = true;
-            }
+        if (wheel < 0 || wheel >= wheels.size()) {
+            ok = false;
+            return;
         }
-        else{
-            this.ok =false;
-        
+    
+        Wheel namewheel = wheels.get(wheel);
+        if (!namewheel.isLocked()) {
+            namewheel.spin();
+            ok = true;
+        } else {
+            ok = false;
         }
-        
-    }
+    }   
     
     /**
      * spin () hace girar todas las ruedas de la maquina tragamonedas
      */
     
     public void spin(){
-        
-        ciclo:for(Wheel wheel: wheels) {
-            boolean esta_bloqueada = wheel.isLocked();
-            if ( esta_bloqueada == false){
+        boolean algunaBloqueda = false;
+        for (Wheel wheel : wheels) {
+            if (wheel.isLocked()== false) {
                 wheel.spin();
-                ok = true;
-            }
-            else{
-                JOptionPane.showMessageDialog(null,"hay una fila fija ");
-                ok = false;
-                break ciclo;
+            } else {
+                algunaBloqueda = true;
             }
         }
-    
+        ok = true;
+        if (algunaBloqueda) {
+            JOptionPane.showMessageDialog(null, "Algunas ruedas estaban bloqueadas y no giraron");
+        }
     }
     
     
@@ -209,13 +213,27 @@ public class SlotMachine
      * @param steps cantidad de pasos (int)
      */
     
-    public void spinStep(int wheel, int steps){
-        Wheel namewheel = wheels.get(wheel);
-        boolean esta_bloqueada = namewheel.isLocked();
-        if ( esta_bloqueada == false){
-            namewheel.spinS(steps); //este metodo spinS es como el spinStep de wheel
+    public void spinStep(int wheel, int steps) {
+        int index;
+    
+        if (wheel == 0) {
+            index = 0;
+        } else {
+            index = wheel - 1;
+        }
+        if (index < 0 || index >= wheels.size()) {
+            ok = false;
+            return;
         }
     
+        Wheel namewheel = wheels.get(index);
+    
+        if (!namewheel.isLocked()) {
+            namewheel.spinS(steps);
+            ok = true;
+        } else {
+            ok = false;
+        }
     }
     
     /**
@@ -230,7 +248,7 @@ public class SlotMachine
             ok = false;
            
             
-        }
+            }
         else{
             for(int i = 0;i < wheels.size();i++){
                 Wheel ruedita = wheels.get(i);
@@ -242,7 +260,7 @@ public class SlotMachine
                 porSimbolos: for(int j = 0;j < symbolos.length;j++){
                     //System.out.println(symbolos[j]);
                                 
-                    if(symbolos[j] == setSymbols[i] ){
+                    if (symbolos[j].equals(setSymbols[i])){
                         existe = true;
                         posicion = j;
                         break porSimbolos;
@@ -258,12 +276,12 @@ public class SlotMachine
                     }
                 if(ruedita.indexSymbolArriba() < posicion){
                     int pasos = posicion -ruedita.indexSymbolArriba();
-                    spinStep(i,pasos);
+                    spinStep(i+1,pasos);
                                 
                 }
                 else if(ruedita.indexSymbolArriba() > posicion){
                     int pasos = (symbolos.length - ruedita.indexSymbolArriba())+posicion;
-                    spinStep(i,pasos);
+                    spinStep(i+1,pasos);
                 }
             
             }
@@ -398,16 +416,17 @@ public class SlotMachine
      * @param wheel1 posicion (indice) de la primera rueda a intercambiar 
      * @param wheel2 posicion (indice) de la segunda rueda a intercambiar 
      */
-    public void swap(int wheel1, int wheel2){
-        if (wheel1 < 1 || wheel1 > wheels.size() || wheel2 < 1 || wheel2 > wheels.size() || wheel1 ==wheel2){
+    public void swap(int wheel1, int wheel2) {
+        if (wheel1 < 0 || wheel1 >= wheels.size() ||wheel2 < 0 || wheel2 >= wheels.size() ||
+            wheel1 == wheel2) {
             ok = false;
             return;
         }   
-        Wheel i = wheels.get(wheel1 -1);
-        wheels.set(wheel1 -1, wheels.get(wheel2 -1)); // asignamos la posicion que tenia wheel1 a wheel2
-        wheels.set(wheel2 -1, i);// hacemos el otro cambio de pocision :3
-        wheels.get(wheel1 - 1).moveTo(80 + ((wheel1 - 1) * 40)); // acomodar visualmente en la maquina 
-        wheels.get(wheel2 - 1).moveTo(80 + ((wheel2 - 1) * 40));
+        Wheel i = wheels.get(wheel1);
+        wheels.set(wheel1, wheels.get(wheel2)); // asignamos la posicion que tenia wheel1 a wheel2
+        wheels.set(wheel2 , i);// hacemos el otro cambio de pocision :3
+        wheels.get(wheel1 ).moveTo(80 + ((wheel1 ) * 40)); // acomodar visualmente en la maquina 
+        wheels.get(wheel2 ).moveTo(80 + ((wheel2 ) * 40));
         ok = true;
     }
     /**
@@ -415,24 +434,40 @@ public class SlotMachine
      * es decir que esa rueda en especifico no deba girar 
      * @param wheel posicion(indice) de la rueda que se quiere bloquear 
      */
-    public void lock(int wheel){
-        if (wheel < 1 || wheel > wheels.size()){
-            ok = false;
+    public void lock(int wheel) {
+        int index;
+    
+        if (wheel == 0) {
+            index = 0;
+        } else {
+            index = wheel - 1;
         }
-        else{
-        wheels.get(wheel -1).lock();
-        ok = true;}
+    
+        if (index < 0 || index >= wheels.size()) {
+            ok = false;
+        } else {
+            wheels.get(index).lock();
+            ok = true;
+        }
     }
+
     /**
      * cambia el estado de una rueda que bloqueada a desbloqueada para que pueda volver a girar 
      * @param wheel poscion (indice) de la rueda que se encuentra bloqueada para desbloquearla
      */
-    public void unlock(int wheel){
-        if (wheel < 1 || wheel > wheels.size()){
-            ok = false; 
+    public void unlock(int wheel) {
+        int index;
+    
+        if (wheel == 0) {
+            index = 0;
+        } else {
+            index = wheel - 1;
         }
-        else{
-            wheels.get(wheel -1).unlock();
+    
+        if (index < 0 || index >= wheels.size()) {
+            ok = false;
+        } else {
+            wheels.get(index).unlock();
             ok = true;
         }
     }

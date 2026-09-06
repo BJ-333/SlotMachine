@@ -251,6 +251,125 @@ public class SlotMachineTest
         maquinaTraga.exit();
         assertTrue(maquinaTraga.ok());
     }
+    
+    
+    // Test ciclo 2
+    /**
+     * Prueba de intercambio de dos ruedas
+     */
+    
+    @Test
+    public void testDeberiaCambiar(){
+        SlotMachine maquinaTraga = new SlotMachine();
+        maquinaTraga.addWheel(0);
+        maquinaTraga.addWheel(2);
+        maquinaTraga.addSymbol(1,"red");
+        maquinaTraga.addSymbol(2,"red");
+        maquinaTraga.addSymbol(2,"blue");
+        maquinaTraga.swap(0,1);
+        
+        assertEquals(2,maquinaTraga.listSizeWheel());
+      
+    
+    }
+    
+    
+    
+    @Test
+    public void testBloquearRueda() {
+        SlotMachine maquinaTraga = new SlotMachine();
+        maquinaTraga.addWheel(1);
+        maquinaTraga.lock(1);
+        assertTrue(maquinaTraga.ok());
+    }
+    
+    @Test
+    public void testBloquearRueda_posicionInvalida() {
+        SlotMachine maquinaTraga = new SlotMachine();
+        maquinaTraga.lock(1);   
+        // se supone que no hay ninguna rued todavia
+        assertFalse(maquinaTraga.ok());
+    }
+    
+    @Test
+    public void testDesbloquearRueda() {
+        SlotMachine maquinaTraga = new SlotMachine();
+        maquinaTraga.addWheel(1);
+        maquinaTraga.lock(1);
+        maquinaTraga.unlock(1);
+        assertTrue(maquinaTraga.ok());
+    }
+    
+    @Test
+    public void testUnlock_posicionInvalida() {
+        SlotMachine maquinaTraga = new SlotMachine();
+        maquinaTraga.addWheel(1);
+        maquinaTraga.unlock(5);   
+        // nla rieda 5 no existe
+        assertFalse(maquinaTraga.ok());
+    }
+    
+    
+    @Test
+    public void testSpinStep_avanzaCorrectamente() {
+        SlotMachine maq = new SlotMachine();
+        maq.addWheel(1);
+        maq.addSymbol(1, "red");
+        maq.addSymbol(2, "blue");
+        maq.addSymbol(3, "green");
+        
+        
+        
+        maq.placeSymbol(1, "red");    
+        maq.spinStep(1, 2);           
+        
+        
+        String[] config = maq.configuration();
+        assertEquals("green", config[0]);
+        assertTrue(maq.ok());
+    }
+    
+    
+    
+    @Test
+    public void testSpinStep_ruedaBloqueada_noAvanza() {
+        SlotMachine maq = new SlotMachine();
+        maq.addWheel(1);
+        maq.addSymbol(1, "red");
+        maq.addSymbol(2, "blue");
+        maq.placeSymbol(1, "red");
+        maq.lock(1);
+        maq.spinStep(1, 1);
+        assertFalse(maq.ok());
+        String[] config = maq.configuration();
+        assertEquals("red", config[0]);
+    }
+    
+    
+    @Test
+    public void testSpinConfi_configuracionValida() {
+        SlotMachine maq = new SlotMachine();
+        maq.addWheel(1);
+        maq.addWheel(2);
+        maq.addSymbol(1, "red");
+        maq.addSymbol(2, "blue");
+        
+        maq.spinConfi(new String[]{"red", "blue"});
+        
+        String[] config = maq.configuration();
+        assertEquals("red", config[0]);
+        assertEquals("blue", config[1]);
+        assertTrue(maq.ok());
+    }
+    
+    @Test
+    public void testSpinConfi_sinRuedas_falla() {
+        SlotMachine maq = new SlotMachine();
+        maq.spinConfi(new String[]{"red"});
+        assertFalse(maq.ok());
+    }
+    
+    
     /**
      * Tears down the test fixture.
      *
