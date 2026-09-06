@@ -377,6 +377,49 @@ public class SlotMachine
     public boolean ok(){
         return ok;
     }
+    /**
+     * Este metodo intercambia la posicion de dos reudas que se encuentren dentro de slotmachine
+     * @param wheel1 posicion (indice) de la primera rueda a intercambiar 
+     * @param wheel2 posicion (indice) de la segunda rueda a intercambiar 
+     */
+    public void swap(int wheel1, int wheel2){
+        if (wheel1 < 1 || wheel1 > wheels.size() || wheel2 < 1 || wheel2 > wheels.size() || wheel1 ==wheel2){
+            ok = false;
+            return;
+        }   
+        Wheel i = wheels.get(wheel1 -1);
+        wheels.set(wheel1 -1, wheels.get(wheel2 -1)); // asignamos la posicion que tenia wheel1 a wheel2
+        wheels.set(wheel2 -1, i);// hacemos el otro cambio de pocision :3
+        wheels.get(wheel1 - 1).moveTo(80 + ((wheel1 - 1) * 40)); // acomodar visualmente en la maquina 
+        wheels.get(wheel2 - 1).moveTo(80 + ((wheel2 - 1) * 40));
+        ok = true;
+    }
+    /**
+     * Cambia el estado de una rueda que el ususario desee  bloqueada 
+     * es decir que esa rueda en especifico no deba girar 
+     * @param wheel posicion(indice) de la rueda que se quiere bloquear 
+     */
+    public void lock(int wheel){
+        if (wheel < 1 || wheel > wheels.size()){
+            ok = false;
+        }
+        else{
+        wheels.get(wheel -1).lock();
+        ok = true;}
+    }
+    /**
+     * cambia el estado de una rueda que bloqueada a desbloqueada para que pueda volver a girar 
+     * @param wheel poscion (indice) de la rueda que se encuentra bloqueada para desbloquearla
+     */
+    public void unlock(int wheel){
+        if (wheel < 1 || wheel > wheels.size()){
+            ok = false; 
+        }
+        else{
+            wheels.get(wheel -1).unlock();
+            ok = true;
+        }
+    }
     
     
 }   
