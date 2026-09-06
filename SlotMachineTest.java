@@ -112,9 +112,9 @@ public class SlotMachineTest
     @Test
     public void testGirarRuedita(){
         SlotMachine maquinaTraga = new SlotMachine();
-        maquinaTraga.addWheel(1);
-        maquinaTraga.addSymbol(1,"red");
-        maquinaTraga.spin(1);
+        maquinaTraga.addWheel(0);
+        maquinaTraga.addSymbol(0,"red");
+        maquinaTraga.spin(0);
         assertTrue(maquinaTraga.ok());
     }
     /**

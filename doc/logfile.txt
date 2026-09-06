@@ -1,0 +1,165 @@
+Project documentation
+<---- javadoc command: ---->
+C:\Program Files\BlueJ\jdk\bin\javadoc.exe
+-sourcepath
+C:\Users\admin\Desktop\CUARTO SEMESTRE\DOPO\PROYECTO\PRIMER CICLO\slotmachine\SlotMachine
+-source
+21
+-classpath
+C:\Program Files\BlueJ\lib\bluejcore.jar;C:\Program Files\BlueJ\lib\javafx-base-23.0.2-win.jar;C:\Program Files\BlueJ\lib\javafx-controls-23.0.2-win.jar;C:\Program Files\BlueJ\lib\javafx-fxml-23.0.2-win.jar;C:\Program Files\BlueJ\lib\javafx-graphics-23.0.2-win.jar;C:\Program Files\BlueJ\lib\javafx-media-23.0.2-win.jar;C:\Program Files\BlueJ\lib\javafx-swing-23.0.2-win.jar;C:\Program Files\BlueJ\lib\javafx-web-23.0.2-win.jar;C:\Program Files\BlueJ\lib\junit-4.12.jar;C:\Program Files\BlueJ\lib\junit-jupiter-5.5.2.jar;C:\Program Files\BlueJ\lib\junit-jupiter-api-5.5.2.jar;C:\Program Files\BlueJ\lib\junit-jupiter-engine-5.5.2.jar;C:\Program Files\BlueJ\lib\junit-jupiter-params-5.5.2.jar;C:\Program Files\BlueJ\lib\junit-platform-commons-1.5.2.jar;C:\Program Files\BlueJ\lib\junit-platform-engine-1.5.2.jar;C:\Program Files\BlueJ\lib\junit-platform-launcher-1.5.2.jar;C:\Program Files\BlueJ\lib\junit-platform-suite-api-1.5.2.jar;C:\Program Files\BlueJ\lib\junit-vintage-engine-5.5.2.jar;C:\Program Files\BlueJ\lib\hamcrest-core-1.3.jar;C:\Program Files\BlueJ\lib\opentest4j-1.2.0.jar;C:\Program Files\BlueJ\lib\lang-stride.jar;C:\Program Files\BlueJ\lib\kotlin-stdlib-2.1.20.jar;C:\Program Files\BlueJ\lib\javafx\javafx.base.jar;C:\Program Files\BlueJ\lib\javafx\javafx.controls.jar;C:\Program Files\BlueJ\lib\javafx\javafx.fxml.jar;C:\Program Files\BlueJ\lib\javafx\javafx.graphics.jar;C:\Program Files\BlueJ\lib\javafx\javafx.media.jar;C:\Program Files\BlueJ\lib\javafx\javafx.properties.jar;C:\Program Files\BlueJ\lib\javafx\javafx.swing.jar;C:\Program Files\BlueJ\lib\javafx\javafx.web.jar;C:\Users\admin\Desktop\CUARTO SEMESTRE\DOPO\PROYECTO\PRIMER CICLO\slotmachine\SlotMachine
+-d
+C:\Users\admin\Desktop\CUARTO SEMESTRE\DOPO\PROYECTO\PRIMER CICLO\slotmachine\SlotMachine\doc
+-encoding
+UTF-8
+-charset
+UTF-8
+-doctitle
+SlotMachine
+-windowtitle
+SlotMachine
+-author
+-version
+-nodeprecated
+-package
+-Xdoclint:none
+-link
+https://docs.oracle.com/en/java/javase/21/docs/api/
+C:\Users\admin\Desktop\CUARTO SEMESTRE\DOPO\PROYECTO\PRIMER CICLO\slotmachine\SlotMachine/Circle.java
+C:\Users\admin\Desktop\CUARTO SEMESTRE\DOPO\PROYECTO\PRIMER CICLO\slotmachine\SlotMachine/Wheel.java
+C:\Users\admin\Desktop\CUARTO SEMESTRE\DOPO\PROYECTO\PRIMER CICLO\slotmachine\SlotMachine/Symbol.java
+C:\Users\admin\Desktop\CUARTO SEMESTRE\DOPO\PROYECTO\PRIMER CICLO\slotmachine\SlotMachine/Canvas.java
+C:\Users\admin\Desktop\CUARTO SEMESTRE\DOPO\PROYECTO\PRIMER CICLO\slotmachine\SlotMachine/SlotMachineTest.java
+C:\Users\admin\Desktop\CUARTO SEMESTRE\DOPO\PROYECTO\PRIMER CICLO\slotmachine\SlotMachine/Rectangle.java
+C:\Users\admin\Desktop\CUARTO SEMESTRE\DOPO\PROYECTO\PRIMER CICLO\slotmachine\SlotMachine/SlotMachine.java
+<---- end of javadoc command ---->
+Loading source file C:\Users\admin\Desktop\CUARTO SEMESTRE\DOPO\PROYECTO\PRIMER CICLO\slotmachine\SlotMachine\Circle.java...
+Loading source file C:\Users\admin\Desktop\CUARTO SEMESTRE\DOPO\PROYECTO\PRIMER CICLO\slotmachine\SlotMachine\Wheel.java...
+Loading source file C:\Users\admin\Desktop\CUARTO SEMESTRE\DOPO\PROYECTO\PRIMER CICLO\slotmachine\SlotMachine\Symbol.java...
+Loading source file C:\Users\admin\Desktop\CUARTO SEMESTRE\DOPO\PROYECTO\PRIMER CICLO\slotmachine\SlotMachine\Canvas.java...
+Loading source file C:\Users\admin\Desktop\CUARTO SEMESTRE\DOPO\PROYECTO\PRIMER CICLO\slotmachine\SlotMachine\SlotMachineTest.java...
+Loading source file C:\Users\admin\Desktop\CUARTO SEMESTRE\DOPO\PROYECTO\PRIMER CICLO\slotmachine\SlotMachine\Rectangle.java...
+Loading source file C:\Users\admin\Desktop\CUARTO SEMESTRE\DOPO\PROYECTO\PRIMER CICLO\slotmachine\SlotMachine\SlotMachine.java...
+Constructing Javadoc information...
+warning: unknown enum constant Status.STABLE
+  reason: class file for org.apiguardian.api.API$Status not found
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+warning: unknown enum constant Status.STABLE
+Building index for all the packages and classes...
+Standard Doclet version 21.0.6+7-LTS
+Building tree for all the packages and classes...
+Generating C:\Users\admin\Desktop\CUARTO SEMESTRE\DOPO\PROYECTO\PRIMER CICLO\slotmachine\SlotMachine\doc\Canvas.html...
+Generating C:\Users\admin\Desktop\CUARTO SEMESTRE\DOPO\PROYECTO\PRIMER CICLO\slotmachine\SlotMachine\doc\Circle.html...
+Generating C:\Users\admin\Desktop\CUARTO SEMESTRE\DOPO\PROYECTO\PRIMER CICLO\slotmachine\SlotMachine\doc\Rectangle.html...
+Generating C:\Users\admin\Desktop\CUARTO SEMESTRE\DOPO\PROYECTO\PRIMER CICLO\slotmachine\SlotMachine\doc\SlotMachine.html...
+Generating C:\Users\admin\Desktop\CUARTO SEMESTRE\DOPO\PROYECTO\PRIMER CICLO\slotmachine\SlotMachine\doc\SlotMachineTest.html...
+Generating C:\Users\admin\Desktop\CUARTO SEMESTRE\DOPO\PROYECTO\PRIMER CICLO\slotmachine\SlotMachine\doc\Symbol.html...
+Generating C:\Users\admin\Desktop\CUARTO SEMESTRE\DOPO\PROYECTO\PRIMER CICLO\slotmachine\SlotMachine\doc\Wheel.html...
+Generating C:\Users\admin\Desktop\CUARTO SEMESTRE\DOPO\PROYECTO\PRIMER CICLO\slotmachine\SlotMachine\doc\package-summary.html...
+Generating C:\Users\admin\Desktop\CUARTO SEMESTRE\DOPO\PROYECTO\PRIMER CICLO\slotmachine\SlotMachine\doc\package-tree.html...
+Generating C:\Users\admin\Desktop\CUARTO SEMESTRE\DOPO\PROYECTO\PRIMER CICLO\slotmachine\SlotMachine\doc\constant-values.html...
+Generating C:\Users\admin\Desktop\CUARTO SEMESTRE\DOPO\PROYECTO\PRIMER CICLO\slotmachine\SlotMachine\doc\overview-tree.html...
+Building index for all classes...
+Generating C:\Users\admin\Desktop\CUARTO SEMESTRE\DOPO\PROYECTO\PRIMER CICLO\slotmachine\SlotMachine\doc\allclasses-index.html...
+Generating C:\Users\admin\Desktop\CUARTO SEMESTRE\DOPO\PROYECTO\PRIMER CICLO\slotmachine\SlotMachine\doc\allpackages-index.html...
+Generating C:\Users\admin\Desktop\CUARTO SEMESTRE\DOPO\PROYECTO\PRIMER CICLO\slotmachine\SlotMachine\doc\index-all.html...
+Generating C:\Users\admin\Desktop\CUARTO SEMESTRE\DOPO\PROYECTO\PRIMER CICLO\slotmachine\SlotMachine\doc\search.html...
+Generating C:\Users\admin\Desktop\CUARTO SEMESTRE\DOPO\PROYECTO\PRIMER CICLO\slotmachine\SlotMachine\doc\index.html...
+Generating C:\Users\admin\Desktop\CUARTO SEMESTRE\DOPO\PROYECTO\PRIMER CICLO\slotmachine\SlotMachine\doc\help-doc.html...
+100 warnings

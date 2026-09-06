@@ -170,7 +170,40 @@ public class Wheel {
             ok = false;
         }
     }
-
+    
+    /**
+     * spinS
+     */
+    
+    public void spinS(int steps){
+        if (symbols.size()>0){
+            int  cont = 0;
+            for(int i = 0; cont < steps;i++){
+                symbols.get(indexSymbolUp).makeInvisible();
+                if(indexSymbolUp == symbols.size()-1){
+                    indexSymbolUp =0;
+                }
+                else {
+                    indexSymbolUp = indexSymbolUp +1;
+                
+                }
+                Symbol simbolo = symbols.get(indexSymbolUp);
+                simbolo.makeVisible();
+                simbolo.esperarS(1000);
+                cont = cont + 1;
+            }
+            ok = true;
+        
+        }
+        else {
+            ok = false;
+        
+        }
+    
+    }
+    
+    
+    
     /**
      * Coloca manualmente un símbolo como el visible de esta rueda.
      * 
@@ -280,6 +313,14 @@ public class Wheel {
         int distance = newX - xPosition;
         moveHorizontal(distance);
     }
+    
+    
+    /**
+     * Retorna lista de indice simbolo up
+     */
+    
+    public int indexSymbolArriba () {
+        return indexSymbolUp;
     /**
      * Cambia el estado de la rueda a bloqueado
      */
