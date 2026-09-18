@@ -183,6 +183,7 @@ public class Canvas{
         }
     }
     
+    
     /************************************************************************
      * Inner class CanvasPane - the actual canvas component contained in the
      * Canvas frame. This is essentially a JPanel with added capability to

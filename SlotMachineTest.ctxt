@@ -1,5 +1,5 @@
 #BlueJ class context
-#Sun Sep 06 01:58:12 COT 2026
+#Thu Sep 17 22:40:23 COT 2026
 comment0.target=SlotMachineTest
 comment0.text=\r\n The test class SlotMachineTest.\r\n\r\n @author  (your name)\r\n @version (a version number or a date)\r\n
 comment1.target=SlotMachineTest()
@@ -31,6 +31,7 @@ comment20.text=\r\n Prueba para salir del simulador\r\n
 comment21.target=void testDeberiaCambiar()
 comment21.text=\r\n Prueba de intercambio de dos ruedas\r\n
 comment22.target=void testBloquearRueda()
+comment22.text=\ Prueba que una rueda existente pueda ser bloqueada correctamente.\r\n La maquina debe permitir bloquear una rueda que existe.\r\n La operacion debe realizarse correctamente y ok() debe retornar true.\r\n
 comment23.target=void testBloquearRueda_posicionInvalida()
 comment24.target=void testDesbloquearRueda()
 comment25.target=void testUnlock_posicionInvalida()

@@ -28,7 +28,7 @@ public class Rectangle{
         width = 40;
         xPosition = 70;
         yPosition = 15;
-        color = "magenta";
+        color = "black";
         isVisible = false;
     }
     

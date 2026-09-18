@@ -16,6 +16,9 @@ public class SlotMachine
     private Rectangle box;
     private boolean ok;
     private boolean jackpot;
+    private Rectangle palancabarra;
+    private Circle palancabola;
+        
     
 
     /**
@@ -26,10 +29,26 @@ public class SlotMachine
     {
         wheels = new ArrayList<Wheel>();
         box = new Rectangle();
-        box.changeSize(60, 70);
+        box.changeSize(200, 210);
         visible = false;
         ok = true;
         jackpot = false; 
+        
+        //estoy intentando hacer la palanca 
+        palancabarra = new Rectangle();
+        palancabarra.changeSize(5,30);
+        palancabarra.changeColor("black");
+        palancabarra.moveHorizontal(-31);
+        palancabarra.moveVertical(22);
+        
+        palancabola = new Circle();
+        palancabola.changeSize(20);
+        palancabola.changeColor("red");
+        palancabola.moveHorizontal(0);
+        palancabola.moveVertical(16);
+        
+              
+        
 
         
     }
@@ -66,6 +85,7 @@ public class SlotMachine
             }
         }
         
+        
         wheels.add(pos-1,wheel);
 
         /**
@@ -80,7 +100,9 @@ public class SlotMachine
          */
         int newWidht = 10 + wheels.size()*40;
         box.changeSize(50,newWidht);
+        
         ok = true;
+        makeVisible();
     }
     
     /**
@@ -172,6 +194,7 @@ public class SlotMachine
      * @param wheel la posicion de la rueda que desea rotar
      */
     public void spin(int wheel) {
+        palanca();
         if (wheel < 0 || wheel >= wheels.size()) {
             ok = false;
             return;
@@ -192,6 +215,7 @@ public class SlotMachine
     
     public void spin(){
         boolean algunaBloqueda = false;
+        palanca();
         for (Wheel wheel : wheels) {
             if (wheel.isLocked()== false) {
                 wheel.spin();
@@ -250,7 +274,7 @@ public class SlotMachine
             
             }
         else{
-            for(int i = 0;i < wheels.size();i++){
+            for(int i = 0;i < wheels.size() && i < setSymbols.length;i++){
                 Wheel ruedita = wheels.get(i);
                 String[] symbolos = ruedita.symbols();
                 
@@ -269,9 +293,10 @@ public class SlotMachine
                 }
                 
                 if (!existe){
-                        JOptionPane.showMessageDialog(null,"No existe el simbolo " + setSymbols[i] +" de la rueda número " + i);
-                        ok = false;
-                        break;
+                        JOptionPane.showMessageDialog(null,"No existe el simbolo " + setSymbols[i] +" de la rueda número " + i + 
+                        " por eso la rueda no cambia de simbolo");
+                        //ok = false;
+                        //break;
                     
                     }
                 if(ruedita.indexSymbolArriba() < posicion){
@@ -364,6 +389,8 @@ public class SlotMachine
     public void makeVisible(){
         updateBoxColor();
         box.makeVisible();
+        palancabola.makeVisible();
+        palancabarra.makeVisible();
         for(Wheel wheel : wheels){
             wheel.makeVisible();
         }
@@ -377,6 +404,8 @@ public class SlotMachine
     
     public void makeInvisible(){
         box.makeInvisible();
+        palancabola.makeInvisible();
+        palancabarra.makeInvisible();
         for(Wheel wheel : wheels){
             wheel.makeInvisible();
         }
@@ -398,11 +427,18 @@ public class SlotMachine
      */
     private void updateBoxColor(){
         if(jackpot){
-            box.changeColor("gold");
+            box.changeColor("yellow");
+            for(Wheel wheel : wheels){
+                wheel.makeVisible();
+            }            
         }
-        else{
+       else{
             box.changeColor("black");
+            for(Wheel wheel : wheels){
+                wheel.makeVisible();
+            }
         }
+       
     }
     
     /**
@@ -471,6 +507,25 @@ public class SlotMachine
             ok = true;
         }
     }
+
     
+       
+    /**
+     * Movimiento de la palanca - esta en prueba 
+     */
+    private void palanca (){
+        if(visible){
+            for(int i = 0;i<20;i++){
+                palancabola.slowMoveVertical(1);
+                palancabarra.slowMoveVertical(1);
+            }
+            
+            
+            for(int i = 0;i<20;i++){
+            palancabola.slowMoveVertical(-1);
+            palancabarra.slowMoveVertical(-1);     
+            }
     
-}   
+        } 
+    } 
+} 

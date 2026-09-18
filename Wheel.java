@@ -19,6 +19,7 @@ public class Wheel {
     // Referencia a la SlotMachine contenedora
     private SlotMachine machine;
     private boolean locked = false;
+    private Rectangle contenedor;
 
     /**
      * Constructor de la clase Wheel
@@ -32,6 +33,12 @@ public class Wheel {
         random = new Random();
         xPosition = 20; // Posición base inicial por defecto
         machine = null;
+        contenedor = new Rectangle();
+        contenedor.changeColor("white");
+        contenedor.changeSize(40,30);
+        contenedor.moveHorizontal(xPosition-70);
+        contenedor.moveVertical(5);
+        
     }
 
     /**
@@ -159,14 +166,17 @@ public class Wheel {
     public void spin() {
         if (symbols.size() > 0) {
             if (visible && indexSymbolUp >= 0 && indexSymbolUp < symbols.size()) {
-                symbols.get(indexSymbolUp).makeInvisible();  
+                for (int i = 0;i< 8;i++){
+                symbols.get(indexSymbolUp).makeInvisible();
+                indexSymbolUp = random.nextInt(symbols.size());
+                symbols.get(indexSymbolUp).makeVisible();
+                }
+                try{Thread.sleep(150);}catch(InterruptedException e){}
             }
-            indexSymbolUp = random.nextInt(symbols.size());
-            if (visible) {
-                symbols.get(indexSymbolUp).makeVisible();    
-            }
+                        
             ok = true;
         } else {
+            indexSymbolUp = random.nextInt(symbols.size());
             ok = false;
         }
     }
@@ -279,6 +289,7 @@ public class Wheel {
      */
     public void makeVisible() {
         visible = true;
+        contenedor.makeVisible();
         if (!symbols.isEmpty() && indexSymbolUp >= 0 && indexSymbolUp < symbols.size()) {
             symbols.get(indexSymbolUp).makeVisible();
         }
@@ -288,6 +299,7 @@ public class Wheel {
      * Hace invisible el símbolo actual de la rueda.
      */
     public void makeInvisible() {
+        contenedor.makeInvisible();
         if (!symbols.isEmpty() && indexSymbolUp >= 0 && indexSymbolUp < symbols.size()) {
             symbols.get(indexSymbolUp).makeInvisible();
         }
@@ -302,9 +314,11 @@ public class Wheel {
         for (Symbol symbol : symbols) {
             symbol.moveHorizontal(distance);
         }
+        contenedor.moveHorizontal(distance);
         xPosition += distance;
     }
-
+    
+    
     /**
      * Mueve la rueda a una coordenada X determinada.
      * @param newX Nueva coordenada X.
@@ -340,4 +354,5 @@ public class Wheel {
     public boolean isLocked(){
         return locked;
     }
+    
 }

@@ -1,5 +1,5 @@
 #BlueJ class context
-#Sun Sep 06 01:58:12 COT 2026
+#Thu Sep 17 22:40:22 COT 2026
 comment0.target=SlotMachine
 comment0.text=\r\n Simula una maquina tragamonedas, compuesta por ruedas que a su vez\r\n contienen simbolos identificados por colores.\r\n \r\n @author Brenda Guerrero - Alexandra Barragan \r\n @version 1.0\r\n
 comment1.target=SlotMachine()
@@ -39,6 +39,8 @@ comment22.text=\r\n Cambia el estado de una rueda que el ususario desee  bloquea
 comment23.params=wheel
 comment23.target=void unlock(int)
 comment23.text=\r\n cambia el estado de una rueda que bloqueada a desbloqueada para que pueda volver a girar \r\n @param wheel poscion (indice) de la rueda que se encuentra bloqueada para desbloquearla\r\n
+comment24.target=void palanca()
+comment24.text=\r\n Movimiento de la palanca - esta en prueba \r\n
 comment3.params=pos
 comment3.target=void addWheel(int)
 comment3.text=\r\n addWheel() a\u00F1adir rueda dada una posicion, si la posicion es menor a 1 se asume como posicion\r\n 1; si es mayor al maximo, se unsa la posicion m\u00E1xima.\r\n @param pos Es la posicion que el usuario donde desea a\u00F1adir la rueda\r\n
@@ -59,4 +61,4 @@ comment8.target=void spin(int)
 comment8.text=\r\n spin() hace girar la rueda indicada por el usuario\r\n @param wheel la posicion de la rueda que desea rotar\r\n
 comment9.target=void spin()
 comment9.text=\r\n spin () hace girar todas las ruedas de la maquina tragamonedas\r\n
-numComments=24
+numComments=25

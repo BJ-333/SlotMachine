@@ -273,8 +273,11 @@ public class SlotMachineTest
     
     }
     
-    
-    
+    /** Prueba que una rueda existente pueda ser bloqueada correctamente.
+    * La maquina debe permitir bloquear una rueda que existe.
+    * La operacion debe realizarse correctamente y ok() debe retornar true.
+    */
+        
     @Test
     public void testBloquearRueda() {
         SlotMachine maquinaTraga = new SlotMachine();
