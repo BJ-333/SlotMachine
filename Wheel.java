@@ -16,8 +16,6 @@ public class Wheel {
     private String name;
     private Random random;
     private int xPosition;
-    // Referencia a la SlotMachine contenedora
-    private SlotMachine machine;
     private boolean locked = false;
     private Rectangle contenedor;
 
@@ -32,7 +30,6 @@ public class Wheel {
         visible = false;
         random = new Random();
         xPosition = 20; // Posición base inicial por defecto
-        machine = null;
         contenedor = new Rectangle();
         contenedor.changeColor("white");
         contenedor.changeSize(40,30);
@@ -42,121 +39,66 @@ public class Wheel {
     }
 
     /**
-     * Registra esta rueda en la SlotMachine y alinea su posición visual
-     * dentro de la caja de la máquina tragamonedas.
-     * 
-     * @param machine La SlotMachine donde se desea vincular la rueda.
-     * @param pos Posición en la máquina donde irá la rueda (se ajusta a 1 si es menor a 1).
-     */
-    public void addToMachine(SlotMachine machine, int pos) {
-        if (machine != null) {
-            // Si el usuario ingresa 0 o menor a 1, corregimos a 1
-            if (pos < 1) {
-                pos = 1;
-            }
-
-            this.machine = machine;
-            
-            // Ocultamos la rueda local para evitar duplicados 
-            makeInvisible();
-            
-            // Guardamos los colores que tenía la rueda
-            String[] myColors = this.symbols();
-            
-            // Calculamos la coordenada X exacta que asigna SlotMachine para esa posición
-            int targetX = 80 + ((pos - 1) * 40);
-            this.moveTo(targetX);
-            
-            // agregar la rueda en slotmachine
-            this.machine.addWheel(pos);
-            
-            // Transferimos los símbolos a la SlotMachine para que los tengan todas las ruedas
-            for (int i = 0; i < myColors.length; i++) {
-                this.machine.addSymbol(i + 1, myColors[i]);
-            }
-            
-            this.ok = this.machine.ok();
-        } else {
-            this.ok = false;
-        }
-    }
-
-    /**
-     * Agrega un símbolo. Si la rueda está vinculada a una SlotMachine,
-     * agrega el símbolo a TODAS las ruedas de la máquina.
+     * Agrega un símbolo
      * 
      * @param pos Posición del símbolo en la rueda.
      * @param color Color del símbolo a añadir.
      */
     public void addSymbol(int pos, String color) {
-        // Si pertenece a una máquina, la máquina añade el símbolo a todas sus ruedas
-        if (machine != null) {
-            machine.addSymbol(pos, color);
-            this.ok = machine.ok();
-        } else {
-            // Si es una rueda independiente, agregamos el símbolo localmente
-            if (pos < 1) {
-                pos = 1;
-            }
-            if (pos > symbols.size() + 1) {
-                pos = symbols.size() + 1;
-            }
-            
-            Symbol symbol = new Symbol(color);
-            symbol.moveHorizontal(xPosition - 20);
-            symbol.moveVertical(10);
-            
-            symbols.add(pos - 1, symbol); 
-            
-            if (symbols.size() == 1) {
-                indexSymbolUp = 0;
-            }
-
-            if (visible && (symbols.size() == 1 || (pos - 1) == indexSymbolUp)) {
-                symbol.makeVisible();
-            }
-            
-            ok = true;
+        if (pos < 1) {
+            pos = 1;
         }
+        if (pos > symbols.size() + 1) {
+            pos = symbols.size() + 1;
+        }
+        
+        Symbol symbol = new Symbol(color);
+        symbol.moveHorizontal(xPosition - 20);
+        symbol.moveVertical(10);
+        
+        symbols.add(pos - 1, symbol); 
+        
+        if (symbols.size() == 1) {
+            indexSymbolUp = 0;
+        }
+
+        if (visible && (symbols.size() == 1 || (pos - 1) == indexSymbolUp)) {
+            symbol.makeVisible();
+        }
+        
+        ok = true;
     }
 
     /**
-     * Elimina un símbolo. Si la rueda pertenece a una SlotMachine,
-     * elimina el símbolo de TODAS las ruedas de la máquina.
-     * 
+     * Elimina un símbolo. 
      * @param symbol Color del símbolo a eliminar.
      */
     public void delSymbol(String symbol) {
-        if (machine != null) {
-            machine.delSymbol(symbol);
-            this.ok = machine.ok();
-        } else {
-            int pos = -1;
-            for (int i = 0; i < symbols.size(); i++) {
-                if (symbols.get(i).color().equals(symbol)) {
-                    pos = i;
-                    break;
-                }
+        int pos = -1;
+        for (int i = 0; i < symbols.size(); i++) {
+            if (symbols.get(i).color().equals(symbol)) {
+                pos = i;
+                break;
             }
+        }
+        
+        if (pos >= 0) {
+            if (visible && pos == indexSymbolUp) {
+                symbols.get(pos).makeInvisible();
+            }
+            symbols.remove(pos);
             
-            if (pos >= 0) {
-                if (visible && pos == indexSymbolUp) {
-                    symbols.get(pos).makeInvisible();
+            if (symbols.isEmpty()) {
+                indexSymbolUp = 0;
+            } else if (indexSymbolUp >= symbols.size()) {
+                indexSymbolUp = 0;
+                if (visible) {
+                    symbols.get(indexSymbolUp).makeVisible();
                 }
-                symbols.remove(pos);
-                
-                if (symbols.isEmpty()) {
-                    indexSymbolUp = 0;
-                } else if (indexSymbolUp >= symbols.size()) {
-                    indexSymbolUp = 0;
-                    if (visible) {
-                        symbols.get(indexSymbolUp).makeVisible();
-                    }
-                }
-                ok = true;
-            } else {
-                ok = false;
             }
+            ok = true;
+        } else {
+            ok = false;
         }
     }
 
