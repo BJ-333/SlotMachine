@@ -372,7 +372,45 @@ public class SlotMachineTest
         assertFalse(maq.ok());
     }
     
-    
+    // Test para ciclo 3
+    @Test
+    public void deberiaCrearMaquinaConNRuedasYSimbolos() {
+        int n = 4;
+        SlotMachine machine = new SlotMachine(n);
+        assertTrue(machine.ok());
+        assertEquals(n, machine.listSizeWheel());
+        assertEquals(n, machine.distinctSymbols());
+    }
+
+    @Test
+    public void deberiaIniciarInvisible() {
+        SlotMachine machine = new SlotMachine(3);
+        assertTrue(machine.ok());
+    }
+
+    @Test
+    public void deberiaManejarTamanoMinimoValido() {
+        int n = 1;
+        SlotMachine machine = new SlotMachine(n);
+
+        assertTrue(machine.ok());
+        assertEquals(1, machine.listSizeWheel());
+        assertEquals(1, machine.distinctSymbols());
+    }
+
+    @Test
+    public void noDeberiaCrearMaquinaConTamanoCero() {
+        SlotMachine machine = new SlotMachine(0);
+        assertFalse(machine.ok());
+        assertEquals(0, machine.listSizeWheel());
+    }
+
+    @Test
+    public void noDeberiaCrearMaquinaConTamanoNegativo() {
+        SlotMachine machine = new SlotMachine(-3);
+        assertFalse(machine.ok());
+        assertEquals(0, machine.listSizeWheel());
+    }
     /**
      * Tears down the test fixture.
      *
