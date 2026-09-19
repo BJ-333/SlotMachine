@@ -8,8 +8,7 @@ import javax.swing.JOptionPane;
  * @author Brenda Guerrero - Alexandra Barragan 
  * @version 1.0
  */
-public class SlotMachine
-{
+public class SlotMachine{
     
     private ArrayList<Wheel> wheels;
     private boolean visible;
@@ -18,9 +17,12 @@ public class SlotMachine
     private boolean jackpot;
     private Rectangle palancabarra;
     private Circle palancabola;
-        
+    // colores para la slotmachine creada con n simbolos y n wheels 
+    private   static final String[] colors ={
+        "red", "blue", "yellow", "green", "magenta","black", "cyan","pink",
+        "gray"
+    }; 
     
-
     /**
      * Constructor de la clase SlotMachine
      *
@@ -47,13 +49,62 @@ public class SlotMachine
         palancabola.moveHorizontal(0);
         palancabola.moveVertical(16);
         
-              
-        
-
-        
     }
-    
-    
+    /**
+     * Constructor para la extension, crea la maquina con n ruedas y n simbolos diferentes
+     * @param n Numero de ruedas y simbolos dados por el usuario
+     */
+    public SlotMachine(int n){
+       wheels = new ArrayList<Wheel>();
+        box = new Rectangle();
+        box.changeSize(200, 210);
+        visible = false;
+        jackpot = false;
+
+        // Configuració de la palanca
+        palancabarra = new Rectangle();
+        palancabarra.changeSize(5, 30);
+        palancabarra.changeColor("black");
+        palancabarra.moveHorizontal(-31);
+        palancabarra.moveVertical(22);
+
+        palancabola = new Circle();
+        palancabola.changeSize(20);
+        palancabola.changeColor("red");
+        palancabola.moveHorizontal(0);
+        palancabola.moveVertical(16); 
+
+        if (n<= -1){
+            ok = false; 
+            return;
+        }
+        // Crear las n ruedas
+        for (int i = 1; i <= n; i++) {
+            addWheel(i);
+        }
+        // Agregar n símbolos 
+        for (int i = 0; i < n; i++) {
+            String color = generarColor(i);
+            addSymbol(i + 1, color);
+        }
+        // Inicializar el giro
+        for (Wheel wheel : wheels) {
+            wheel.spin();
+        }
+        makeInvisible();
+        ok = true;
+        }
+    /**
+     * Metodo axuiliar para el constructor sobrecargado para poder generar los colores 
+     * @param index pos del simbolo 
+     * @return el nombre del color a la pos indicada 
+     */
+    private String generarColor(int index) {
+        if (index < colors.length) {
+            return colors[index];
+        }
+        return "color_" + (index + 1);
+    }
     /**
      * 
      */
@@ -84,7 +135,6 @@ public class SlotMachine
                 wheel.addSymbol(i,existingColors[i]);
             }
         }
-        
         
         wheels.add(pos-1,wheel);
 
