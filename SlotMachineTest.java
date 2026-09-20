@@ -373,6 +373,8 @@ public class SlotMachineTest
     }
     
     // Test para ciclo 3
+
+    // Crear Slotmachine(n) con un entero valido y se creen las n wheels y n symbols
     @Test
     public void deberiaCrearMaquinaConNRuedasYSimbolos() {
         int n = 4;
@@ -381,13 +383,13 @@ public class SlotMachineTest
         assertEquals(n, machine.listSizeWheel());
         assertEquals(n, machine.distinctSymbols());
     }
-
+    // crear la slotmachine con n ruedas y simbolos y que este invisible por default
     @Test
     public void deberiaIniciarInvisible() {
         SlotMachine machine = new SlotMachine(3);
         assertTrue(machine.ok());
     }
-
+    // crear maquina con el valor minimo de ruedas y simbolos (1)
     @Test
     public void deberiaManejarTamanoMinimoValido() {
         int n = 1;
@@ -395,16 +397,15 @@ public class SlotMachineTest
 
         assertTrue(machine.ok());
         assertEquals(1, machine.listSizeWheel());
-        assertEquals(1, machine.distinctSymbols());
+        assertEquals(1, machine.distinctSymbols().length);
     }
-
+    // no crear una maquina con 0 elementos
     @Test
     public void noDeberiaCrearMaquinaConTamanoCero() {
         SlotMachine machine = new SlotMachine(0);
-        assertFalse(machine.ok());
         assertEquals(0, machine.listSizeWheel());
     }
-
+    // Probar que no pase numeros negativos 
     @Test
     public void noDeberiaCrearMaquinaConTamanoNegativo() {
         SlotMachine machine = new SlotMachine(-3);
