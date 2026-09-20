@@ -13,58 +13,194 @@ public class SlotMachineContest
      * @return devuelve el arraglo de acciones {rueda,pasos}
      */
     public static int[][] solve(int n){
+        
         SlotMachine maquina = new SlotMachine(n);
-        ArrayList <int[]> accions = new ArrayList<int[]>();
+        return resolver(maquina,n);
         
-        while (maquina.distinctSymbols()>1){
-            for(int rueda = 2; rueda <= n ; rueda++){
-                int bestk = maquina.distinctSymbols();
-                int bestpaso = 0;
-                
-                for (int paso = 1; paso <= n ; paso++){
-                    maquina.spinStep(rueda,1);
-                    
-                                      
-                    int kActual = maquina.distinctSymbols();
-                    
-                    if(kActual < bestk){
-                        bestk = kActual;
-                
-                        bestpaso = paso;
-                    
-                    }
-                }
-                
-                
-                if(bestpaso > 0){
-                    maquina.spinStep(rueda,bestpaso);
-                    accions.add(new int[]{rueda,bestpaso});                
-                }
-            }
         
-        }
-        return accions.toArray(new int[0][]);        
     }
+
     
     
     
-    
-    
+       
     /**
      * simular visulamente la solucion que hizo solve, ira ejecutando cada accion registrada
      * @param n 
      */
     
     public static void simulate( int n){
-        int[][] acciones = solve(n);
-        
+               
         SlotMachine maquina = new SlotMachine(n);
         maquina.makeVisible();
         
-        for (int[] accion : acciones) {
-            maquina.spinStep(accion[0], accion[1]);
-        }
+        resolver(maquina,n);
     
     
     }
+    
+    
+    
+    /**
+     * Este es una ayuda para solve, son las fases para solucionar el problema
+     */
+    private static int[][] resolver(SlotMachine maquina, int n){
+    
+        
+        ArrayList <int[]> accions = new ArrayList<int[]>();
+        
+        
+        // k = n
+        for(int  rueda = 1 ; rueda <= n ; rueda++){
+            
+            int bestK = maquina.distinctSymbols();
+            int bestPasos = 0;
+            
+            for(int paso = 1; paso <= n; paso ++){
+            
+                maquina.spinStep(rueda,1);
+                accions.add(new int []{rueda,1});
+                
+                int kActual = maquina.distinctSymbols();
+                
+                if(kActual > bestK){
+                    bestK = kActual;
+                    bestPasos = paso;
+                
+                }
+            }
+            
+            
+            if(bestPasos > 0){
+                int regresar = n - bestPasos;
+                if (regresar > 0){
+                    maquina.spinStep(rueda,-regresar);
+                    accions.add(new int[]{rueda,-regresar});
+                                    
+                }
+                  
+        
+            }
+        }
+        
+        System.out.println(maquina.distinctSymbols());
+        
+        // fase 2
+        
+        
+        
+        int [] siguiente = new int[n+1];
+        
+        
+        for (int i = 1; i <= n ; i++){
+        
+            for(int j = i+1; j <=n; j++){
+                
+                
+                
+                maquina.spinStep(i,1);
+                accions.add(new int[]{i, 1});
+                
+                maquina.spinStep(j,-1);
+                accions.add(new int[]{j, -1});
+                
+                int k = maquina.distinctSymbols();
+                
+                if(k == n){
+                    // j seria el siguiente i
+                    siguiente[i]= j;
+                    
+                    System.out.println("Encontrado: " + i + " -> " + j);
+                    
+                    
+                    maquina.spinStep(i,-1);
+                    accions.add(new int[]{i, -1});
+                    
+                    maquina.spinStep(j, 1);
+                    accions.add(new int[]{j, 1});
+                
+                }
+                else{
+                    
+                    
+                    
+                    maquina.spinStep(i,-2);
+                    accions.add(new int[]{i, -2});
+                    
+                    maquina.spinStep(j, 2);
+                    accions.add(new int[]{j, 2});
+                    
+                    
+                    int k2 = maquina.distinctSymbols();
+                    
+                    
+                    if(k2 == n){
+                        
+                        siguiente[j] = i;
+                        System.out.println("Encontrado: " + j + " -> " + i);
+                    }
+                    
+                    
+                    maquina.spinStep(i,1);
+                    accions.add(new int[]{i, 1});
+                    
+                    maquina.spinStep(j,-1);
+                    accions.add(new int[]{j, -1});
+                        
+                                
+                
+                }
+                
+
+            }
+        
+        }
+        System.out.println("K despues de Fase 2: " + maquina.distinctSymbols());
+        System.out.println("Siguiente:");
+        
+            for (int i = 1; i <= n; i++) {
+                System.out.println(
+                    i + " -> " + siguiente[i]
+                );}
+        
+        
+        
+        
+        int[] orden = new int[n];
+
+        int actual = 1;
+        
+        for (int i = 0; i < n; i++) {
+        
+            orden[i] = actual;
+            actual = siguiente[actual];
+        }
+        
+        
+        
+        
+        
+      //fase 3
+        
+        for (int i = 1; i < n; i++) {
+        
+            int rueda = orden[i];
+            int pasos = -i;
+             if (i > n - i) {
+                pasos = n - i;
+            }
+            maquina.spinStep(rueda, pasos);
+            accions.add(new int[]{rueda, pasos});
+        }
+        
+        System.out.println("k final = " + maquina.distinctSymbols());
+        System.out.println("cant de acciones = " + accions.size());
+        
+              
+        
+        
+        return accions.toArray(new int[0][]);     
+    }
+    
+    
 }

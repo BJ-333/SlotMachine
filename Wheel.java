@@ -128,31 +128,48 @@ public class Wheel {
      * spinS
      */
     
-    public void spinS(int steps){
-        if (symbols.size()>0){
-            int  cont = 0;
-            for(int i = 0; cont < steps;i++){
-                symbols.get(indexSymbolUp).makeInvisible();
-                if(indexSymbolUp == symbols.size()-1){
-                    indexSymbolUp =0;
-                }
-                else {
-                    indexSymbolUp = indexSymbolUp +1;
-                
-                }
-                Symbol simbolo = symbols.get(indexSymbolUp);
-                simbolo.makeVisible();
-                simbolo.esperarS(1000);
-                cont = cont + 1;
-            }
-            ok = true;
-        
-        }
-        else {
+    public void spinS(int steps) {
+
+        if (symbols.size() == 0) {
             ok = false;
-        
+            return;
         }
     
+        int cantidad = Math.abs(steps);
+    
+        for (int i = 0; i < cantidad; i++) {
+    
+            if (visible) {
+                symbols.get(indexSymbolUp).makeInvisible();
+            }
+    
+            if (steps >= 0) {
+    
+                
+                if (indexSymbolUp == symbols.size() - 1) {
+                    indexSymbolUp = 0;
+                } else {
+                    indexSymbolUp++;
+                }
+    
+            } else {
+    
+                
+                if (indexSymbolUp == 0) {
+                    indexSymbolUp = symbols.size() - 1;
+                } else {
+                    indexSymbolUp--;
+                }
+            }
+    
+            if (visible) {
+                Symbol simbolo = symbols.get(indexSymbolUp);
+                simbolo.makeVisible();
+                simbolo.esperarS(80);
+            }
+        }
+    
+        ok = true;
     }
     
     
