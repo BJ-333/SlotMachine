@@ -1,0 +1,11 @@
+#BlueJ class context
+#Sat Sep 19 21:58:16 COT 2026
+comment0.target=SlotMachineContest
+comment0.text=\r\n Solucionar el problema de la marat\u00F3n\r\n Simular la soluci\u00F3n ,si esposible\r\n @author Brenda Guerrero - Alexandra Barragan \r\n \r\n
+comment1.params=n
+comment1.target=int[][] solve(int)
+comment1.text=\r\n solucinar porblema- calcula cuantos pasos necesita para ganar\r\n @param n es el numero de ruedas y simbolos\r\n @return devuelve el arraglo de acciones {rueda,pasos}\r\n
+comment2.params=n
+comment2.target=void simulate(int)
+comment2.text=\r\n simular visulamente la solucion que hizo solve, ira ejecutando cada accion registrada\r\n @param n \r\n
+numComments=3

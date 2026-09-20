@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import java.util.Random;
 /**
  * Simula una maquina tragamonedas, compuesta por ruedas que a su vez
  * contienen simbolos identificados por colores.
@@ -21,7 +22,10 @@ public class SlotMachine{
     private   static final String[] colors ={
         "red", "blue", "yellow", "green", "magenta","black", "cyan","pink",
         "gray"
-    }; 
+    };
+    // para tambien generar tiposimbolos distintos
+    private static final String[] tipoSimbols = {"c","t","r"};
+    private static final Random random = new Random();
     
     /**
      * Constructor de la clase SlotMachine
@@ -32,6 +36,7 @@ public class SlotMachine{
         wheels = new ArrayList<Wheel>();
         box = new Rectangle();
         box.changeSize(200, 210);
+        box.setPosition(70,15);
         visible = false;
         ok = true;
         jackpot = false; 
@@ -39,6 +44,7 @@ public class SlotMachine{
         //estoy intentando hacer la palanca 
         palancabarra = new Rectangle();
         palancabarra.changeSize(5,30);
+        palancabarra.setPosition(70,15);
         palancabarra.changeColor("black");
         palancabarra.moveHorizontal(-31);
         palancabarra.moveVertical(22);
@@ -58,12 +64,14 @@ public class SlotMachine{
        wheels = new ArrayList<Wheel>();
         box = new Rectangle();
         box.changeSize(200, 210);
+        box.setPosition(70,15);
         visible = false;
         jackpot = false;
 
         // Configuració de la palanca
         palancabarra = new Rectangle();
         palancabarra.changeSize(5, 30);
+        palancabarra.setPosition(70,15);
         palancabarra.changeColor("black");
         palancabarra.moveHorizontal(-31);
         palancabarra.moveVertical(22);
@@ -73,6 +81,8 @@ public class SlotMachine{
         palancabola.changeColor("red");
         palancabola.moveHorizontal(0);
         palancabola.moveVertical(16); 
+        
+        
 
         if (n<= -1){
             ok = false; 
@@ -85,7 +95,8 @@ public class SlotMachine{
         // Agregar n símbolos 
         for (int i = 0; i < n; i++) {
             String color = generarColor(i);
-            addSymbol(i + 1, color);
+            String tipoSimbolo = generarTipoSimbolo();
+            addSymbol(i + 1, color,tipoSimbolo);
         }
         // Inicializar el giro
         for (Wheel wheel : wheels) {
@@ -105,6 +116,10 @@ public class SlotMachine{
         }
         return "color_" + (index + 1);
     }
+    private String generarTipoSimbolo(){
+        int indice = random.nextInt(tipoSimbols.length);
+        return tipoSimbols[indice];
+    }
     /**
      * 
      */
@@ -113,6 +128,8 @@ public class SlotMachine{
         return wheels.size();
     
     }
+    
+    
     /**
      * addWheel() añadir rueda dada una posicion, si la posicion es menor a 1 se asume como posicion
      * 1; si es mayor al maximo, se unsa la posicion máxima.
@@ -130,9 +147,12 @@ public class SlotMachine{
         
         // copiamos los simbolos si ya exiten otras ruedas
         if (!wheels.isEmpty()){
-            String[] existingColors = wheels.get(0).symbols();
+            Wheel primeraRueda = wheels.get(0);
+            String[] existingColors = primeraRueda.symbols();
             for (int i = 0; i < existingColors.length;i++ ){
-                wheel.addSymbol(i,existingColors[i]);
+                Symbol simboloOriginal = primeraRueda.getSymbol(i);
+                String tipoSimbolo = simboloOriginal.tipoFigura();
+                wheel.addSymbol(i,existingColors[i],tipoSimbolo);
             }
         }
         
@@ -195,9 +215,9 @@ public class SlotMachine{
      * @param pos posicion del simbolo en las ruedas
      * @param color color del simbolo
      */
-    public void addSymbol(int pos,String color) {
+    public void addSymbol(int pos,String color,String tipoSimbolo) {
         for (Wheel wheel : wheels) {
-            wheel.addSymbol(pos,color);
+            wheel.addSymbol(pos,color,tipoSimbolo);
         }
         ok=true;
     }
@@ -206,10 +226,10 @@ public class SlotMachine{
      * delSymbol() elimina el simbolo, el simbolo se elimida de todas las ruedas existentes.
      * @param symbol color del simbolo
      */
-    public void delSymbol(String symbol){
+    public void delSymbol(String colorsymbol, String tiposymbol){
         boolean encontrado = false;
         for (Wheel wheel : wheels) {
-            wheel.delSymbol(symbol);
+            wheel.delSymbol(colorsymbol,tiposymbol);
             if (wheel.ok()){
                 encontrado = true;
             }
@@ -227,11 +247,12 @@ public class SlotMachine{
      * Si el color indicado no existe en esa rueda, la operacion no tiene
      * efecto y ok() retornara false.
      * @param wheel posicion de la rueda donde se desea colocar el simbolo, contada a partir de 1
-     * @param symbol color del simbolo que se desea dejar visible
+     * @param colorSymbol color del simbolo que se desea dejar visible
+     * @param tipoSymbol es el tipo de simbolo  que se desea dejar visible
      */
-    public void placeSymbol(int wheel , String symbol){
+    public void placeSymbol(int wheel , String colorSymbol, String tipoSymbol){
         Wheel namewheel= wheels.get(wheel-1);
-        namewheel.place(symbol);
+        namewheel.place(colorSymbol,tipoSymbol);
         ok = namewheel.ok();
         if (!ok){
             JOptionPane.showMessageDialog(null, "El simbolo no exite en esa rueda");
@@ -316,25 +337,27 @@ public class SlotMachine{
      * 
      */
     
-    public void spinConfi(String [] setSymbols){
+    public void spinConfi(String [][] setSymbols){
         if(wheels.size() == 0){
             JOptionPane.showMessageDialog(null,"No hay ruedas");
             ok = false;
            
             
             }
+        
         else{
             for(int i = 0;i < wheels.size() && i < setSymbols.length;i++){
                 Wheel ruedita = wheels.get(i);
-                String[] symbolos = ruedita.symbols();
+                String colorBuscado = setSymbols[i][0];
+                String tipoBuscado = setSymbols[i][1];
                 
                 boolean existe = false;
-                int posicion = 0;
+                int posicion = -1;
                 
-                porSimbolos: for(int j = 0;j < symbolos.length;j++){
-                    //System.out.println(symbolos[j]);
                                 
-                    if (symbolos[j].equals(setSymbols[i])){
+                porSimbolos: for(int j = 0;j < ruedita.symbols().length; j++){
+                    Symbol simboloActual = ruedita.getSymbol(j);
+                    if (simboloActual.color().equals(colorBuscado) && simboloActual.tipoFigura().equals(tipoBuscado)){
                         existe = true;
                         posicion = j;
                         break porSimbolos;
@@ -343,19 +366,20 @@ public class SlotMachine{
                 }
                 
                 if (!existe){
-                        JOptionPane.showMessageDialog(null,"No existe el simbolo " + setSymbols[i] +" de la rueda número " + i + 
+                        JOptionPane.showMessageDialog(null,"No existe el simbolo " + ruedita.symbols() +" de la rueda número " + i + 
                         " por eso la rueda no cambia de simbolo");
-                        //ok = false;
+                        ok = false;
                         //break;
                     
-                    }
+                }
+                else{int indexActual = ruedita.indexSymbolArriba();}
                 if(ruedita.indexSymbolArriba() < posicion){
                     int pasos = posicion -ruedita.indexSymbolArriba();
                     spinStep(i+1,pasos);
                                 
                 }
                 else if(ruedita.indexSymbolArriba() > posicion){
-                    int pasos = (symbolos.length - ruedita.indexSymbolArriba())+posicion;
+                    int pasos = (ruedita.symbols().length - ruedita.indexSymbolArriba())+posicion;
                     spinStep(i+1,pasos);
                 }
             
@@ -385,7 +409,7 @@ public class SlotMachine{
     }
     
     /**
-     * distinctSymbols() cuenta la cantidad e colores unicos(no repetidos)
+     * distinctSymbols() cuenta la cantidad e colores y figuras unicos(no repetidos)
      */
     public int distinctSymbols(){
         //si wheels esta vacía la operacion no se realiza
@@ -393,23 +417,31 @@ public class SlotMachine{
             ok = false;
             return 0;
         }
-        Wheel namewheel = wheels.get(0);
+        ArrayList<String> distinct = new ArrayList<String>();
+        for (Wheel wheel : wheels) {
+            Symbol simboloVisible = wheel.SymbolUp();
+            String combina = simboloVisible.color() + "-" + simboloVisible.tipoFigura();
+            if (!distinct.contains(combina)) {
+                distinct.add(combina);
+            }
+        }
+        
         ok = true;
-        return namewheel.distinctSymbols();
-    
+        return distinct.size();
     }
     
+       
     
     /**
      * configuration() genera arreglo de los simbolos visibles en cada una de las ruedas
      */
-    public String[] configuration(){
-        ArrayList <String> confi = new ArrayList <String>();
+    public Symbol[] configuration(){
+        ArrayList <Symbol> confi = new ArrayList <Symbol>();
         for (Wheel wheel:wheels){
-            confi.add(wheel.colorSymbolUp());
+            confi.add(wheel.SymbolUp());
         }
         ok = true;
-        return confi.toArray(new String[0]);
+        return confi.toArray(new Symbol[0]);
     
     }
     
@@ -418,11 +450,11 @@ public class SlotMachine{
      * ganardo, de lo contrario es perdedor.
      */
     public boolean isJackpot(){
-        String [] config = configuration();
+        Symbol [] config = configuration();
         
         boolean valor = true;
         for (int i =1; i< config.length;i++){
-            if(!config[i].equals(config[0])){
+            if(!config[i].color().equals(config[0].color()) || !config[i].tipoFigura().equals(config[0].tipoFigura())){
                 valor = false;
             }
         }

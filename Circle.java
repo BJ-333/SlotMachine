@@ -8,7 +8,7 @@ import java.awt.geom.*;
  * @version 1.0.  (15 July 2000) 
  */
 
-public class Circle{
+public class Circle implements Figura{
 
     public static final double PI=3.1416;
     
@@ -39,19 +39,7 @@ public class Circle{
         erase();
         isVisible = false;
     }
-    
-    public void esperarC(int tiempo){
-        if(isVisible) {
-            Canvas micanva = Canvas.getCanvas();
-            micanva.draw(this, color, 
-                new Ellipse2D.Double(xPosition, yPosition, 
-                diameter, diameter));
-            micanva.wait(tiempo);
-        
-        }
-    }
-    
-    
+         
     private void draw(){
         if(isVisible) {
             Canvas canvas = Canvas.getCanvas();

@@ -10,31 +10,40 @@ public class Symbol
 {
     
     private String color ;
-    private Circle figure;
+    private Figura figure;
 
     /**
      * Constructor de la clase Symbol
      * Crea un simbolo del color indicado, asociado con la clase circle de shapes
      * "param color color del simbolo
      */
-    public Symbol(String color)
+    public Symbol(String color, String tipoFigura)
     {
         this.color = color;
-        figure = new Circle();
+        if(tipoFigura.equals("c") ||tipoFigura.equals("C")){
+            figure = new Circle();
+                    
+        }
+        else if(tipoFigura.equals("t") ||tipoFigura.equals("T")){
+            figure = new Triangle();
+        
+        }
+        else if(tipoFigura.equals("r") ||tipoFigura.equals("R")){
+            figure = new Rectangle();
+        
+        }
+        
         figure.changeColor(color);
-        
-        
-        /*falta pensar en las posiciones de los symbolos que de por si cada columna es una rueda      
-         no necesariamente visible pero wheel le pasaria las posiciones*/
-         
-        //figure.moverHorizontal(x - 20);
-        //figure.moverHorizontal(x- 15);
         
         
     }
     
     public void esperarS(int tiempo){
-        this.figure.esperarC(tiempo);
+        try {
+            Thread.sleep(tiempo);
+        } catch (InterruptedException e) {
+            
+        }
     
     }
 
@@ -75,5 +84,16 @@ public class Symbol
      */
     public void moveVertical(int distance){
         figure.moveVertical(distance);
+    }
+    
+    public String tipoFigura() {
+        if (figure instanceof Circle) {
+            return "c";
+        } else if (figure instanceof Rectangle) {
+            return "r";
+        } else if (figure instanceof Triangle) {
+            return "t";
+        }
+        return "c";
     }
 }

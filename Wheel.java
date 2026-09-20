@@ -33,6 +33,7 @@ public class Wheel {
         contenedor = new Rectangle();
         contenedor.changeColor("white");
         contenedor.changeSize(40,30);
+        contenedor.setPosition(70,15);
         contenedor.moveHorizontal(xPosition-70);
         contenedor.moveVertical(5);
         
@@ -44,7 +45,7 @@ public class Wheel {
      * @param pos Posición del símbolo en la rueda.
      * @param color Color del símbolo a añadir.
      */
-    public void addSymbol(int pos, String color) {
+    public void addSymbol(int pos, String color,String tipoSimbol) {
         if (pos < 1) {
             pos = 1;
         }
@@ -52,7 +53,7 @@ public class Wheel {
             pos = symbols.size() + 1;
         }
         
-        Symbol symbol = new Symbol(color);
+        Symbol symbol = new Symbol(color,tipoSimbol);
         symbol.moveHorizontal(xPosition - 20);
         symbol.moveVertical(10);
         
@@ -73,10 +74,10 @@ public class Wheel {
      * Elimina un símbolo. 
      * @param symbol Color del símbolo a eliminar.
      */
-    public void delSymbol(String symbol) {
+    public void delSymbol(String colorsymbol, String tiposymbol) {
         int pos = -1;
         for (int i = 0; i < symbols.size(); i++) {
-            if (symbols.get(i).color().equals(symbol)) {
+            if (symbols.get(i).color().equals(colorsymbol) && symbols.get(i).tipoFigura().equals(tiposymbol)) {
                 pos = i;
                 break;
             }
@@ -113,7 +114,7 @@ public class Wheel {
                 indexSymbolUp = random.nextInt(symbols.size());
                 symbols.get(indexSymbolUp).makeVisible();
                 }
-                try{Thread.sleep(150);}catch(InterruptedException e){}
+                try{Thread.sleep(80);}catch(InterruptedException e){}
             }
                         
             ok = true;
@@ -161,10 +162,10 @@ public class Wheel {
      * 
      * @param symbol Color del símbolo que se desea dejar visible.
      */
-    public void place(String symbol) {
+    public void place(String colorsymbol,String tipoSimbolo) {
         int pos = -1;
         for (int i = 0; i < symbols.size(); i++) {
-            if (symbols.get(i).color().equals(symbol)) {
+            if (symbols.get(i).color().equals(colorsymbol) && symbols.get(i).tipoFigura().equals(tipoSimbolo)) {
                 pos = i;
                 break;
             }
@@ -208,9 +209,11 @@ public class Wheel {
      */
     public int distinctSymbols() {
         ArrayList<String> distinct = new ArrayList<String>();
+        
         for (Symbol s : symbols) {
-            if (!distinct.contains(s.color())) {
-                distinct.add(s.color());
+            String combinacion = s.color() + "-" + s.tipoFigura();
+            if (!distinct.contains(combinacion)){
+                distinct.add(combinacion);
             }
         }
         return distinct.size();
@@ -219,11 +222,11 @@ public class Wheel {
     /**
      * Retorna el color del símbolo visible actualmente.
      */
-    public String colorSymbolUp() {
+    public Symbol SymbolUp() {
         if (symbols.isEmpty() || indexSymbolUp < 0 || indexSymbolUp >= symbols.size()) {
             return null;
         }
-        return symbols.get(indexSymbolUp).color();
+        return symbols.get(indexSymbolUp);
     }
 
     /**
@@ -297,4 +300,8 @@ public class Wheel {
         return locked;
     }
     
+    
+    public Symbol getSymbol(int index) {
+        return symbols.get(index);
+    }
 }
