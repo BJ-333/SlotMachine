@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 /**
  * Solucionar el problema de la maratón
  * Simular la solución ,si esposible
@@ -83,7 +84,7 @@ public class SlotMachineContest
             }
         }
         
-        System.out.println(maquina.distinctSymbols());
+        System.out.println( maquina.distinctSymbols()+ " :k = n, todos los simbolos distintos");
         
         // fase 2
         
@@ -107,12 +108,12 @@ public class SlotMachineContest
                 int k = maquina.distinctSymbols();
                 
                 if(k == n){
-                    // j seria el siguiente i
+                    
                     siguiente[i]= j;
                     
-                    System.out.println("Encontrado: " + i + " -> " + j);
+                    System.out.println("R"+i+ "le sigue a R "+j );
                     
-                    
+                    // lo ponemos como estaba antes 
                     maquina.spinStep(i,-1);
                     accions.add(new int[]{i, -1});
                     
@@ -120,10 +121,12 @@ public class SlotMachineContest
                     accions.add(new int[]{j, 1});
                 
                 }
+                
+                
                 else{
                     
                     
-                    
+                    // otra direccion o sea si estuvieramos en la original (i, -1) y (j,+1)
                     maquina.spinStep(i,-2);
                     accions.add(new int[]{i, -2});
                     
@@ -137,7 +140,7 @@ public class SlotMachineContest
                     if(k2 == n){
                         
                         siguiente[j] = i;
-                        System.out.println("Encontrado: " + j + " -> " + i);
+                        System.out.println("R"+j+ "le sigue a R "+i );
                     }
                     
                     
@@ -155,16 +158,9 @@ public class SlotMachineContest
             }
         
         }
-        System.out.println("K despues de Fase 2: " + maquina.distinctSymbols());
-        System.out.println("Siguiente:");
-        
-            for (int i = 1; i <= n; i++) {
-                System.out.println(
-                    i + " -> " + siguiente[i]
-                );}
-        
-        
-        
+        System.out.println("k despues de fase 2: " + maquina.distinctSymbols());
+            
+        // ordenamos en las lista tipo la secuencia del orden      
         
         int[] orden = new int[n];
 
@@ -175,7 +171,7 @@ public class SlotMachineContest
             orden[i] = actual;
             actual = siguiente[actual];
         }
-        
+        System.out.println("orden de la secuencia: " + Arrays.toString(orden));
         
         
         
