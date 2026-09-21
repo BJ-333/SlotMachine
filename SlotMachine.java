@@ -66,6 +66,7 @@ public class SlotMachine{
             ok = false; 
             return;
         }
+        else{
         box = new Rectangle();
         box.changeSize(200, 210);
         box.setPosition(70,15);
@@ -103,6 +104,7 @@ public class SlotMachine{
         makeInvisible();
         ok = true;
         }
+    }
     /**
      * Metodo axuiliar para el constructor sobrecargado para poder generar los colores 
      * @param index pos del simbolo 
