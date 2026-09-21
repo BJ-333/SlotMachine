@@ -134,8 +134,12 @@ public class SlotMachine{
      */
     
     public void addWheel(int pos){
-        if (pos < 1 ){
-            pos = 1;
+        if (pos < 0 ){
+            ok = false;
+            return;
+        }
+        if(pos==0){
+            pos =1;
         }
         else if (pos > wheels.size() + 1 ){
             pos = wheels.size() + 1;
