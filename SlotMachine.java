@@ -84,7 +84,7 @@ public class SlotMachine{
         
         
 
-        if (n<= 1){
+        if (n<= 0){
             ok = false; 
             return;
         }
