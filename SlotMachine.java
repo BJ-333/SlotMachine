@@ -61,7 +61,11 @@ public class SlotMachine{
      * @param n Numero de ruedas y simbolos dados por el usuario
      */
     public SlotMachine(int n){
-       wheels = new ArrayList<Wheel>();
+        if (n<= 0){
+            ok = false; 
+            return;
+        }
+        wheels = new ArrayList<Wheel>();
         box = new Rectangle();
         box.changeSize(200, 210);
         box.setPosition(70,15);
@@ -82,12 +86,6 @@ public class SlotMachine{
         palancabola.moveHorizontal(0);
         palancabola.moveVertical(16); 
         
-        
-
-        if (n<= 0){
-            ok = false; 
-            return;
-        }
         // Crear las n ruedas
         for (int i = 1; i <= n; i++) {
             addWheel(i);
