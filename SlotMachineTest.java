@@ -27,6 +27,9 @@ public class SlotMachineTest
     public void setUp()
     {
     }
+
+
+    
     /**
      * Prueba al crear maquina
      */
@@ -88,7 +91,7 @@ public class SlotMachineTest
     public void testAgregarSimbol(){
         SlotMachine maquinaTraga = new SlotMachine();
         maquinaTraga.addWheel(1);
-        maquinaTraga.addSymbol(1,"red");
+        maquinaTraga.addSymbol(1,"red","c");
         String[] colores = maquinaTraga.symbols();
         assertEquals(1,colores.length);
         assertEquals("red",colores[0]);
@@ -100,8 +103,8 @@ public class SlotMachineTest
     public void testEliminarSimbol(){
         SlotMachine maquinaTraga = new SlotMachine();
         maquinaTraga.addWheel(1);
-        maquinaTraga.addSymbol(1,"red");
-        maquinaTraga.delSymbol("red");
+        maquinaTraga.addSymbol(1,"red","c");
+        maquinaTraga.delSymbol("red","c");
         String[] colores = maquinaTraga.symbols();
         assertEquals(0,colores.length);
     }
@@ -113,7 +116,7 @@ public class SlotMachineTest
     public void testGirarRuedita(){
         SlotMachine maquinaTraga = new SlotMachine();
         maquinaTraga.addWheel(0);
-        maquinaTraga.addSymbol(0,"red");
+        maquinaTraga.addSymbol(0,"red","c");
         maquinaTraga.spin(0);
         assertTrue(maquinaTraga.ok());
     }
@@ -125,9 +128,9 @@ public class SlotMachineTest
         SlotMachine maquinaTraga = new SlotMachine();
         maquinaTraga.addWheel(1);
         maquinaTraga.addWheel(2);
-        maquinaTraga.addSymbol(1,"red");
-        maquinaTraga.addSymbol(2,"blue");
-        maquinaTraga.addSymbol(3,"green");
+        maquinaTraga.addSymbol(1,"red","c");
+        maquinaTraga.addSymbol(2,"blue","c");
+        maquinaTraga.addSymbol(3,"green","c");
         maquinaTraga.spin();
         assertTrue(maquinaTraga.ok());
     
@@ -139,11 +142,12 @@ public class SlotMachineTest
     public void testColocarSimbolManual(){
         SlotMachine maquinaTraga = new SlotMachine();
         maquinaTraga.addWheel(1);
-        maquinaTraga.addSymbol(1,"red");
-        maquinaTraga.addSymbol(2,"blue");
-        maquinaTraga.placeSymbol(1,"blue");
-        String [] config = maquinaTraga.configuration();
-        assertEquals("blue",config[0]);
+        maquinaTraga.addSymbol(1,"red","c");
+        maquinaTraga.addSymbol(2,"blue","c");
+        maquinaTraga.placeSymbol(1,"blue","c");
+        Symbol [] config = maquinaTraga.configuration();
+        assertEquals("blue",config[0].color());
+        assertEquals("c",config[0].tipoFigura());
     }
     
     
@@ -154,8 +158,8 @@ public class SlotMachineTest
     public void testConsultarSimb(){
         SlotMachine maquinaTraga = new SlotMachine();
         maquinaTraga.addWheel(1);
-        maquinaTraga.addSymbol(1,"red");
-        maquinaTraga.addSymbol(2,"blue");
+        maquinaTraga.addSymbol(1,"red","c");
+        maquinaTraga.addSymbol(2,"blue","c");
         String [] colores = maquinaTraga.symbols();
         assertEquals(2,colores.length);
     }
@@ -167,9 +171,9 @@ public class SlotMachineTest
     public void testSimboloDistintos(){
         SlotMachine maquinaTraga = new SlotMachine();
         maquinaTraga.addWheel(1);
-        maquinaTraga.addSymbol(1,"red");
-        maquinaTraga.addSymbol(2,"blue");
-        maquinaTraga.addSymbol(3,"red");
+        maquinaTraga.addSymbol(1,"red","c");
+        maquinaTraga.addSymbol(2,"blue","c");
+        maquinaTraga.addSymbol(3,"red","c");
         assertEquals(2,maquinaTraga.distinctSymbols());
         
     }
@@ -182,8 +186,8 @@ public class SlotMachineTest
         SlotMachine maquinaTraga = new SlotMachine();
         maquinaTraga.addWheel(1);
         maquinaTraga.addWheel(2);
-        maquinaTraga.addSymbol(1,"red");
-        String [] config = maquinaTraga.configuration();
+        maquinaTraga.addSymbol(1,"red","c");
+        Symbol [] config = maquinaTraga.configuration();
         assertEquals(2,config.length);
     
     }
@@ -197,9 +201,9 @@ public class SlotMachineTest
         SlotMachine maquinaTraga = new SlotMachine();
         maquinaTraga.addWheel(1);
         maquinaTraga.addWheel(2);
-        maquinaTraga.addSymbol(1,"red");
-        maquinaTraga.placeSymbol(1,"red");
-        maquinaTraga.placeSymbol(2,"red");
+        maquinaTraga.addSymbol(1,"red","c");
+        maquinaTraga.placeSymbol(1,"red","c");
+        maquinaTraga.placeSymbol(2,"red","c");
         assertTrue(maquinaTraga.isJackpot());
     
     }
@@ -211,10 +215,10 @@ public class SlotMachineTest
         SlotMachine maquinaTraga = new SlotMachine();
         maquinaTraga.addWheel(1);
         maquinaTraga.addWheel(2);
-        maquinaTraga.addSymbol(1,"red");
-        maquinaTraga.addSymbol(2,"blue");
-        maquinaTraga.placeSymbol(1,"red");
-        maquinaTraga.placeSymbol(2,"blue");
+        maquinaTraga.addSymbol(1,"red","c");
+        maquinaTraga.addSymbol(2,"blue","c");
+        maquinaTraga.placeSymbol(1,"red","c");
+        maquinaTraga.placeSymbol(2,"blue","c");
         assertFalse(maquinaTraga.isJackpot());
     
     }
@@ -263,11 +267,22 @@ public class SlotMachineTest
         SlotMachine maquinaTraga = new SlotMachine();
         maquinaTraga.addWheel(1);
         maquinaTraga.addWheel(2);
+
+        maquinaTraga.addSymbol(1,"red","c");
+        maquinaTraga.addSymbol(2,"red","c");
+        maquinaTraga.addSymbol(2,"blue","c");
+        maquinaTraga.swap(0,1);
+        
+        assertEquals(2,maquinaTraga.listSizeWheel());
+      
+    
+
         maquinaTraga.addSymbol(1, "red", "c");
         maquinaTraga.addSymbol(2, "blue", "c");
         maquinaTraga.swap(0, 1);
         assertTrue(maquinaTraga.ok());
         assertEquals(2, maquinaTraga.listSizeWheel());
+
     }
     
     /** Prueba que una rueda existente pueda ser bloqueada correctamente.
@@ -314,18 +329,19 @@ public class SlotMachineTest
     public void testSpinStep_avanzaCorrectamente() {
         SlotMachine maq = new SlotMachine();
         maq.addWheel(1);
-        maq.addSymbol(1, "red");
-        maq.addSymbol(2, "blue");
-        maq.addSymbol(3, "green");
+        maq.addSymbol(1, "red","c");
+        maq.addSymbol(2, "blue","c");
+        maq.addSymbol(3, "green","c");
         
         
         
-        maq.placeSymbol(1, "red");    
+        maq.placeSymbol(1, "red","c");    
         maq.spinStep(1, 2);           
         
         
-        String[] config = maq.configuration();
-        assertEquals("green", config[0]);
+        Symbol[] config = maq.configuration();
+        assertEquals("green", config[0].color());
+        assertEquals("c", config[0].tipoFigura());
         assertTrue(maq.ok());
     }
     
@@ -335,14 +351,15 @@ public class SlotMachineTest
     public void testSpinStep_ruedaBloqueada_noAvanza() {
         SlotMachine maq = new SlotMachine();
         maq.addWheel(1);
-        maq.addSymbol(1, "red");
-        maq.addSymbol(2, "blue");
-        maq.placeSymbol(1, "red");
+        maq.addSymbol(1, "red","c");
+        maq.addSymbol(2, "blue","c");
+        maq.placeSymbol(1, "red","c");
         maq.lock(1);
         maq.spinStep(1, 1);
         assertFalse(maq.ok());
-        String[] config = maq.configuration();
-        assertEquals("red", config[0]);
+        Symbol[]config = maq.configuration();
+        assertEquals("red", config[0].color());
+        assertEquals("red", config[0].tipoFigura());
     }
     
     
@@ -351,24 +368,28 @@ public class SlotMachineTest
         SlotMachine maq = new SlotMachine();
         maq.addWheel(1);
         maq.addWheel(2);
-        maq.addSymbol(1, "red");
-        maq.addSymbol(2, "blue");
+        maq.addSymbol(1, "red","c");
+        maq.addSymbol(2, "blue","c");
         
-        maq.spinConfi(new String[]{"red", "blue"});
+        maq.spinConfi(new String[][]{{"red","c"}, {"blue","c"}});
         
-        String[] config = maq.configuration();
-        assertEquals("red", config[0]);
-        assertEquals("blue", config[1]);
+        Symbol[] config = maq.configuration();
+        assertEquals("red", config[0].color());
+        assertEquals("c", config[0].tipoFigura());
+        assertEquals("blue", config[1].color());
+        assertEquals("c", config[1].tipoFigura());
         assertTrue(maq.ok());
     }
     
     @Test
     public void testSpinConfi_sinRuedas_falla() {
         SlotMachine maq = new SlotMachine();
-        maq.spinConfi(new String[]{"red"});
+        maq.spinConfi(new String [][]{{"red","c"}});
         assertFalse(maq.ok());
     }
     
+    
+
     // Test para ciclo 3
 
     // Crear Slotmachine(n) con un entero valido y se creen las n wheels y n symbols

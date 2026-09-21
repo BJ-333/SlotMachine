@@ -1,3 +1,4 @@
+import javax.swing.JOptionPane;
 import java.util.ArrayList;
 import java.util.Arrays;
 /**
@@ -15,37 +16,49 @@ public class SlotMachineContest
      */
     public static int[][] solve(int n){
         
-        SlotMachine maquina = new SlotMachine(n);
-        return resolver(maquina,n);
-        
-        
+        if(n < 3 || n >50 ){
+           JOptionPane.showMessageDialog(null, "n debe estar entre 3 y 50");
+           return null;
+        }
+        else{
+            SlotMachine maquina = new SlotMachine(n);
+            return resolver(maquina,n); 
+        }
+      
+              
     }
 
-    
-    
-    
-       
+        
+          
     /**
      * simular visulamente la solucion que hizo solve, ira ejecutando cada accion registrada
      * @param n 
      */
     
     public static void simulate( int n){
-               
-        SlotMachine maquina = new SlotMachine(n);
-        maquina.makeVisible();
         
-        resolver(maquina,n);
+        if(n < 3 || n >50 ){
+           JOptionPane.showMessageDialog(null, "n debe estar entre 3 y 50");
+           
+        }
+        else{
+            SlotMachine maquina = new SlotMachine(n);
+            maquina.makeVisible();
+            resolver(maquina,n); 
+        }
+        
+        
+        
     
     
     }
     
-    
+  
     
     /**
      * Este es una ayuda para solve, son las fases para solucionar el problema
      */
-    private static int[][] resolver(SlotMachine maquina, int n){
+    public static int[][] resolver(SlotMachine maquina, int n){
     
         
         ArrayList <int[]> accions = new ArrayList<int[]>();
@@ -83,8 +96,8 @@ public class SlotMachineContest
         
             }
         }
-        
-        System.out.println( maquina.distinctSymbols()+ " :k = n, todos los simbolos distintos");
+        int kfase1 = maquina.distinctSymbols();
+        System.out.println(kfase1 + " :k = n, todos los simbolos distintos");
         
         // fase 2
         

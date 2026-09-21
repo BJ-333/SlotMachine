@@ -31,6 +31,8 @@ public class Rectangle implements Figura{
         color = "black";
         isVisible = false;
     }
+    
+    
     public void setPosition(int x,int y){
         this.xPosition=x;
         this.yPosition=y;

@@ -87,6 +87,14 @@ public class SlotMachine{
         palancabola.moveHorizontal(0);
         palancabola.moveVertical(16); 
         
+
+        
+
+        if (n <= -1){
+            ok = false; 
+            return;
+        }
+
         // Crear las n ruedas
         for (int i = 1; i <= n; i++) {
             addWheel(i);
@@ -104,6 +112,8 @@ public class SlotMachine{
         makeInvisible();
         ok = true;
     }
+        }
+    
     /**
      * Metodo axuiliar para el constructor sobrecargado para poder generar los colores 
      * @param index pos del simbolo 
@@ -171,7 +181,7 @@ public class SlotMachine{
         box.changeSize(50,newWidht);
         
         ok = true;
-        makeVisible();
+        makeInvisible();
     }
     
     /**

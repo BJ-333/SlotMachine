@@ -1,0 +1,20 @@
+#BlueJ class context
+#Sun Sep 20 21:24:49 COT 2026
+comment0.target=SlotMachineContestTest
+comment0.text=\r\n The test class SlotMachineContestTest.\r\n\r\n @author  (your name)\r\n @version (a version number or a date)\r\n
+comment1.target=SlotMachineContestTest()
+comment1.text=\r\n Default constructor for test class SlotMachineContestTest\r\n
+comment2.target=void setUp()
+comment3.target=void tieneSolveDevuelveAccines()
+comment3.text=\r\n Solve() debe devolver acciones, verificamos si no es nulo y asi \r\n mismo si su longitud es mayor a 0\r\n
+comment4.target=void tieneFormatoDeAcciones()
+comment4.text=\r\n Cada accion debe tener el formato tipo {rueda,pasos}\r\n
+comment5.target=void ruedasValidas()
+comment5.text=\r\n Las ruedas siemepre debeb ser validas, digamos que nunca intente mover una rueda que\r\n no existe u que esta entre 1 y n\r\n
+comment6.target=void solveParaDiferentesTama\u00F1os()
+comment6.text=\r\n la solucion debe funcionar para diferentes cantidades de n\r\n
+comment7.target=void solucionTerminaConTodosLosSimbolosIguales()
+comment7.text=\r\n solucion todos los simbolos iguales k \=\= 1\r\n
+comment8.target=void cantidadAccionesMenosDe10Mil()
+comment9.target=void tearDown()
+numComments=10
