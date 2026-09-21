@@ -61,6 +61,7 @@ public class SlotMachine{
      * @param n Numero de ruedas y simbolos dados por el usuario
      */
     public SlotMachine(int n){
+        
         wheels = new ArrayList<Wheel>();
         if (n<= 0){
             ok = false; 
