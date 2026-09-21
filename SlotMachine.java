@@ -84,7 +84,7 @@ public class SlotMachine{
         
         
 
-        if (n<= -1){
+        if (n <= -1){
             ok = false; 
             return;
         }
@@ -172,7 +172,7 @@ public class SlotMachine{
         box.changeSize(50,newWidht);
         
         ok = true;
-        makeVisible();
+        makeInvisible();
     }
     
     /**
