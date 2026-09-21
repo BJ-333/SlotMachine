@@ -61,17 +61,18 @@ public class SlotMachine{
      * @param n Numero de ruedas y simbolos dados por el usuario
      */
     public SlotMachine(int n){
-        wheels = new ArrayList<Wheel>();
-        visible = false;
-        jackpot=false;
-
-        if (n<= 0){
-            ok = false; 
-            return;
+        if (n <= 0) {
+            ok = false;
+            throw new IllegalArgumentException("El numero de ruedas y simbolos debe ser mayor a 0");
         }
+
+        wheels = new ArrayList<Wheel>();
         box = new Rectangle();
         box.changeSize(200, 210);
-        box.setPosition(70,15);
+        box.setPosition(70, 15);
+        visible = false;
+        jackpot = false;
+
         // Configuració de la palanca
         palancabarra = new Rectangle();
         palancabarra.changeSize(5, 30);
@@ -86,21 +87,23 @@ public class SlotMachine{
         palancabola.moveHorizontal(0);
         palancabola.moveVertical(16); 
         
+        // Crear las n ruedas
         for (int i = 1; i <= n; i++) {
             addWheel(i);
         }
-
+        // Agregar n símbolos 
         for (int i = 0; i < n; i++) {
             String color = generarColor(i);
             String tipoSimbolo = generarTipoSimbolo();
             addSymbol(i + 1, color,tipoSimbolo);
         }
-    
+        // Inicializar el giro
         for (Wheel wheel : wheels) {
             wheel.spin();
         }
         makeInvisible();
         ok = true;
+        }
     }
     /**
      * Metodo axuiliar para el constructor sobrecargado para poder generar los colores 
@@ -134,12 +137,8 @@ public class SlotMachine{
      */
     
     public void addWheel(int pos){
-        if (pos < 0 ){
-            ok = false;
-            return;
-        }
-        if(pos==0){
-            pos =1;
+        if (pos < 1 ){
+            pos = 1;
         }
         else if (pos > wheels.size() + 1 ){
             pos = wheels.size() + 1;
