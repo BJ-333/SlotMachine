@@ -261,16 +261,13 @@ public class SlotMachineTest
     @Test
     public void testDeberiaCambiar(){
         SlotMachine maquinaTraga = new SlotMachine();
-        maquinaTraga.addWheel(0);
+        maquinaTraga.addWheel(1);
         maquinaTraga.addWheel(2);
-        maquinaTraga.addSymbol(1,"red");
-        maquinaTraga.addSymbol(2,"red");
-        maquinaTraga.addSymbol(2,"blue");
-        maquinaTraga.swap(0,1);
-        
-        assertEquals(2,maquinaTraga.listSizeWheel());
-      
-    
+        maquinaTraga.addSymbol(1, "red", "c");
+        maquinaTraga.addSymbol(2, "blue", "c");
+        maquinaTraga.swap(0, 1);
+        assertTrue(maquinaTraga.ok());
+        assertEquals(2, maquinaTraga.listSizeWheel());
     }
     
     /** Prueba que una rueda existente pueda ser bloqueada correctamente.
@@ -397,7 +394,7 @@ public class SlotMachineTest
 
         assertTrue(machine.ok());
         assertEquals(1, machine.listSizeWheel());
-        assertEquals(1, machine.distinctSymbols().length);
+        assertEquals(1, machine.distinctSymbols());
     }
     // no crear una maquina con 0 elementos
     @Test
