@@ -113,7 +113,7 @@ public class SlotMachine{
         }
         makeVisible();
         ok = true;
-        }
+    }
     
     /**
      * Metodo axuiliar para el constructor sobrecargado para poder generar los colores 

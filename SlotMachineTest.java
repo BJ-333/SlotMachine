@@ -405,17 +405,14 @@ public class SlotMachineTest
         assertEquals(1, machine.distinctSymbols());
     }
     // no crear una maquina con 0 elementos
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void noDeberiaCrearMaquinaConTamanoCero() {
         SlotMachine machine = new SlotMachine(0);
-        assertEquals(0, machine.listSizeWheel());
     }
     // Probar que no pase numeros negativos 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void noDeberiaCrearMaquinaConTamanoNegativo() {
-        SlotMachine machine = new SlotMachine(-3);
-        assertFalse(machine.ok());
-        assertEquals(0, machine.listSizeWheel());
+        machine = new SlotMachine(-3);
     }
     /**
      * Tears down the test fixture.
