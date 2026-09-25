@@ -61,12 +61,14 @@ public class SlotMachine{
      * @param n Numero de ruedas y simbolos dados por el usuario
      */
     public SlotMachine(int n){
-        if (n <= 0) {
-            ok = false;
-            throw new IllegalArgumentException("El numero de ruedas y simbolos debe ser mayor a 0");
-        }
-
         wheels = new ArrayList<Wheel>();
+        
+        if (n < 0) {
+            ok = false;
+            return;
+        }
+        
+        
         box = new Rectangle();
         box.changeSize(200, 210);
         box.setPosition(70, 15);
@@ -109,7 +111,7 @@ public class SlotMachine{
         for (Wheel wheel : wheels) {
             wheel.spin();
         }
-        makeInvisible();
+        makeVisible();
         ok = true;
         }
     
@@ -180,7 +182,7 @@ public class SlotMachine{
         box.changeSize(50,newWidht);
         
         ok = true;
-        makeInvisible();
+        makeVisible();
     }
     
     /**

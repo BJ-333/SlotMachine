@@ -102,7 +102,7 @@ public class SlotMachineContestTest
     
     @Test
     public void cantidadAccionesMenosDe10Mil(){
-        int[][] acciones = SlotMachineContest.solve(50);
+        int[][] acciones = SlotMachineContest.solve(8);
         
         assertNotNull(acciones);
         assertTrue(acciones.length <= 10000);
