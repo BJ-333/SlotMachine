@@ -1,5 +1,5 @@
 #BlueJ class context
-#Thu Sep 24 23:21:59 COT 2026
+#Sat Oct 03 18:15:45 COT 2026
 comment0.target=SlotMachineContest
 comment0.text=\r\n Solucionar el problema de la marat\u00F3n\r\n Simular la soluci\u00F3n ,si esposible\r\n @author Brenda Guerrero - Alexandra Barragan \r\n \r\n
 comment1.params=n
@@ -9,6 +9,6 @@ comment2.params=n
 comment2.target=void simulate(int)
 comment2.text=\r\n simular visulamente la solucion que hizo solve, ira ejecutando cada accion registrada\r\n @param n \r\n
 comment3.params=maquina n
-comment3.target=int[][] resolver(SlotMachine, int)
+comment3.target=int[][] fase1(SlotMachine, int)
 comment3.text=\r\n Este es una ayuda para solve, son las fases para solucionar el problema\r\n
 numComments=4

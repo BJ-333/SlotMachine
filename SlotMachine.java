@@ -63,7 +63,7 @@ public class SlotMachine{
     public SlotMachine(int n){
         wheels = new ArrayList<Wheel>();
         
-        if (n < 0) {
+        if (n <= 0) {
             ok = false;
             return;
         }
@@ -192,32 +192,32 @@ public class SlotMachine{
      */
     public void delWheel(int pos) {
 
-    if (pos < 1 || pos > wheels.size()) {
-        ok = false;
-        JOptionPane.showMessageDialog(null, "No existe una rueda en la posicion"+pos);
-        return;
+        if (pos < 1 || pos > wheels.size()) {
+            ok = false;
+            JOptionPane.showMessageDialog(null, "No existe una rueda en la posicion"+pos);
+            return;
+        }
+        Wheel namewheel = wheels.get(pos - 1);
+        if (visible) {
+            namewheel.makeInvisible();
+        }
+        wheels.remove(pos - 1);
+    
+        /*
+         * Reorganizar las ruedas restantes.
+         */
+        for (int i = 0; i < wheels.size(); i++) {
+            int newX = 80 + (i * 50);
+            wheels.get(i).moveTo(newX);
+        }
+    
+        /*
+         * Achicar la máquina.
+         */
+        int newWidth = 10 + wheels.size() * 40;
+        box.changeSize(50, newWidth);
+        ok = true;
     }
-    Wheel namewheel = wheels.get(pos - 1);
-    if (visible) {
-        namewheel.makeInvisible();
-    }
-    wheels.remove(pos - 1);
-
-    /*
-     * Reorganizar las ruedas restantes.
-     */
-    for (int i = 0; i < wheels.size(); i++) {
-        int newX = 80 + (i * 50);
-        wheels.get(i).moveTo(newX);
-    }
-
-    /*
-     * Achicar la máquina.
-     */
-    int newWidth = 10 + wheels.size() * 40;
-    box.changeSize(50, newWidth);
-    ok = true;
-}
     
     
     /**

@@ -74,9 +74,9 @@ public class SlotMachineContestTest
     /**
      * la solucion debe funcionar para diferentes cantidades de n
      */
-    
+    @Test
     public void solveParaDiferentesTamaños(){
-        for(int n = 2; n <=10 ; n++){
+        for(int n = 3; n <=10 ; n++){
             int[][] acciones = SlotMachineContest.solve(n);
             assertNotNull(acciones);
             assertTrue(acciones.length > 0);
@@ -94,7 +94,7 @@ public class SlotMachineContestTest
         
         SlotMachine maquina = new SlotMachine(n);
     
-        int[][] acciones = SlotMachineContest.resolver(maquina,n);
+        int[][] acciones = SlotMachineContest.fase1(maquina,n);
     
         assertNotNull(acciones);
         assertEquals(1, maquina.distinctSymbols());

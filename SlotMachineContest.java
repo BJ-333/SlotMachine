@@ -22,7 +22,7 @@ public class SlotMachineContest
         }
         else{
             SlotMachine maquina = new SlotMachine(n);
-            return resolver(maquina,n); 
+            return fase1(maquina,n); 
         }
       
               
@@ -44,7 +44,8 @@ public class SlotMachineContest
         else{
             SlotMachine maquina = new SlotMachine(n);
             maquina.makeVisible();
-            resolver(maquina,n); 
+            fase1(maquina,n);
+            maquina.isJackpot();
         }
         
         
@@ -58,9 +59,8 @@ public class SlotMachineContest
     /**
      * Este es una ayuda para solve, son las fases para solucionar el problema
      */
-    public static int[][] resolver(SlotMachine maquina, int n){
+    static int[][] fase1(SlotMachine maquina, int n){
     
-        
         ArrayList <int[]> accions = new ArrayList<int[]>();
         
         
@@ -99,12 +99,15 @@ public class SlotMachineContest
         int kfase1 = maquina.distinctSymbols();
         System.out.println(kfase1 + " :k = n, todos los simbolos distintos");
         
-        // fase 2
         
+        return fase2( maquina, accions,  n);
         
+            
+    }
+    
+    private static int[][] fase2(SlotMachine maquina,ArrayList<int[]> accions, int n){
         
         int [] siguiente = new int[n+1];
-        
         
         for (int i = 1; i <= n ; i++){
         
@@ -172,7 +175,11 @@ public class SlotMachineContest
         
         }
         System.out.println("k despues de fase 2: " + maquina.distinctSymbols());
-            
+        return fase3(n,siguiente,maquina,accions);
+    
+    }
+    
+    private static int[][] fase3(int n,int [] siguiente, SlotMachine maquina, ArrayList<int[]> accions){
         // ordenamos en las lista tipo la secuencia del orden      
         
         int[] orden = new int[n];
@@ -208,8 +215,8 @@ public class SlotMachineContest
               
         
         
-        return accions.toArray(new int[0][]);     
-    }
+        return accions.toArray(new int[0][]);
     
     
+    } 
 }
