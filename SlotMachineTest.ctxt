@@ -1,5 +1,5 @@
 #BlueJ class context
-#Sun Oct 04 13:19:38 COT 2026
+#Sun Oct 04 17:06:32 COT 2026
 comment0.target=SlotMachineTest
 comment0.text=\r\n The test class SlotMachineTest.\r\n\r\n @author  (your name)\r\n @version (a version number or a date)\r\n
 comment1.target=SlotMachineTest()
@@ -52,8 +52,9 @@ comment36.target=void deberiaCopiarSimboloDeLaIzquierda()
 comment36.text=\r\n Deber\u00EDa copiar el s\u00EDmbolo que se encuentra en la rueda a su izquierda.\r\n
 comment37.target=void noDeberiaCopiarSiNoTieneIzquierda()
 comment37.text=\r\n No deber\u00EDa intentar copiar un s\u00EDmbolo cuando no existe\r\n una rueda a su izquierda debe girar utilizando su comportamiento normal.\r\n
-comment38.target=void tearDown()
-comment38.text=\r\n Tears down the test fixture.\r\n\r\n Called after every test case method.\r\n
+comment38.target=void shydeberiaAlternarVisible()
+comment39.target=void tearDown()
+comment39.text=\r\n Tears down the test fixture.\r\n\r\n Called after every test case method.\r\n
 comment4.target=void testAgregarRueda()
 comment4.text=\r\n Prueba para agregar rueda.\r\n
 comment5.target=void testAgregarRuedaPosNegativa()
@@ -66,4 +67,4 @@ comment8.target=void testAgregarSimbol()
 comment8.text=\r\n Prueba de a\u00F1adri simbolo\r\n
 comment9.target=void testEliminarSimbol()
 comment9.text=\r\n Prueba de eliminar simbolo\r\n
-numComments=39
+numComments=40

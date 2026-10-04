@@ -23,6 +23,7 @@ public class Shy implements Comportamiento
      * @param  y   a sample parameter for a method
      * @return     the sum of x and y 
      */
+    @Override
     public void comportarse(Symbol s)
     {
         s.visibilidad();

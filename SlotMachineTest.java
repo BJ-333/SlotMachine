@@ -45,7 +45,7 @@ public class SlotMachineTest
     @Test
     public void testAgregarRueda(){
         SlotMachine maquinaTraga = new SlotMachine();
-        maquinaTraga.addWheel(1);
+        maquinaTraga.addWheel(1,"normal");
         assertTrue(maquinaTraga.ok());
      
     }
@@ -56,7 +56,7 @@ public class SlotMachineTest
     @Test
     public void testAgregarRuedaPosNegativa(){
         SlotMachine maquinaTraga = new SlotMachine();
-        maquinaTraga.addWheel(-5);
+        maquinaTraga.addWheel(-5,"normal");
         assertTrue(maquinaTraga.ok());
         
     }
@@ -67,7 +67,7 @@ public class SlotMachineTest
     @Test
     public void testEliminarRueda(){
         SlotMachine maquinaTraga = new SlotMachine();
-        maquinaTraga.addWheel(1);
+        maquinaTraga.addWheel(1,"normal");
         maquinaTraga.delWheel(1);
         assertTrue(maquinaTraga.ok());
     
@@ -157,9 +157,9 @@ public class SlotMachineTest
     @Test
     public void testConsultarSimb(){
         SlotMachine maquinaTraga = new SlotMachine();
-        maquinaTraga.addWheel(1);
-        maquinaTraga.addSymbol(1,"red","c");
-        maquinaTraga.addSymbol(2,"blue","c");
+        maquinaTraga.addWheel(1,"normal");
+        maquinaTraga.addSymbol(1,"red","c","n");
+        maquinaTraga.addSymbol(2,"blue","c","n");
         String [] colores = maquinaTraga.symbols();
         assertEquals(2,colores.length);
     }
@@ -171,9 +171,9 @@ public class SlotMachineTest
     @Test
     public void testConfiguration(){
         SlotMachine maquinaTraga = new SlotMachine();
-        maquinaTraga.addWheel(1);
-        maquinaTraga.addWheel(2);
-        maquinaTraga.addSymbol(1,"red","c");
+        maquinaTraga.addWheel(1,"normal");
+        maquinaTraga.addWheel(2,"normal");
+        maquinaTraga.addSymbol(1,"red","c","n");
         Symbol [] config = maquinaTraga.configuration();
         assertEquals(2,config.length);
     
@@ -186,11 +186,11 @@ public class SlotMachineTest
     @Test
     public void testIsJackpotGanador(){
         SlotMachine maquinaTraga = new SlotMachine();
-        maquinaTraga.addWheel(1);
-        maquinaTraga.addWheel(2);
-        maquinaTraga.addSymbol(1,"red","c");
-        maquinaTraga.placeSymbol(1,"red","c");
-        maquinaTraga.placeSymbol(2,"red","c");
+        maquinaTraga.addWheel(1,"normal");
+        maquinaTraga.addWheel(2,"normal");
+        maquinaTraga.addSymbol(1,"red","c","n");
+        maquinaTraga.placeSymbol(1,"red","c","n");
+        maquinaTraga.placeSymbol(2,"red","c","n");
         assertTrue(maquinaTraga.isJackpot());
     
     }
@@ -200,12 +200,12 @@ public class SlotMachineTest
     @Test
     public void testIsJackpotPerdedor(){
         SlotMachine maquinaTraga = new SlotMachine();
-        maquinaTraga.addWheel(1);
-        maquinaTraga.addWheel(2);
-        maquinaTraga.addSymbol(1,"red","c");
-        maquinaTraga.addSymbol(2,"blue","c");
-        maquinaTraga.placeSymbol(1,"red","c");
-        maquinaTraga.placeSymbol(2,"blue","c");
+        maquinaTraga.addWheel(1,"normal");
+        maquinaTraga.addWheel(2,"normal");
+        maquinaTraga.addSymbol(1,"red","c","n");
+        maquinaTraga.addSymbol(2,"blue","c","n");
+        maquinaTraga.placeSymbol(1,"red","c","n");
+        maquinaTraga.placeSymbol(2,"blue","c","n");
         assertFalse(maquinaTraga.isJackpot());
     
     }
@@ -252,20 +252,20 @@ public class SlotMachineTest
     @Test
     public void testDeberiaCambiar(){
         SlotMachine maquinaTraga = new SlotMachine();
-        maquinaTraga.addWheel(1);
-        maquinaTraga.addWheel(2);
+        maquinaTraga.addWheel(1,"normal");
+        maquinaTraga.addWheel(2,"normal");
 
-        maquinaTraga.addSymbol(1,"red","c");
-        maquinaTraga.addSymbol(2,"red","c");
-        maquinaTraga.addSymbol(2,"blue","c");
+        maquinaTraga.addSymbol(1,"red","c","n");
+        maquinaTraga.addSymbol(2,"red","c","n");
+        maquinaTraga.addSymbol(2,"blue","c","n");
         maquinaTraga.swap(0,1);
         
         assertEquals(2,maquinaTraga.listSizeWheel());
       
     
 
-        maquinaTraga.addSymbol(1, "red", "c");
-        maquinaTraga.addSymbol(2, "blue", "c");
+        maquinaTraga.addSymbol(1, "red", "c","n");
+        maquinaTraga.addSymbol(2, "blue", "c","n");
         maquinaTraga.swap(0, 1);
         assertTrue(maquinaTraga.ok());
         assertEquals(2, maquinaTraga.listSizeWheel());
@@ -280,7 +280,7 @@ public class SlotMachineTest
     @Test
     public void testBloquearRueda() {
         SlotMachine maquinaTraga = new SlotMachine();
-        maquinaTraga.addWheel(1);
+        maquinaTraga.addWheel(1,"normal");
         maquinaTraga.lock(1);
         assertTrue(maquinaTraga.ok());
     }
@@ -296,7 +296,7 @@ public class SlotMachineTest
     @Test
     public void testDesbloquearRueda() {
         SlotMachine maquinaTraga = new SlotMachine();
-        maquinaTraga.addWheel(1);
+        maquinaTraga.addWheel(1,"normal");
         maquinaTraga.lock(1);
         maquinaTraga.unlock(1);
         assertTrue(maquinaTraga.ok());
@@ -305,7 +305,7 @@ public class SlotMachineTest
     @Test
     public void testUnlock_posicionInvalida() {
         SlotMachine maquinaTraga = new SlotMachine();
-        maquinaTraga.addWheel(1);
+        maquinaTraga.addWheel(1,"normal");
         maquinaTraga.unlock(5);   
         // nla rieda 5 no existe
         assertFalse(maquinaTraga.ok());
@@ -315,14 +315,14 @@ public class SlotMachineTest
     @Test
     public void testSpinStep_avanzaCorrectamente() {
         SlotMachine maq = new SlotMachine();
-        maq.addWheel(1);
-        maq.addSymbol(1, "red","c");
-        maq.addSymbol(2, "blue","c");
-        maq.addSymbol(3, "green","c");
+        maq.addWheel(1,"normal");
+        maq.addSymbol(1, "red","c","n");
+        maq.addSymbol(2, "blue","c","n");
+        maq.addSymbol(3, "green","c","n");
         
         
         
-        maq.placeSymbol(1, "red","c");    
+        maq.placeSymbol(1, "red","c","n");    
         maq.spinStep(1, 2);           
         
         
@@ -337,10 +337,10 @@ public class SlotMachineTest
     @Test
     public void testSpinStep_ruedaBloqueada_noAvanza() {
         SlotMachine maq = new SlotMachine();
-        maq.addWheel(1);
-        maq.addSymbol(1, "red","c");
-        maq.addSymbol(2, "blue","c");
-        maq.placeSymbol(1, "red","c");
+        maq.addWheel(1,"normal");
+        maq.addSymbol(1, "red","c","n");
+        maq.addSymbol(2, "blue","c","n");
+        maq.placeSymbol(1, "red","c","n");
         maq.lock(1);
         maq.spinStep(1, 1);
         assertFalse(maq.ok());
@@ -353,10 +353,10 @@ public class SlotMachineTest
     @Test
     public void testSpinConfi_configuracionValida() {
         SlotMachine maq = new SlotMachine();
-        maq.addWheel(1);
-        maq.addWheel(2);
-        maq.addSymbol(1, "red","c");
-        maq.addSymbol(2, "blue","c");
+        maq.addWheel(1,"normal");
+        maq.addWheel(2,"normal");
+        maq.addSymbol(1, "red","c","n");
+        maq.addSymbol(2, "blue","c","n");
         
         maq.spinConfi(new String[][]{{"red","c"}, {"blue","c"}});
         
@@ -429,7 +429,7 @@ public class SlotMachineTest
     public void deberiaGirarRebelWheel() {
         Wheel rebel = new RebelWheel("Rebel");
 
-        rebel.addSymbol(0, "red", "circle");
+        rebel.addSymbol(0, "red", "c","n");
         rebel.spin();
 
         assertTrue(rebel.ok());
@@ -455,15 +455,15 @@ public class SlotMachineTest
         Wheel izquierda = new Wheel("Izquierda");
         LeftyWheel lefty = new LeftyWheel("Lefty");
 
-        izquierda.addSymbol(0, "red", "circle");
-        lefty.addSymbol(0, "blue", "square");
+        izquierda.addSymbol(0, "red", "c","n");
+        lefty.addSymbol(0, "blue", "r","n");
 
-        izquierda.place("red", "circle");
+        izquierda.place("red", "c","n");
 
         lefty.spin(izquierda);
 
         assertEquals("red", lefty.SymbolUp().color());
-        assertEquals("circle", lefty.SymbolUp().tipoFigura());
+        assertEquals("c", lefty.SymbolUp().tipoFigura());
     }
     
     /**
@@ -474,12 +474,29 @@ public class SlotMachineTest
     public void noDeberiaCopiarSiNoTieneIzquierda() {
         LeftyWheel lefty = new LeftyWheel("Lefty");
 
-        lefty.addSymbol(0, "red", "circle","n");
-        lefty.addSymbol(1, "blue", "square","n");
+        lefty.addSymbol(0, "red", "c","n");
+        lefty.addSymbol(1, "blue", "r","n");
 
         lefty.spin(null);
 
         assertTrue(lefty.ok());
+    }
+    
+    @Test
+    public void shydeberiaAlternarVisible() {
+        Symbol s = new Symbol("blue", "c", "s");
+    
+        s.makeVisible();
+        assertTrue(s.esVisible());
+    
+        s.seleccionComportar();
+        assertFalse(s.esVisible());
+    
+        s.seleccionComportar();
+        assertTrue(s.esVisible());
+            
+        s.seleccionComportar();
+        assertFalse(s.esVisible());
     }
     /**
      * Tears down the test fixture.

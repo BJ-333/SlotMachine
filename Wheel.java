@@ -132,13 +132,8 @@ public class Wheel {
                 for (int i = 0; i < 8; i++){
                     symbols.get(indexSymbolUp).makeInvisible();
                     indexSymbolUp = random.nextInt(symbols.size());
-                    if(symbols.get(indexSymbolUp).tipoComportamiento().equals("s")){
-                        symbols.get(indexSymbolUp).makeVisible(); 
-                        symbols.get(indexSymbolUp).seleccionComportar(); 
-                    }else {
-                    symbols.get(indexSymbolUp).makeVisible();
                     symbols.get(indexSymbolUp).seleccionComportar();
-                    }
+                    
                 }
                 Canvas.getCanvas().wait(150);
             }
@@ -277,11 +272,15 @@ public class Wheel {
     public void makeVisible() {
         visible = true;
         contenedor.makeVisible();
+    
         if (!symbols.isEmpty() && indexSymbolUp >= 0 && indexSymbolUp < symbols.size()) {
-            symbols.get(indexSymbolUp).makeVisible();
+            Symbol actual = symbols.get(indexSymbolUp);
+            if (actual.deberiaEstarVisible()) {
+                actual.makeVisible();
+            }
         }
     }
-
+    
     /**
      * Hace invisible el símbolo actual de la rueda.
      */

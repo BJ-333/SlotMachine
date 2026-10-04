@@ -10,12 +10,13 @@ public class Symbol
 {
     
     private String color ;
-    private String  originalColor;
     private Figura figure;
     private Comportamiento comportamiento;
     private boolean visible;
-    private boolean ocultoPorShy = false;
+    private boolean shyVisible = true;
     
+    private int indColor = 0;
+    private final String[] colorsLoquitos = {"red","blue","green","yellow","magenta","black","white"};
     
 
     /**
@@ -27,7 +28,7 @@ public class Symbol
     public Symbol(String color, String tipoFigura , String tipoComportamiento)
     {
         this.color = color;
-        this.originalColor = color;
+        
         
         if(tipoFigura.equals("c") ||tipoFigura.equals("C")){
             figure = new Circle();
@@ -52,6 +53,10 @@ public class Symbol
         else if (tipoComportamiento.equals("S") || tipoComportamiento.equals("s")){
             comportamiento = new Shy();
         
+        }
+        else if (tipoComportamiento.equals("L") || tipoComportamiento.equals("l")){
+            comportamiento = new loquito();
+            
         }
         
         figure.changeColor(color);
@@ -98,6 +103,7 @@ public class Symbol
         
     }
     
+    
     /**
      * mover horizontalmente
      */
@@ -128,6 +134,9 @@ public class Symbol
             return "e";
         } else if (comportamiento instanceof Shy) {
             return "s";
+        
+        } else if (comportamiento instanceof loquito) {
+            return "l";
         }
         return "n";
     }
@@ -136,18 +145,13 @@ public class Symbol
      * para shy
      */
     public void visibilidad(){
-        if(!ocultoPorShy){
-            figure.changeColor("white");
-            ocultoPorShy = true;
-            
-        }
-        else{
-            figure.changeColor(originalColor);
-            ocultoPorShy = false;
-            
-        }
+        shyVisible = !shyVisible;
     
-    
+        if (shyVisible) {
+            makeVisible();
+        } else {
+            makeInvisible();
+        }
     }
     
     public void tamano(int valor){
@@ -160,4 +164,30 @@ public class Symbol
     
     
     }
+    public boolean esVisible(){
+        return visible;
+    }
+    public boolean deberiaEstarVisible(){
+        return !(comportamiento instanceof Shy) || shyVisible;
+    }
+    
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
+    
+    public void cambiaColor(){
+        figure.changeColor(colorsLoquitos[indColor]);
+        indColor++;
+            
+        
+        
+        if(indColor >= colorsLoquitos.length){
+        
+            indColor=0;
+        }
+        
+    
+    }  
+    
+    
+    
+    
 }

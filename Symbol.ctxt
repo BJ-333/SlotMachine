@@ -1,5 +1,5 @@
 #BlueJ class context
-#Sun Oct 04 15:44:06 COT 2026
+#Sun Oct 04 17:06:27 COT 2026
 comment0.target=Symbol
 comment0.text=\r\n Representa un simbolo de la maquita tragamonedas, identificado por color. Se apoya en un Circulo\r\n del paquete de shapes para dibujarlo.\r\n \r\n @author Brenda Guerrero  - Alexandra Barragan \r\n @version 1.0\r\n
 comment1.params=color tipoFigura tipoComportamiento
@@ -10,6 +10,9 @@ comment10.text=\r\n para shy\r\n
 comment11.params=valor
 comment11.target=void tamano(int)
 comment12.target=void seleccionComportar()
+comment13.target=boolean esVisible()
+comment14.target=boolean deberiaEstarVisible()
+comment15.target=void cambiaColor()
 comment2.params=tiempo
 comment2.target=void esperarS(int)
 comment3.target=java.lang.String color()
@@ -26,4 +29,4 @@ comment7.target=void moveVertical(int)
 comment7.text=\r\n mover verticalmente\r\n
 comment8.target=java.lang.String tipoFigura()
 comment9.target=java.lang.String tipoComportamiento()
-numComments=13
+numComments=16
