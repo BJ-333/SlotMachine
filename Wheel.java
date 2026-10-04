@@ -38,7 +38,25 @@ public class Wheel {
         contenedor.moveVertical(5);
         
     }
-
+    
+    /**
+     * Constructor para las otros tipos de ruedas 
+     */
+    public Wheel(String name, String containerColor) {
+        symbols = new ArrayList<Symbol>();
+        indexSymbolUp = 0;
+        this.name = name;
+        visible = false;
+        random = new Random();
+        xPosition = 20;
+    
+        contenedor = new Rectangle();
+        contenedor.changeColor(containerColor);
+        contenedor.changeSize(40, 30);
+        contenedor.setPosition(70, 15);
+        contenedor.moveHorizontal(xPosition - 70);
+        contenedor.moveVertical(5);
+    }
     /**
      * Agrega un símbolo
      * 
@@ -320,5 +338,12 @@ public class Wheel {
     
     public Symbol getSymbol(int index) {
         return symbols.get(index);
+    }
+    
+    /**
+     * Metodo para spin de lefty 
+     */
+    public void spin(Wheel izquierda) {
+        spin();
     }
 }

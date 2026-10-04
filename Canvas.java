@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 import java.util.*;
+import java.awt.Color;
 
 /**
  * Canvas is a class to allow for simple graphical drawing on a canvas.
@@ -131,8 +132,16 @@ public class Canvas{
             graphic.setColor(Color.magenta);
         else if(colorString.equals("white"))
             graphic.setColor(Color.white);
-        else
+         // nuevos colores
+        else if(colorString.equals("pastelBlue"))
+            graphic.setColor(new Color(137, 207, 240));
+        else if(colorString.equalsIgnoreCase("lightGray"))
+            graphic.setColor(Color.lightGray);
+
+        else 
             graphic.setColor(Color.black);
+
+
     }
 
     /**

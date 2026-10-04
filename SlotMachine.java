@@ -89,25 +89,14 @@ public class SlotMachine{
         palancabola.moveHorizontal(0);
         palancabola.moveVertical(16); 
         
-
-        
-
-        if (n <= -1){
-            ok = false; 
-            return;
-        }
-
-        // Crear las n ruedas
         for (int i = 1; i <= n; i++) {
-            addWheel(i);
+            addWheel(i, "normal");
         }
-        // Agregar n símbolos 
         for (int i = 0; i < n; i++) {
             String color = generarColor(i);
             String tipoSimbolo = generarTipoSimbolo();
             addSymbol(i + 1, color,tipoSimbolo);
         }
-        // Inicializar el giro
         for (Wheel wheel : wheels) {
             wheel.spin();
         }
@@ -141,20 +130,38 @@ public class SlotMachine{
     
     
     /**
-     * addWheel() añadir rueda dada una posicion, si la posicion es menor a 1 se asume como posicion
+     * addWheel() añadir rueda dada una posicion y segun su tipo (normal, lefty o rebel), 
+     * si la posicion es menor a 1 se asume como posicion
      * 1; si es mayor al maximo, se unsa la posicion máxima.
      * @param pos Es la posicion que el usuario donde desea añadir la rueda
+     * @param type Es el tipo de rueda que quiere añadir el usuario dentro de la maquina
      */
     
-    public void addWheel(int pos){
-        if (pos < 1 ){
-            pos = 1;
+    public void addWheel(int pos, String type) throws IllegalArgumentException{
+        if (pos < 0 || pos > wheels.size() + 1) {
+        ok = false;
+        JOptionPane.showMessageDialog(null, "No se puede añadir la rueda en la pos " + pos);
+        throw new IllegalArgumentException("Posición de rueda fuera de rango");
         }
-        else if (pos > wheels.size() + 1 ){
-            pos = wheels.size() + 1;
+        // verificar tipo valido
+        if (type == null || 
+        (!type.equals("normal") && 
+         !type.equals("lefty") && 
+         !type.equals("rebel"))) {
+
+        ok = false;
+        JOptionPane.showMessageDialog(null,"Tipo de rueda inválido");
+        throw new IllegalArgumentException("El tipo de rueda debe ser normal,lefty o rebel");
         }
-        Wheel wheel = new Wheel("Rueda" + pos);
-        
+        Wheel wheel;
+        //Añadir segun el tipo de rueda que desea el usuario
+        if(type!= null && type.equals("lefty")){
+            wheel = new LeftyWheel("Rueda" + pos);
+        } else if(type!= null && type.equals("rebel")){
+            wheel = new RebelWheel("Rueda" + pos);
+        } else {
+            wheel = new Wheel("Rueda" + pos);
+        }
         // copiamos los simbolos si ya exiten otras ruedas
         if (!wheels.isEmpty()){
             Wheel primeraRueda = wheels.get(0);
@@ -165,44 +172,43 @@ public class SlotMachine{
                 wheel.addSymbol(i,existingColors[i],tipoSimbolo);
             }
         }
-        
-        wheels.add(pos-1,wheel);
+        wheels.add(pos,wheel);
 
-        /**
-         * Reorganizamos las ruedas
-         */
+        //Reorganizamos las ruedas
+         
         for (int i =0; i < wheels.size(); i++){
             int newX = 80+(i*40);
             wheels.get(i).moveTo(newX);
         }
-        /**
-         * la maquina se estira o encoge dependiendo de la cant de ruedas
-         */
+        //la maquina se estira o encoge dependiendo de la cant de ruedas
         int newWidht = 10 + wheels.size()*40;
         box.changeSize(50,newWidht);
-        
         ok = true;
         makeVisible();
     }
     
     /**
-     * delWheel () eliminar rueda dada una posicion, si la posicion es menor a 1 se asume como posicion
+     * delWheel () eliminar rueda dada una posicion, si la posicion es menor a 1 se 
+     * asume como posicion
      * 1; si es mayor al maximo, se unsa la posicion máxima.
      * @param pos Es la posicion de la rueda que el usuario desea eliminar
      */
-    public void delWheel(int pos) {
+    public void delWheel(int pos) throws IllegalStateException, IllegalArgumentException{
 
-    if (pos < 1 || pos > wheels.size()) {
+    if (pos < 0 || pos > wheels.size()) {
         ok = false;
         JOptionPane.showMessageDialog(null, "No existe una rueda en la posicion"+pos);
-        return;
+        throw new IllegalStateException("posicion de rueda invalida");
     }
-    Wheel namewheel = wheels.get(pos - 1);
-    if (visible) {
-        namewheel.makeInvisible();
+    Wheel namewheel = wheels.get(pos);
+    if (namewheel instanceof RebelWheel) {
+        ok = false;
+        JOptionPane.showMessageDialog(null, "La rueda Rebel no se deja eliminar.");
+        throw new IllegalStateException("La rueda Rebel no se deja eliminar.");
     }
-    wheels.remove(pos - 1);
-
+    
+    namewheel.makeInvisible();
+    wheels.remove(pos);
     /*
      * Reorganizar las ruedas restantes.
      */
@@ -210,14 +216,14 @@ public class SlotMachine{
         int newX = 80 + (i * 50);
         wheels.get(i).moveTo(newX);
     }
-
     /*
      * Achicar la máquina.
      */
     int newWidth = 10 + wheels.size() * 40;
     box.changeSize(50, newWidth);
     ok = true;
-}
+    makeVisible();
+    }
     
     
     /**
@@ -256,7 +262,8 @@ public class SlotMachine{
      * visible de una rueda especifica, sin necesidad de girarla al azar.
      * Si el color indicado no existe en esa rueda, la operacion no tiene
      * efecto y ok() retornara false.
-     * @param wheel posicion de la rueda donde se desea colocar el simbolo, contada a partir de 1
+     * @param wheel posicion de la rueda donde se desea colocar el simbolo, contada a 
+     * partir de 1
      * @param colorSymbol color del simbolo que se desea dejar visible
      * @param tipoSymbol es el tipo de simbolo  que se desea dejar visible
      */
@@ -283,6 +290,10 @@ public class SlotMachine{
     
         Wheel namewheel = wheels.get(wheel);
         if (!namewheel.isLocked()) {
+            Wheel izquierda = null;
+            if (wheel > 0){
+                izquierda = wheels.get(wheel - 1);
+            }
             namewheel.spin();
             ok = true;
         } else {
@@ -297,9 +308,19 @@ public class SlotMachine{
     public void spin(){
         boolean algunaBloqueda = false;
         palanca();
-        for (Wheel wheel : wheels) {
+        
+        for (int i =0; i < wheels.size(); i++) {
+            Wheel wheel = wheels.get(i);
             if (wheel.isLocked()== false) {
-                wheel.spin();
+                if (wheel instanceof LeftyWheel){
+                    Wheel izquierda = null;
+                    if(i > 0){
+                        izquierda = wheels.get(i - 1);
+                    }
+                    wheel.spin(izquierda);
+                }else{
+                    wheel.spin();
+                }
             } else {
                 algunaBloqueda = true;
             }
@@ -308,8 +329,8 @@ public class SlotMachine{
         if (algunaBloqueda) {
             JOptionPane.showMessageDialog(null, "Algunas ruedas estaban bloqueadas y no giraron");
         }
+        makeVisible();
     }
-    
     
     
     /**
@@ -398,9 +419,6 @@ public class SlotMachine{
         
         }
     }
-    
-    
-    
     
     /**
      * 
@@ -539,8 +557,10 @@ public class SlotMachine{
     public boolean ok(){
         return ok;
     }
+    
     /**
-     * Este metodo intercambia la posicion de dos reudas que se encuentren dentro de slotmachine
+     * Este metodo intercambia la posicion de dos reudas que se encuentren 
+     * dentro de slotmachine
      * @param wheel1 posicion (indice) de la primera rueda a intercambiar 
      * @param wheel2 posicion (indice) de la segunda rueda a intercambiar 
      */
@@ -549,14 +569,23 @@ public class SlotMachine{
             wheel1 == wheel2) {
             ok = false;
             return;
-        }   
+        }  
+        Wheel r1 = wheels.get(wheel1);
+        Wheel r2 = wheels.get(wheel2);
+        
+        if (r1 instanceof RebelWheel || r2 instanceof RebelWheel){
+            ok = false;
+            return; 
+        }
         Wheel i = wheels.get(wheel1);
-        wheels.set(wheel1, wheels.get(wheel2)); // asignamos la posicion que tenia wheel1 a wheel2
+        wheels.set(wheel1, wheels.get(wheel2)); // asignamos la posicion que tenia w1 a w2
         wheels.set(wheel2 , i);// hacemos el otro cambio de pocision :3
-        wheels.get(wheel1 ).moveTo(80 + ((wheel1 ) * 40)); // acomodar visualmente en la maquina 
+        wheels.get(wheel1 ).moveTo(80 + ((wheel1 ) * 40)); 
         wheels.get(wheel2 ).moveTo(80 + ((wheel2 ) * 40));
         ok = true;
+        makeVisible();
     }
+    
     /**
      * Cambia el estado de una rueda que el ususario desee  bloqueada 
      * es decir que esa rueda en especifico no deba girar 

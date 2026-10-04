@@ -1,0 +1,12 @@
+#BlueJ class context
+#Sat Oct 03 22:44:04 COT 2026
+comment0.target=RebelWheel
+comment0.text=\r\n Representa una rueda que no se deja bloquear, ni intercambiar, ni eliminar\r\n \r\n @author Brenda Guerrero - Alexandra Barragan\r\n @version 1.0\r\n
+comment1.params=name
+comment1.target=RebelWheel(java.lang.String)
+comment1.text=\r\n Crea una rueda con los comportamientos de no dejarse intercambiar, \r\n bloquear, ni eliminar\r\n
+comment2.target=void lock()
+comment2.text=\r\n Sobreescibe el metodo de bloquear pero no permite que la rueda sea bloqueada \r\n
+comment3.target=boolean isLocked()
+comment3.text=\r\n Sobreescribe el metodo para macar que la rueda nunca va a estar bloqueada \r\n
+numComments=4
