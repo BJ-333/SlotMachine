@@ -126,24 +126,25 @@ public class Wheel {
      * Gira la rueda seleccionando un símbolo visible al azar.
      */
     public void spin() {
-        if (symbols.size() > 0) {
-            if (visible && indexSymbolUp >= 0 && indexSymbolUp < symbols.size()) {
-                for (int i = 0;i< 8;i++){
+    if (symbols.size() > 0) {
+        if (visible) {
+            if (indexSymbolUp >= 0 && indexSymbolUp < symbols.size()) {
+                for (int i = 0; i < 8; i++){
                     symbols.get(indexSymbolUp).makeInvisible();
                     indexSymbolUp = random.nextInt(symbols.size());
                     symbols.get(indexSymbolUp).seleccionComportar();
-                                           
-                               
                 }
                 try{Thread.sleep(800);}catch(InterruptedException e){}
             }
-                        
-            ok = true;
         } else {
-            indexSymbolUp = random.nextInt(symbols.size());
-            ok = false;
+            indexSymbolUp = random.nextInt(symbols.size());   
         }
+        ok = true;
+    } else {
+        indexSymbolUp = random.nextInt(symbols.size());
+        ok = false;
     }
+}
     
     /**
      * spinS
@@ -177,20 +178,16 @@ public class Wheel {
     
                 
                 if (indexSymbolUp == 0) {
-                    indexSymbolUp = symbols.size() - 1;
+                indexSymbolUp = symbols.size() - 1;
                 } else {
                     indexSymbolUp--;
                 }
             }
-    
-            if (visible) {
-                Symbol simbolo = symbols.get(indexSymbolUp);
-                simbolo.makeVisible();
-                simbolo.esperarS(80);
-            }
+            symbols.get(indexSymbolUp).seleccionComportar();
+                                        
         }
-    
-        ok = true;
+            
+         ok= true;
     }
     
     
@@ -214,9 +211,8 @@ public class Wheel {
                 symbols.get(indexSymbolUp).makeInvisible();
             }
             indexSymbolUp = pos;
-            if (visible) {
-                symbols.get(indexSymbolUp).makeVisible();
-            }
+            symbols.get(indexSymbolUp).seleccionComportar();
+            
             ok = true;
         } else {
             ok = false;
