@@ -482,6 +482,12 @@ public class SlotMachineTest
         assertTrue(lefty.ok());
     }
     
+    
+    // Tipo de comportamientos de los simbolos 
+    
+    /**
+     * Deberia alternar la visivilidad del simbolo con aquel comportamiento 
+     */
     @Test
     public void shydeberiaAlternarVisible() {
         Symbol s = new Symbol("blue", "c", "s");
@@ -498,6 +504,42 @@ public class SlotMachineTest
         s.seleccionComportar();
         assertFalse(s.esVisible());
     }
+    
+    /**
+     * Deberia quedar visible, es la funcion del comportamiento normal
+     */
+    @Test
+    public void normalDeberiaSerVisible() {
+        Symbol s = new Symbol("blue", "A", "n");
+    
+        s.makeInvisible();
+    
+        s.seleccionComportar();
+    
+        assertTrue(s.esVisible());
+    }
+    
+    
+    /**
+     * Deberia cambiar de color visul, mas no el original cada que es selecionado 
+     */
+    @Test
+    public void loquitoDeberiaCambiarColor() {
+        Symbol s = new Symbol("green", "A", "l");
+    
+        s.makeVisible();
+    
+        String colorInicial = s.colorVisual();
+    
+        s.seleccionComportar();
+    
+        String colorNuevo = s.colorVisual();
+    
+        assertNotEquals(colorInicial, colorNuevo);
+    }
+    
+    
+    
     /**
      * Tears down the test fixture.
      *

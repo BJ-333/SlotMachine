@@ -10,6 +10,7 @@ public class Symbol
 {
     
     private String color ;
+    private String colorv;
     private Figura figure;
     private Comportamiento comportamiento;
     private boolean visible;
@@ -57,6 +58,11 @@ public class Symbol
         else if (tipoComportamiento.equals("L") || tipoComportamiento.equals("l")){
             comportamiento = new loquito();
             
+        }
+        else{
+            throw new IllegalArgumentException("Tipo de comportamiento no válido: " 
+            + tipoComportamiento);
+        
         }
         
         figure.changeColor(color);
@@ -175,6 +181,7 @@ public class Symbol
     
     public void cambiaColor(){
         figure.changeColor(colorsLoquitos[indColor]);
+        colorv= colorsLoquitos[indColor];
         indColor++;
             
         
@@ -187,7 +194,10 @@ public class Symbol
     
     }  
     
+    public String colorVisual(){
+        return colorv;
     
+    }
     
     
 }
