@@ -1,9 +1,5 @@
 #BlueJ class context
-<<<<<<< Updated upstream
-#Sat Oct 03 23:23:18 COT 2026
-=======
-#Mon Sep 28 19:18:32 COT 2026
->>>>>>> Stashed changes
+#Sun Oct 04 01:05:03 COT 2026
 comment0.target=SlotMachine
 comment0.text=\r\n Simula una maquina tragamonedas, compuesta por ruedas que a su vez\r\n contienen simbolos identificados por colores.\r\n \r\n @author Brenda Guerrero - Alexandra Barragan \r\n @version 1.0\r\n
 comment1.target=SlotMachine()
@@ -45,7 +41,7 @@ comment23.target=boolean ok()
 comment23.text=\r\n ok() retornamos el valor booleana de si se realizo la ultima operacion \r\n
 comment24.params=wheel1 wheel2
 comment24.target=void swap(int, int)
-comment24.text=\r\n Este metodo intercambia la posicion de dos reudas que se encuentren dentro de slotmachine\r\n @param wheel1 posicion (indice) de la primera rueda a intercambiar \r\n @param wheel2 posicion (indice) de la segunda rueda a intercambiar \r\n
+comment24.text=\r\n Este metodo intercambia la posicion de dos reudas que se encuentren \r\n dentro de slotmachine\r\n @param wheel1 posicion (indice) de la primera rueda a intercambiar \r\n @param wheel2 posicion (indice) de la segunda rueda a intercambiar \r\n
 comment25.params=wheel
 comment25.target=void lock(int)
 comment25.text=\r\n Cambia el estado de una rueda que el ususario desee  bloqueada \r\n es decir que esa rueda en especifico no deba girar \r\n @param wheel posicion(indice) de la rueda que se quiere bloquear \r\n
@@ -60,12 +56,12 @@ comment3.text=\r\n Metodo axuiliar para el constructor sobrecargado para poder g
 comment4.target=java.lang.String generarTipoSimbolo()
 comment5.target=int listSizeWheel()
 comment5.text=\r\n \r\n
-comment6.params=pos
-comment6.target=void addWheel(int)
-comment6.text=\r\n addWheel() a\u00F1adir rueda dada una posicion, si la posicion es menor a 1 se asume como posicion\r\n 1; si es mayor al maximo, se unsa la posicion m\u00E1xima.\r\n @param pos Es la posicion que el usuario donde desea a\u00F1adir la rueda\r\n
+comment6.params=pos type
+comment6.target=void addWheel(int, java.lang.String)
+comment6.text=\r\n addWheel() a\u00F1adir rueda dada una posicion y segun su tipo (normal, lefty o rebel), \r\n si la posicion es menor a 1 se asume como posicion\r\n 1; si es mayor al maximo, se unsa la posicion m\u00E1xima.\r\n @param pos Es la posicion que el usuario donde desea a\u00F1adir la rueda\r\n @param type Es el tipo de rueda que quiere a\u00F1adir el usuario dentro de la maquina\r\n
 comment7.params=pos
 comment7.target=void delWheel(int)
-comment7.text=\r\n delWheel () eliminar rueda dada una posicion, si la posicion es menor a 1 se asume como posicion\r\n 1; si es mayor al maximo, se unsa la posicion m\u00E1xima.\r\n @param pos Es la posicion de la rueda que el usuario desea eliminar\r\n
+comment7.text=\r\n delWheel () eliminar rueda dada una posicion, si la posicion es menor a 1 se \r\n asume como posicion\r\n 1; si es mayor al maximo, se unsa la posicion m\u00E1xima.\r\n @param pos Es la posicion de la rueda que el usuario desea eliminar\r\n
 comment8.params=pos color tipoSimbolo tipoComportamiento
 comment8.target=void addSymbol(int, java.lang.String, java.lang.String, java.lang.String)
 comment8.text=\r\n addSymbol () a\u00F1adir simbolo, el simbolo se a\u00F1ade a todas las ruedas existentes \r\n @param pos posicion del simbolo en las ruedas\r\n @param color color del simbolo\r\n
