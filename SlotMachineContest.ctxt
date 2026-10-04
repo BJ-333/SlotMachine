@@ -1,5 +1,9 @@
 #BlueJ class context
+<<<<<<< Updated upstream
 #Sat Oct 03 21:28:34 COT 2026
+=======
+#Mon Sep 28 19:16:32 COT 2026
+>>>>>>> Stashed changes
 comment0.target=SlotMachineContest
 comment0.text=\r\n Solucionar el problema de la marat\u00F3n\r\n Simular la soluci\u00F3n ,si esposible\r\n @author Brenda Guerrero - Alexandra Barragan \r\n \r\n
 comment1.params=n
