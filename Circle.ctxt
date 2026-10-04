@@ -1,5 +1,5 @@
 #BlueJ class context
-#Sun Oct 04 12:13:01 COT 2026
+#Sun Oct 04 13:39:33 COT 2026
 comment0.target=Circle
 comment0.text=\r\n A circle that can be manipulated and that draws itself on a canvas.\r\n \r\n @author  Michael Kolling and David J. Barnes\r\n @version 1.0.  (15 July 2000) \r\n
 comment1.target=Circle()
@@ -23,6 +23,7 @@ comment15.target=void changeColor(java.lang.String)
 comment15.text=\r\n Change the color. \r\n @param color the new color. Valid colors are "red", "yellow", "blue", "green",\r\n "magenta" and "black".\r\n
 comment16.params=valor
 comment16.target=void reducirTamano(int)
+comment17.target=boolean getIsVisible()
 comment2.target=void makeVisible()
 comment3.target=void makeInvisible()
 comment4.target=void draw()
@@ -35,4 +36,4 @@ comment8.target=void moveUp()
 comment8.text=\r\n Move the circle a few pixels up.\r\n
 comment9.target=void moveDown()
 comment9.text=\r\n Move the circle a few pixels down.\r\n
-numComments=17
+numComments=18

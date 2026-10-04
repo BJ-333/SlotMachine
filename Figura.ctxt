@@ -1,5 +1,5 @@
 #BlueJ class context
-#Sun Oct 04 12:13:01 COT 2026
+#Sun Oct 04 13:29:23 COT 2026
 comment0.target=Figura
 comment0.text=\r\n Write a description of interface Figura here.\r\n \r\n @author (your name) \r\n @version (a version number or a date)\r\n
 comment1.target=void makeVisible()
@@ -12,4 +12,5 @@ comment5.params=distance
 comment5.target=void moveVertical(int)
 comment6.params=valor
 comment6.target=void reducirTamano(int)
-numComments=7
+comment7.target=boolean getIsVisible()
+numComments=8

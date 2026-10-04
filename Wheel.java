@@ -132,19 +132,27 @@ public class Wheel {
                 for (int i = 0; i < 8; i++){
                     symbols.get(indexSymbolUp).makeInvisible();
                     indexSymbolUp = random.nextInt(symbols.size());
+                    if(symbols.get(indexSymbolUp).tipoComportamiento().equals("s")){
+                        symbols.get(indexSymbolUp).makeVisible(); 
+                        symbols.get(indexSymbolUp).seleccionComportar(); 
+                    }else {
+                    symbols.get(indexSymbolUp).makeVisible();
                     symbols.get(indexSymbolUp).seleccionComportar();
+                    }
                 }
-                try{Thread.sleep(800);}catch(InterruptedException e){}
+                Canvas.getCanvas().wait(150);
             }
         } else {
             indexSymbolUp = random.nextInt(symbols.size());   
         }
         ok = true;
     } else {
-        indexSymbolUp = random.nextInt(symbols.size());
+        
         ok = false;
     }
-}
+    }
+
+    
     
     /**
      * spinS
@@ -197,10 +205,10 @@ public class Wheel {
      * 
      * @param symbol Color del símbolo que se desea dejar visible.
      */
-    public void place(String colorsymbol,String tipoSimbolo) {
+    public void place(String colorsymbol,String tipoSimbolo, String tipoComportamiento) {
         int pos = -1;
         for (int i = 0; i < symbols.size(); i++) {
-            if (symbols.get(i).color().equals(colorsymbol) && symbols.get(i).tipoFigura().equals(tipoSimbolo)) {
+            if (symbols.get(i).color().equals(colorsymbol) && symbols.get(i).tipoFigura().equals(tipoSimbolo) && symbols.get(i).tipoComportamiento().equals(tipoComportamiento)) {
                 pos = i;
                 break;
             }

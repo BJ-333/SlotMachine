@@ -10,9 +10,12 @@ public class Symbol
 {
     
     private String color ;
+    private String  originalColor;
     private Figura figure;
     private Comportamiento comportamiento;
     private boolean visible;
+    private boolean ocultoPorShy = false;
+    
     
 
     /**
@@ -24,6 +27,8 @@ public class Symbol
     public Symbol(String color, String tipoFigura , String tipoComportamiento)
     {
         this.color = color;
+        this.originalColor = color;
+        
         if(tipoFigura.equals("c") ||tipoFigura.equals("C")){
             figure = new Circle();
                     
@@ -51,8 +56,8 @@ public class Symbol
         
         figure.changeColor(color);
         
-        visible = false;
-        
+        this. visible = false;
+        figure.makeInvisible();
     }
     
     public void esperarS(int tiempo){
@@ -78,7 +83,8 @@ public class Symbol
     
     public void makeVisible(){
         figure.makeVisible();
-        visible = true;  
+        this.visible = true;
+         
         
     }
     
@@ -88,7 +94,8 @@ public class Symbol
      */
     public void makeInvisible(){
         figure.makeInvisible();
-        visible = false;
+        this.visible = false;
+        
     }
     
     /**
@@ -129,12 +136,15 @@ public class Symbol
      * para shy
      */
     public void visibilidad(){
-        if(visible){
-            makeInvisible();
+        if(!ocultoPorShy){
+            figure.changeColor("white");
+            ocultoPorShy = true;
             
         }
         else{
-            makeVisible();
+            figure.changeColor(originalColor);
+            ocultoPorShy = false;
+            
         }
     
     

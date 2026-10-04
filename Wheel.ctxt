@@ -1,5 +1,5 @@
 #BlueJ class context
-#Sun Oct 04 12:54:36 COT 2026
+#Sun Oct 04 15:44:43 COT 2026
 comment0.target=Wheel
 comment0.text=\r\n Representa una rueda de la maquina tragamonedas. \r\n \r\n @author Brenda Guerrero - Alexandra Barragan\r\n @version 1.1\r\n
 comment1.params=name
@@ -46,8 +46,8 @@ comment5.text=\r\n Gira la rueda seleccionando un s\u00EDmbolo visible al azar.\
 comment6.params=steps
 comment6.target=void spinS(int)
 comment6.text=\r\n spinS\r\n
-comment7.params=colorsymbol tipoSimbolo
-comment7.target=void place(java.lang.String, java.lang.String)
+comment7.params=colorsymbol tipoSimbolo tipoComportamiento
+comment7.target=void place(java.lang.String, java.lang.String, java.lang.String)
 comment7.text=\r\n Coloca manualmente un s\u00EDmbolo como el visible de esta rueda.\r\n \r\n @param symbol Color del s\u00EDmbolo que se desea dejar visible.\r\n
 comment8.target=boolean ok()
 comment8.text=\r\n Retorna el estado de la \u00FAltima operaci\u00F3n realizada.\r\n @return true si fue exitosa, false de lo contrario.\r\n

@@ -267,9 +267,9 @@ public class SlotMachine{
      * @param colorSymbol color del simbolo que se desea dejar visible
      * @param tipoSymbol es el tipo de simbolo  que se desea dejar visible
      */
-    public void placeSymbol(int wheel , String colorSymbol, String tipoSymbol){
+    public void placeSymbol(int wheel , String colorSymbol, String tipoSymbol,String tipoCompor){
         Wheel namewheel= wheels.get(wheel-1);
-        namewheel.place(colorSymbol,tipoSymbol);
+        namewheel.place(colorSymbol,tipoSymbol,tipoCompor);
         ok = namewheel.ok();
         if (!ok){
             JOptionPane.showMessageDialog(null, "El simbolo no exite en esa rueda");

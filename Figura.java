@@ -14,4 +14,5 @@ public interface Figura
     void moveHorizontal(int distance);
     void moveVertical(int distance);
     void reducirTamano(int valor);
+    boolean getIsVisible();
 }

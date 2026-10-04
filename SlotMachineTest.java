@@ -90,8 +90,8 @@ public class SlotMachineTest
     @Test
     public void testAgregarSimbol(){
         SlotMachine maquinaTraga = new SlotMachine();
-        maquinaTraga.addWheel(1);
-        maquinaTraga.addSymbol(1,"red","c");
+        maquinaTraga.addWheel(1,"normal");
+        maquinaTraga.addSymbol(1,"red","c","n");
         String[] colores = maquinaTraga.symbols();
         assertEquals(1,colores.length);
         assertEquals("red",colores[0]);
@@ -102,8 +102,8 @@ public class SlotMachineTest
     @Test
     public void testEliminarSimbol(){
         SlotMachine maquinaTraga = new SlotMachine();
-        maquinaTraga.addWheel(1);
-        maquinaTraga.addSymbol(1,"red","c");
+        maquinaTraga.addWheel(1,"normal");
+        maquinaTraga.addSymbol(1,"red","c","n");
         maquinaTraga.delSymbol("red","c");
         String[] colores = maquinaTraga.symbols();
         assertEquals(0,colores.length);
@@ -115,8 +115,8 @@ public class SlotMachineTest
     @Test
     public void testGirarRuedita(){
         SlotMachine maquinaTraga = new SlotMachine();
-        maquinaTraga.addWheel(0);
-        maquinaTraga.addSymbol(0,"red","c");
+        maquinaTraga.addWheel(0,"normal");
+        maquinaTraga.addSymbol(0,"red","c","n");
         maquinaTraga.spin(0);
         assertTrue(maquinaTraga.ok());
     }
@@ -126,11 +126,11 @@ public class SlotMachineTest
     @Test
     public void testGirarTodasLaRueditas(){
         SlotMachine maquinaTraga = new SlotMachine();
-        maquinaTraga.addWheel(1);
-        maquinaTraga.addWheel(2);
-        maquinaTraga.addSymbol(1,"red","c");
-        maquinaTraga.addSymbol(2,"blue","c");
-        maquinaTraga.addSymbol(3,"green","c");
+        maquinaTraga.addWheel(1,"normal");
+        maquinaTraga.addWheel(2,"normal");
+        maquinaTraga.addSymbol(1,"red","c","n");
+        maquinaTraga.addSymbol(2,"blue","c","n");
+        maquinaTraga.addSymbol(3,"green","c","n");
         maquinaTraga.spin();
         assertTrue(maquinaTraga.ok());
     
@@ -141,10 +141,10 @@ public class SlotMachineTest
     @Test
     public void testColocarSimbolManual(){
         SlotMachine maquinaTraga = new SlotMachine();
-        maquinaTraga.addWheel(1);
-        maquinaTraga.addSymbol(1,"red","c");
-        maquinaTraga.addSymbol(2,"blue","c");
-        maquinaTraga.placeSymbol(1,"blue","c");
+        maquinaTraga.addWheel(1,"normal");
+        maquinaTraga.addSymbol(1,"red","c","n");
+        maquinaTraga.addSymbol(2,"blue","c","n");
+        maquinaTraga.placeSymbol(1,"blue","c","n");
         Symbol [] config = maquinaTraga.configuration();
         assertEquals("blue",config[0].color());
         assertEquals("c",config[0].tipoFigura());
@@ -474,8 +474,8 @@ public class SlotMachineTest
     public void noDeberiaCopiarSiNoTieneIzquierda() {
         LeftyWheel lefty = new LeftyWheel("Lefty");
 
-        lefty.addSymbol(0, "red", "circle");
-        lefty.addSymbol(1, "blue", "square");
+        lefty.addSymbol(0, "red", "circle","n");
+        lefty.addSymbol(1, "blue", "square","n");
 
         lefty.spin(null);
 

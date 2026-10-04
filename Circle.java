@@ -189,6 +189,12 @@ public class Circle implements Figura{
         diameter = nuevoDiametro;
         draw();
     }
+    
+    @Override 
+    public boolean getIsVisible(){
+    
+        return this.isVisible;
+    }
    }
 
 

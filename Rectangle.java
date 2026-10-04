@@ -217,5 +217,10 @@ public class Rectangle implements Figura{
         width = newWidth;
         draw();
     }
+    @Override 
+    public boolean getIsVisible(){
+    
+        return this.isVisible;
+    }
 }
 

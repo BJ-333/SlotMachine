@@ -1,5 +1,5 @@
 #BlueJ class context
-#Sun Oct 04 00:47:58 COT 2026
+#Sun Oct 04 15:44:46 COT 2026
 comment0.target=RebelWheel
 comment0.text=\r\n Representa una rueda que no se deja bloquear, ni intercambiar, ni eliminar\r\n \r\n @author Brenda Guerrero - Alexandra Barragan\r\n @version 1.0\r\n
 comment1.params=name

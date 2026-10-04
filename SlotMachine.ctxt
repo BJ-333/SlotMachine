@@ -1,11 +1,11 @@
 #BlueJ class context
-#Sun Oct 04 12:58:18 COT 2026
+#Sun Oct 04 15:44:46 COT 2026
 comment0.target=SlotMachine
 comment0.text=\r\n Simula una maquina tragamonedas, compuesta por ruedas que a su vez\r\n contienen simbolos identificados por colores.\r\n \r\n @author Brenda Guerrero - Alexandra Barragan \r\n @version 1.0\r\n
 comment1.target=SlotMachine()
 comment1.text=\r\n Constructor de la clase SlotMachine\r\n\r\n
-comment10.params=wheel colorSymbol tipoSymbol
-comment10.target=void placeSymbol(int, java.lang.String, java.lang.String)
+comment10.params=wheel colorSymbol tipoSymbol tipoCompor
+comment10.target=void placeSymbol(int, java.lang.String, java.lang.String, java.lang.String)
 comment10.text=\r\n plasceSymbol() coloca manualmente el simbolo del color indicado como el simbolo\r\n visible de una rueda especifica, sin necesidad de girarla al azar.\r\n Si el color indicado no existe en esa rueda, la operacion no tiene\r\n efecto y ok() retornara false.\r\n @param wheel posicion de la rueda donde se desea colocar el simbolo, contada a partir de 1\r\n @param colorSymbol color del simbolo que se desea dejar visible\r\n @param tipoSymbol es el tipo de simbolo  que se desea dejar visible\r\n
 comment11.params=wheel
 comment11.target=void spin(int)

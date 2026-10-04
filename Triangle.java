@@ -202,4 +202,9 @@ public class Triangle implements Figura{
         draw();
     
     }
+    @Override 
+    public boolean getIsVisible(){
+    
+        return this.isVisible;
+    }
 }
