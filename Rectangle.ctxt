@@ -1,5 +1,5 @@
 #BlueJ class context
-#Sat Oct 03 18:15:45 COT 2026
+#Sat Oct 03 23:19:44 COT 2026
 comment0.target=Rectangle
 comment0.text=\r\n A rectangle that can be manipulated and that draws itself on a canvas.\r\n \r\n @author  Michael Kolling and David J. Barnes (Modified)\r\n @version 1.0  (15 July 2000)()\r\n
 comment1.target=Rectangle()
@@ -23,6 +23,8 @@ comment15.target=void draw()
 comment15.text=\r\n Draw the rectangle with current specifications on screen.\r\n
 comment16.target=void erase()
 comment16.text=\r\n Erase the rectangle on screen.\r\n
+comment17.params=valor
+comment17.target=void reducirTamano(int)
 comment2.params=x y
 comment2.target=void setPosition(int, int)
 comment3.target=void makeVisible()
@@ -40,4 +42,4 @@ comment8.text=\r\n Move the rectangle a few pixels down.\r\n
 comment9.params=distance
 comment9.target=void moveHorizontal(int)
 comment9.text=\r\n Move the rectangle horizontally.\r\n @param distance the desired distance in pixels\r\n
-numComments=17
+numComments=18

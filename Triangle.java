@@ -179,4 +179,27 @@ public class Triangle implements Figura{
             canvas.erase(this);
         }
     }
+    
+    @Override 
+    public void reducirTamano(int valor){
+        erase();
+        
+        int newHeight =height - valor;
+        int newWidth = width - valor ;
+        
+        if(newHeight < 1){
+            newHeight = 1;
+        }
+        if(newWidth < 1){
+            newWidth = 1;
+        }
+        int espacioAlto = height - newHeight;
+
+        yPosition = yPosition + (espacioAlto / 2);
+        
+        height = newHeight;
+        width = newWidth;
+        draw();
+    
+    }
 }

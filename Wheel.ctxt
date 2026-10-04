@@ -1,5 +1,5 @@
 #BlueJ class context
-#Sat Oct 03 18:15:45 COT 2026
+#Sat Oct 03 23:31:44 COT 2026
 comment0.target=Wheel
 comment0.text=\r\n Representa una rueda de la maquina tragamonedas. \r\n \r\n @author Brenda Guerrero - Alexandra Barragan\r\n @version 1.1\r\n
 comment1.params=name
@@ -27,8 +27,8 @@ comment18.target=boolean isLocked()
 comment18.text=\r\n devuelve si la rueda esta bloqueada o no \r\n
 comment19.params=index
 comment19.target=Symbol getSymbol(int)
-comment2.params=pos color tipoSimbol
-comment2.target=void addSymbol(int, java.lang.String, java.lang.String)
+comment2.params=pos color tipoSimbol comportamiento
+comment2.target=void addSymbol(int, java.lang.String, java.lang.String, java.lang.String)
 comment2.text=\r\n Agrega un s\u00EDmbolo\r\n \r\n @param pos Posici\u00F3n del s\u00EDmbolo en la rueda.\r\n @param color Color del s\u00EDmbolo a a\u00F1adir.\r\n
 comment3.params=colorsymbol tiposymbol
 comment3.target=void delSymbol(java.lang.String, java.lang.String)

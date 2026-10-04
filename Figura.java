@@ -13,4 +13,5 @@ public interface Figura
     void changeColor(String newColor);
     void moveHorizontal(int distance);
     void moveVertical(int distance);
+    void reducirTamano(int valor);
 }

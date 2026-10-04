@@ -45,7 +45,7 @@ public class Wheel {
      * @param pos Posición del símbolo en la rueda.
      * @param color Color del símbolo a añadir.
      */
-    public void addSymbol(int pos, String color,String tipoSimbol) {
+    public void addSymbol(int pos, String color,String tipoSimbol,String comportamiento) {
         if (pos < 1) {
             pos = 1;
         }
@@ -53,7 +53,7 @@ public class Wheel {
             pos = symbols.size() + 1;
         }
         
-        Symbol symbol = new Symbol(color,tipoSimbol);
+        Symbol symbol = new Symbol(color,tipoSimbol,comportamiento);
         symbol.moveHorizontal(xPosition - 20);
         symbol.moveVertical(10);
         
@@ -63,7 +63,7 @@ public class Wheel {
             indexSymbolUp = 0;
         }
 
-        if (visible && (symbols.size() == 1 || (pos - 1) == indexSymbolUp)) {
+        if (visible && (symbols.size() == 1 || (pos) == indexSymbolUp)) {
             symbol.makeVisible();
         }
         
@@ -110,11 +110,13 @@ public class Wheel {
         if (symbols.size() > 0) {
             if (visible && indexSymbolUp >= 0 && indexSymbolUp < symbols.size()) {
                 for (int i = 0;i< 8;i++){
-                symbols.get(indexSymbolUp).makeInvisible();
-                indexSymbolUp = random.nextInt(symbols.size());
-                symbols.get(indexSymbolUp).makeVisible();
+                    symbols.get(indexSymbolUp).makeInvisible();
+                    indexSymbolUp = random.nextInt(symbols.size());
+                    symbols.get(indexSymbolUp).seleccionComportar();
+                                           
+                               
                 }
-                try{Thread.sleep(80);}catch(InterruptedException e){}
+                try{Thread.sleep(800);}catch(InterruptedException e){}
             }
                         
             ok = true;

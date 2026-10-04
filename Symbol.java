@@ -11,13 +11,17 @@ public class Symbol
     
     private String color ;
     private Figura figure;
+    private Comportamiento comportamiento;
+    private boolean visible;
+    
 
     /**
      * Constructor de la clase Symbol
      * Crea un simbolo del color indicado, asociado con la clase circle de shapes
-     * "param color color del simbolo
+     * @param color color del simbolo
+     * @param 
      */
-    public Symbol(String color, String tipoFigura)
+    public Symbol(String color, String tipoFigura , String tipoComportamiento)
     {
         this.color = color;
         if(tipoFigura.equals("c") ||tipoFigura.equals("C")){
@@ -32,9 +36,22 @@ public class Symbol
             figure = new Rectangle();
         
         }
+        if(tipoComportamiento.equals("N")|| tipoComportamiento.equals("n")){
+            comportamiento = new Normal();
+        
+        }
+        else if (tipoComportamiento.equals("E") || tipoComportamiento.equals("e")){
+            comportamiento  = new Ephemeral();
+        
+        }
+        else if (tipoComportamiento.equals("S") || tipoComportamiento.equals("s")){
+            comportamiento = new Shy();
+        
+        }
         
         figure.changeColor(color);
         
+        visible = false;
         
     }
     
@@ -61,6 +78,7 @@ public class Symbol
     
     public void makeVisible(){
         figure.makeVisible();
+        visible = true;  
         
     }
     
@@ -70,7 +88,7 @@ public class Symbol
      */
     public void makeInvisible(){
         figure.makeInvisible();
-        
+        visible = false;
     }
     
     /**
@@ -95,5 +113,41 @@ public class Symbol
             return "t";
         }
         return "c";
+    }
+    public String tipoComportamiento() {
+        if (comportamiento instanceof Normal) {
+            return "n";
+        } else if (comportamiento instanceof Ephemeral) {
+            return "e";
+        } else if (comportamiento instanceof Shy) {
+            return "s";
+        }
+        return "n";
+    }
+    
+    /**
+     * para shy
+     */
+    public void visibilidad(){
+        if(visible){
+            makeInvisible();
+            
+        }
+        else{
+            makeVisible();
+        }
+    
+    
+    }
+    
+    public void tamano(int valor){
+        figure.reducirTamano(valor);
+    
+    }
+    
+    public void seleccionComportar(){
+        comportamiento.comportarse(this);
+    
+    
     }
 }

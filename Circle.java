@@ -28,18 +28,19 @@ public class Circle implements Figura{
     }
 
 
-       
+    @Override   
     public void makeVisible(){
         isVisible = true;
         draw();
     }
     
-
+    @Override 
     public void makeInvisible(){
         erase();
         isVisible = false;
     }
-         
+    
+    
     private void draw(){
         if(isVisible) {
             Canvas canvas = Canvas.getCanvas();
@@ -89,6 +90,7 @@ public class Circle implements Figura{
      * Move the circle horizontally.
      * @param distance the desired distance in pixels
      */
+    @Override 
     public void moveHorizontal(int distance){
         erase();
         xPosition += distance;
@@ -99,6 +101,7 @@ public class Circle implements Figura{
      * Move the circle vertically.
      * @param distance the desired distance in pixels
      */
+    @Override 
     public void moveVertical(int distance){
         erase();
         yPosition += distance;
@@ -160,11 +163,34 @@ public class Circle implements Figura{
      * @param color the new color. Valid colors are "red", "yellow", "blue", "green",
      * "magenta" and "black".
      */
+    @Override 
     public void changeColor(String newColor){
         color = newColor;
         draw();
     }
+    
+    @Override 
+    public void reducirTamano(int valor){
+            
+        int nuevoDiametro = diameter - valor; 
+        if (nuevoDiametro < 2) {
+            nuevoDiametro = 2; 
+        }
+        
+        
+        erase();
+        
+        
+        int cambio = diameter-nuevoDiametro;
+        xPosition = xPosition+(cambio/2);
+        yPosition = yPosition+(cambio/2);
+        
+        
+        diameter = nuevoDiametro;
+        draw();
+    }
+   }
 
 
 
-}
+

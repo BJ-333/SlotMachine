@@ -105,7 +105,8 @@ public class SlotMachine{
         for (int i = 0; i < n; i++) {
             String color = generarColor(i);
             String tipoSimbolo = generarTipoSimbolo();
-            addSymbol(i + 1, color,tipoSimbolo);
+            String tipoComportamiento = "n";
+            addSymbol(i + 1, color,tipoSimbolo,tipoComportamiento);
         }
         // Inicializar el giro
         for (Wheel wheel : wheels) {
@@ -130,6 +131,7 @@ public class SlotMachine{
         int indice = random.nextInt(tipoSimbols.length);
         return tipoSimbols[indice];
     }
+    
     /**
      * 
      */
@@ -162,7 +164,8 @@ public class SlotMachine{
             for (int i = 0; i < existingColors.length;i++ ){
                 Symbol simboloOriginal = primeraRueda.getSymbol(i);
                 String tipoSimbolo = simboloOriginal.tipoFigura();
-                wheel.addSymbol(i,existingColors[i],tipoSimbolo);
+                String tipoComportamiento = simboloOriginal.tipoComportamiento();
+                wheel.addSymbol(i,existingColors[i],tipoSimbolo,tipoComportamiento);
             }
         }
         
@@ -225,9 +228,9 @@ public class SlotMachine{
      * @param pos posicion del simbolo en las ruedas
      * @param color color del simbolo
      */
-    public void addSymbol(int pos,String color,String tipoSimbolo) {
+    public void addSymbol(int pos,String color,String tipoSimbolo, String tipoComportamiento) {
         for (Wheel wheel : wheels) {
-            wheel.addSymbol(pos,color,tipoSimbolo);
+            wheel.addSymbol(pos,color,tipoSimbolo,tipoComportamiento);
         }
         ok=true;
     }

@@ -41,6 +41,7 @@ public class Rectangle implements Figura{
     /**
      * Make this rectangle visible. If it was already visible, do nothing.
      */
+    @Override 
     public void makeVisible(){
         isVisible = true;
         draw();
@@ -49,6 +50,7 @@ public class Rectangle implements Figura{
     /**
      * Make this rectangle invisible. If it was already invisible, do nothing.
      */
+    @Override 
     public void makeInvisible(){
         erase();
         isVisible = false;
@@ -87,6 +89,7 @@ public class Rectangle implements Figura{
      * Move the rectangle horizontally.
      * @param distance the desired distance in pixels
      */
+    @Override 
     public void moveHorizontal(int distance){
         erase();
         xPosition += distance;
@@ -97,6 +100,7 @@ public class Rectangle implements Figura{
      * Move the rectangle vertically.
      * @param distance the desired distance in pixels
      */
+    @Override 
     public void moveVertical(int distance){
         erase();
         yPosition += distance;
@@ -160,6 +164,7 @@ public class Rectangle implements Figura{
      * @param color the new color. Valid colors are "red", "yellow", "blue", "green",
      * "magenta" and "black".
      */
+    @Override 
     public void changeColor(String newColor){
         color = newColor;
         draw();
@@ -173,8 +178,7 @@ public class Rectangle implements Figura{
         if(isVisible) {
             Canvas canvas = Canvas.getCanvas();
             canvas.draw(this, color,
-                new java.awt.Rectangle(xPosition, yPosition, 
-                                       width, height));
+                new java.awt.Rectangle(xPosition, yPosition,width, height));
             canvas.wait(10);
         }
     }
@@ -187,6 +191,31 @@ public class Rectangle implements Figura{
             Canvas canvas = Canvas.getCanvas();
             canvas.erase(this);
         }
+    }
+    
+    @Override 
+    public void reducirTamano(int valor){
+        erase();
+        
+        int newHeight =height - valor;
+        int newWidth = width - valor ;
+        
+        if(newHeight < 1){
+            newHeight = 1;
+        }
+        if(newWidth < 1){
+            newWidth = 1;
+        }
+        int espacioAlto = height - newHeight;
+        int espacioAncho = width - newWidth; 
+        
+        
+        xPosition = xPosition + (espacioAncho / 2);
+        yPosition = yPosition + (espacioAlto / 2);
+        
+        height = newHeight;
+        width = newWidth;
+        draw();
     }
 }
 
