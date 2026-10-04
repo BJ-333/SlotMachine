@@ -1,0 +1,13 @@
+#BlueJ class context
+#Sun Oct 04 00:47:53 COT 2026
+comment0.target=LeftyWheel
+comment0.text=\r\n \r\n Representa una rueda, que si encuentra otra rueda a su izquierda, al girar copia su estado.\r\n @author Brenda Guerrero - Alexandra Barragan \r\n @version 1.0\r\n
+comment1.params=name
+comment1.target=LeftyWheel(java.lang.String)
+comment1.text=\r\n Crea una rueda con el comportamiento de copiar el estado de la rueda que haya a \r\n su izquierda\r\n
+comment2.params=ruedaIzquierda
+comment2.target=void copiar(Wheel)
+comment2.text=\r\n Hace girar la rueda Lefty. Si recibe la rueda de su izquierda,\r\n copia el s\u00EDmbolo visible de esta. Si no tiene rueda a la izquierda (null),\r\n gira de manera normal (aleatoria).\r\n
+comment3.params=izquierda
+comment3.target=void spin(Wheel)
+numComments=4

@@ -419,6 +419,68 @@ public class SlotMachineTest
         assertFalse(machine.ok());
         assertEquals(0, machine.listSizeWheel());
     }
+    
+    // test del ciclo 4
+    /**
+     * Debería permitir que una RebelWheel gire normalmente.
+     * La RebelWheel no tiene restricción para girar.
+     */
+    @Test
+    public void deberiaGirarRebelWheel() {
+        Wheel rebel = new RebelWheel("Rebel");
+
+        rebel.addSymbol(0, "red", "circle");
+        rebel.spin();
+
+        assertTrue(rebel.ok());
+    }   
+    
+    /**
+     * No debería permitir que una RebelWheel quede bloqueada.
+     * Aunque se invoque lock(), isLocked() debe retornar false.
+     */
+    @Test
+    public void noDeberiaBloquearRebelWheel() {
+        Wheel rebel = new RebelWheel("Rebel");
+        rebel.lock();
+
+        assertFalse(rebel.isLocked());
+    }
+    
+     /**
+      * Debería copiar el símbolo que se encuentra en la rueda a su izquierda.
+      */
+    @Test
+    public void deberiaCopiarSimboloDeLaIzquierda() {
+        Wheel izquierda = new Wheel("Izquierda");
+        LeftyWheel lefty = new LeftyWheel("Lefty");
+
+        izquierda.addSymbol(0, "red", "circle");
+        lefty.addSymbol(0, "blue", "square");
+
+        izquierda.place("red", "circle");
+
+        lefty.spin(izquierda);
+
+        assertEquals("red", lefty.SymbolUp().color());
+        assertEquals("circle", lefty.SymbolUp().tipoFigura());
+    }
+    
+    /**
+     * No debería intentar copiar un símbolo cuando no existe
+     * una rueda a su izquierda debe girar utilizando su comportamiento normal.
+     */
+    @Test
+    public void noDeberiaCopiarSiNoTieneIzquierda() {
+        LeftyWheel lefty = new LeftyWheel("Lefty");
+
+        lefty.addSymbol(0, "red", "circle");
+        lefty.addSymbol(1, "blue", "square");
+
+        lefty.spin(null);
+
+        assertTrue(lefty.ok());
+    }
     /**
      * Tears down the test fixture.
      *

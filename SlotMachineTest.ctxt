@@ -1,5 +1,5 @@
 #BlueJ class context
-#Sat Oct 03 18:15:45 COT 2026
+#Sun Oct 04 00:49:01 COT 2026
 comment0.target=SlotMachineTest
 comment0.text=\r\n The test class SlotMachineTest.\r\n\r\n @author  (your name)\r\n @version (a version number or a date)\r\n
 comment1.target=SlotMachineTest()
@@ -44,8 +44,16 @@ comment30.target=void deberiaIniciarInvisible()
 comment31.target=void deberiaManejarTamanoMinimoValido()
 comment32.target=void noDeberiaCrearMaquinaConTamanoCero()
 comment33.target=void noDeberiaCrearMaquinaConTamanoNegativo()
-comment34.target=void tearDown()
-comment34.text=\r\n Tears down the test fixture.\r\n\r\n Called after every test case method.\r\n
+comment34.target=void deberiaGirarRebelWheel()
+comment34.text=\r\n Deber\u00EDa permitir que una RebelWheel gire normalmente.\r\n La RebelWheel no tiene restricci\u00F3n para girar.\r\n
+comment35.target=void noDeberiaBloquearRebelWheel()
+comment35.text=\r\n No deber\u00EDa permitir que una RebelWheel quede bloqueada.\r\n Aunque se invoque lock(), isLocked() debe retornar false.\r\n
+comment36.target=void deberiaCopiarSimboloDeLaIzquierda()
+comment36.text=\r\n Deber\u00EDa copiar el s\u00EDmbolo que se encuentra en la rueda a su izquierda.\r\n
+comment37.target=void noDeberiaCopiarSiNoTieneIzquierda()
+comment37.text=\r\n No deber\u00EDa intentar copiar un s\u00EDmbolo cuando no existe\r\n una rueda a su izquierda debe girar utilizando su comportamiento normal.\r\n
+comment38.target=void tearDown()
+comment38.text=\r\n Tears down the test fixture.\r\n\r\n Called after every test case method.\r\n
 comment4.target=void testAgregarRueda()
 comment4.text=\r\n Prueba para agregar rueda.\r\n
 comment5.target=void testAgregarRuedaPosNegativa()
@@ -58,4 +66,4 @@ comment8.target=void testAgregarSimbol()
 comment8.text=\r\n Prueba de a\u00F1adri simbolo\r\n
 comment9.target=void testEliminarSimbol()
 comment9.text=\r\n Prueba de eliminar simbolo\r\n
-numComments=35
+numComments=39
