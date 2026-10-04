@@ -10,13 +10,18 @@ public class loquito implements Comportamiento
     
 
     /**
-     * Constructor for objects of class loquito
+     * Contructor de la clase loquito
      */
     public loquito()
     {
         
     }
-
+    
+    /**
+     * Este metodo es aquel encargado de llamar a metodos axuliares para cumplir con el 
+     * comportamiento selecionado para el simbolo
+     * @param  s Symbol, el simbolo con aquel comportamiento     
+     */
     @Override
     public void comportarse(Symbol s){
         s.cambiaColor();

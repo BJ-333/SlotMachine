@@ -10,7 +10,7 @@ public class Shy implements Comportamiento
     
 
     /**
-     * Constructor for objects of class Shy
+     * Contructor de la clase Shy
      */
     public Shy()
     {
@@ -18,10 +18,9 @@ public class Shy implements Comportamiento
     }
 
     /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
+     * Este metodo es aquel encargado de llamar a metodos axuliares para cumplir con el 
+     * comportamiento selecionado para el simbolo
+     * @param  s Symbol, el simbolo con aquel comportamiento     
      */
     @Override
     public void comportarse(Symbol s)

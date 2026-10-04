@@ -43,6 +43,11 @@ public class Symbol
             figure = new Rectangle();
         
         }
+        else{
+            throw new IllegalArgumentException("Tipo de figura no válido: " 
+            + tipoFigura);
+        
+        }
         if(tipoComportamiento.equals("N")|| tipoComportamiento.equals("n")){
             comportamiento = new Normal();
         
@@ -71,6 +76,9 @@ public class Symbol
         figure.makeInvisible();
     }
     
+    /**
+     * 
+     */
     public void esperarS(int tiempo){
         try {
             Thread.sleep(tiempo);
@@ -116,6 +124,7 @@ public class Symbol
     public void moveHorizontal(int distance){
         figure.moveHorizontal(distance);
     }
+    
     /**
      * mover verticalmente
      */
@@ -123,6 +132,10 @@ public class Symbol
         figure.moveVertical(distance);
     }
     
+    /**
+     * Retrona el tipo de figura
+     * @return String tipo de figura
+     */
     public String tipoFigura() {
         if (figure instanceof Circle) {
             return "c";
@@ -133,6 +146,11 @@ public class Symbol
         }
         return "c";
     }
+    
+    /**
+     * Retrona el tipo de figura
+     * @return String tipo de comportamiento
+     */
     public String tipoComportamiento() {
         if (comportamiento instanceof Normal) {
             return "n";
@@ -148,7 +166,7 @@ public class Symbol
     }
     
     /**
-     * para shy
+     * Es un metodo auxiliar para el comportamiento shy, habilita la visivilidad o no
      */
     public void visibilidad(){
         shyVisible = !shyVisible;
@@ -160,25 +178,45 @@ public class Symbol
         }
     }
     
+    /**
+     * Es un metodo auxiliar para el comportamiento epheremal, reduce el tamaño de la figura
+     * 
+     */
     public void tamano(int valor){
         figure.reducirTamano(valor);
     
     }
     
+    /**
+     * Es un metodo auxiliar para los comportamientos 
+     * 
+     */
     public void seleccionComportar(){
         comportamiento.comportarse(this);
     
     
     }
+    
+    /**
+     * Retorna el valor de visible
+     * @return boolean valor de visible
+     */
     public boolean esVisible(){
         return visible;
     }
+    
+    /**
+     * Es un metod auxiliar para el comportamiento shy, retorna si esta visible o no por shy
+     */
     public boolean deberiaEstarVisible(){
         return !(comportamiento instanceof Shy) || shyVisible;
     }
     
     //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
     
+    /**
+     * Es el metodo auxiliar del comportamiento loquito, Cambia visualmete el color de la figura
+     */
     public void cambiaColor(){
         figure.changeColor(colorsLoquitos[indColor]);
         colorv= colorsLoquitos[indColor];
@@ -194,6 +232,10 @@ public class Symbol
     
     }  
     
+    /**
+     * Retorna el color visual actual
+     * @ string colov , valor color visual
+     */
     public String colorVisual(){
         return colorv;
     

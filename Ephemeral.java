@@ -10,7 +10,7 @@ public class Ephemeral implements Comportamiento
     private static final int VALOR = 1;
 
     /**
-     * Constructor for objects of class Ephemeral
+     * Contructor de la clase Ephemeral
      */
     public Ephemeral()
     {
@@ -18,11 +18,11 @@ public class Ephemeral implements Comportamiento
     }
 
     /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
+     * Este metodo es aquel encargado de llamar a metodos axuliares para cumplir con el 
+     * comportamiento selecionado para el simbolo
+     * @param  s Symbol, el simbolo con aquel comportamiento     
      */
+    @Override
     public void comportarse(Symbol s) {
         s.tamano(VALOR);
         s.makeVisible();

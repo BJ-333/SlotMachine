@@ -177,7 +177,7 @@ public class SlotMachine{
                 wheel.addSymbol(i,existingColors[i],tipoSimbolo, tipoComportamiento);
             }
         }
-        wheels.add(pos,wheel);
+        wheels.add(pos-1,wheel);
 
         //Reorganizamos las ruedas
          

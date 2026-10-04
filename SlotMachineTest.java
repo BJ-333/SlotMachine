@@ -56,8 +56,8 @@ public class SlotMachineTest
     @Test
     public void testAgregarRuedaPosNegativa(){
         SlotMachine maquinaTraga = new SlotMachine();
-        maquinaTraga.addWheel(-5,"normal");
-        assertTrue(maquinaTraga.ok());
+        assertThrows(IllegalArgumentException.class,() ->{maquinaTraga.addWheel(-5,"normal");} );
+        
         
     }
     
@@ -68,7 +68,7 @@ public class SlotMachineTest
     public void testEliminarRueda(){
         SlotMachine maquinaTraga = new SlotMachine();
         maquinaTraga.addWheel(1,"normal");
-        maquinaTraga.delWheel(1);
+        maquinaTraga.delWheel(0);
         assertTrue(maquinaTraga.ok());
     
     }
@@ -79,8 +79,10 @@ public class SlotMachineTest
     @Test
     public void testEliminarRuedaInexistente(){
         SlotMachine maquinaTraga = new SlotMachine();
-        maquinaTraga.delWheel(1); //no hay rueda en esa posicion
-        assertFalse(maquinaTraga.ok());
+        
+        assertThrows(IllegalStateException.class,() ->{maquinaTraga.delWheel(2);} );
+
+       
     }
     
     
@@ -115,8 +117,8 @@ public class SlotMachineTest
     @Test
     public void testGirarRuedita(){
         SlotMachine maquinaTraga = new SlotMachine();
-        maquinaTraga.addWheel(0,"normal");
-        maquinaTraga.addSymbol(0,"red","c","n");
+        maquinaTraga.addWheel(1,"normal");
+        maquinaTraga.addSymbol(1,"red","c","n");
         maquinaTraga.spin(0);
         assertTrue(maquinaTraga.ok());
     }
@@ -510,7 +512,7 @@ public class SlotMachineTest
      */
     @Test
     public void normalDeberiaSerVisible() {
-        Symbol s = new Symbol("blue", "A", "n");
+        Symbol s = new Symbol("blue", "c", "n");
     
         s.makeInvisible();
     
@@ -525,7 +527,7 @@ public class SlotMachineTest
      */
     @Test
     public void loquitoDeberiaCambiarColor() {
-        Symbol s = new Symbol("green", "A", "l");
+        Symbol s = new Symbol("green", "c", "l");
     
         s.makeVisible();
     

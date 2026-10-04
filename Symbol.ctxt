@@ -1,21 +1,28 @@
 #BlueJ class context
-#Sun Oct 04 17:20:33 COT 2026
+#Sun Oct 04 18:02:16 COT 2026
 comment0.target=Symbol
 comment0.text=\r\n Representa un simbolo de la maquita tragamonedas, identificado por color. Se apoya en un Circulo\r\n del paquete de shapes para dibujarlo.\r\n \r\n @author Brenda Guerrero  - Alexandra Barragan \r\n @version 1.0\r\n
 comment1.params=color tipoFigura tipoComportamiento
 comment1.target=Symbol(java.lang.String, java.lang.String, java.lang.String)
 comment1.text=\r\n Constructor de la clase Symbol\r\n Crea un simbolo del color indicado, asociado con la clase circle de shapes\r\n @param color color del simbolo\r\n @param \r\n
 comment10.target=void visibilidad()
-comment10.text=\r\n para shy\r\n
+comment10.text=\r\n Es un metodo auxiliar para el comportamiento shy, habilita la visivilidad o no\r\n
 comment11.params=valor
 comment11.target=void tamano(int)
+comment11.text=\r\n Es un metodo auxiliar para el comportamiento epheremal, reduce el tama\u00F1o de la figura\r\n \r\n
 comment12.target=void seleccionComportar()
+comment12.text=\r\n Es un metodo auxiliar para los comportamientos \r\n \r\n
 comment13.target=boolean esVisible()
+comment13.text=\r\n Retorna el valor de visible\r\n @return boolean valor de visible\r\n
 comment14.target=boolean deberiaEstarVisible()
+comment14.text=\r\n Es un metod auxiliar para el comportamiento shy, retorna si esta visible o no por shy\r\n
 comment15.target=void cambiaColor()
+comment15.text=\r\n Es el metodo auxiliar del comportamiento loquito, Cambia visualmete el color de la figura\r\n
 comment16.target=java.lang.String colorVisual()
+comment16.text=\r\n Retorna el color visual actual\r\n @ string colov , valor color visual\r\n
 comment2.params=tiempo
 comment2.target=void esperarS(int)
+comment2.text=\r\n \r\n
 comment3.target=java.lang.String color()
 comment3.text=\r\n color () retorna el color del simbolo\r\n @return color del simbolo\r\n
 comment4.target=void makeVisible()
@@ -29,5 +36,7 @@ comment7.params=distance
 comment7.target=void moveVertical(int)
 comment7.text=\r\n mover verticalmente\r\n
 comment8.target=java.lang.String tipoFigura()
+comment8.text=\r\n Retrona el tipo de figura\r\n @return String tipo de figura\r\n
 comment9.target=java.lang.String tipoComportamiento()
+comment9.text=\r\n Retrona el tipo de figura\r\n @return String tipo de comportamiento\r\n
 numComments=17
