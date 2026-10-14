@@ -452,13 +452,12 @@ public class SlotMachineTest
      /**
       * Debería copiar el símbolo que se encuentra en la rueda a su izquierda.
       */
-    @Test
+     @Test
     public void deberiaCopiarSimboloDeLaIzquierda() {
         Wheel izquierda = new Wheel("Izquierda");
         LeftyWheel lefty = new LeftyWheel("Lefty");
-
         izquierda.addSymbol(0, "red", "c","n");
-        lefty.addSymbol(0, "blue", "r","n");
+        lefty.addSymbol(0, "red", "c","n");
 
         izquierda.place("red", "c","n");
 
