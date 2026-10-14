@@ -170,7 +170,7 @@ public class Triangle implements Figura{
         }
     }
 
-    /*
+    /**
      * Erase the triangle on screen.
      */
     private void erase(){
@@ -180,6 +180,9 @@ public class Triangle implements Figura{
         }
     }
     
+    /**
+     * Reduce el tamaño de la figura
+     */
     @Override 
     public void reducirTamano(int valor){
         erase();
@@ -202,9 +205,15 @@ public class Triangle implements Figura{
         draw();
     
     }
+    
+    /**
+     * @return isVisible , que indiaca si esta visible o no
+     */
     @Override 
     public boolean getIsVisible(){
     
         return this.isVisible;
     }
+    
+    
 }

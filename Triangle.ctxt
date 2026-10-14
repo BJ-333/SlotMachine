@@ -1,5 +1,5 @@
 #BlueJ class context
-#Sun Oct 04 13:39:33 COT 2026
+#Wed Oct 14 18:40:56 COT 2026
 comment0.target=Triangle
 comment0.text=\r\n A triangle that can be manipulated and that draws itself on a canvas.\r\n \r\n @author  Michael Kolling and David J. Barnes\r\n @version 1.0  (15 July 2000)\r\n
 comment1.target=Triangle()
@@ -22,7 +22,9 @@ comment15.target=void erase()
 comment15.text=\r\n Erase the triangle on screen.\r\n
 comment16.params=valor
 comment16.target=void reducirTamano(int)
+comment16.text=\r\n Reduce el tama\u00F1o de la figura\r\n
 comment17.target=boolean getIsVisible()
+comment17.text=\r\n @return isVisible , que indiaca si esta visible o no\r\n
 comment2.target=void makeVisible()
 comment2.text=\r\n Make this triangle visible. If it was already visible, do nothing.\r\n
 comment3.target=void makeInvisible()

@@ -540,8 +540,7 @@ public class SlotMachineTest
         assertNotEquals(colorInicial, colorNuevo);
     }
     
-    
-    
+        
     /**
      * Tears down the test fixture.
      *
