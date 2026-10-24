@@ -241,5 +241,18 @@ public class Symbol
     
     }
     
+    /**
+     * Método para ayudar en lefty a copiar el color de los simbolos 
+     */
+    public void copiarColorVisual(Symbol otro) {
+    String cv = otro.colorVisual();
+    if (cv != null) {
+        figure.changeColor(cv);
+        colorv = cv;
+    } else {
+        figure.changeColor(color);
+        colorv = null;
+    }
+    }
     
 }

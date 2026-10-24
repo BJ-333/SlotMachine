@@ -22,7 +22,12 @@ public class LeftyWheel extends Wheel{
     public void copiar(Wheel ruedaIzquierda) {
         if (ruedaIzquierda != null && ruedaIzquierda.SymbolUp() != null) {
             Symbol simboloIzquierdo = ruedaIzquierda.SymbolUp();
-            this.place(simboloIzquierdo.color(), simboloIzquierdo.tipoFigura(),simboloIzquierdo.tipoComportamiento());
+            this.place(simboloIzquierdo.color(), simboloIzquierdo.tipoFigura(), simboloIzquierdo.tipoComportamiento());
+        
+            Symbol propio = this.SymbolUp();
+            if (propio != null) {
+                propio.copiarColorVisual(simboloIzquierdo);
+            }
         } else {
             super.spin();
         }

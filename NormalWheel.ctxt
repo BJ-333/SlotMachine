@@ -1,0 +1,8 @@
+#BlueJ class context
+#Sat Oct 24 12:41:09 COT 2026
+comment0.target=NormalWheel
+comment0.text=\r\n Representa una rueda "normal" dentro de la SlotMachine, es decir una rueda sin ningun tipo \r\n de comportamiento especial, como lefty o wheel.\r\n \r\n @author Brenda Guerrero - Alexandra Barrragan\r\n @version 1.0\r\n
+comment1.params=name
+comment1.target=NormalWheel(java.lang.String)
+comment1.text=\r\n Crea una rueda normal1.\r\n
+numComments=2
