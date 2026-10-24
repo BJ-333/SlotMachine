@@ -154,43 +154,40 @@ public class Wheel {
      */
     
     public void spinS(int steps) {
-
-        if (symbols.size() == 0) {
+     if (symbols.size() == 0) {
             ok = false;
             return;
         }
-    
+
         int cantidad = Math.abs(steps);
-    
+
         for (int i = 0; i < cantidad; i++) {
-    
+
             if (visible) {
                 symbols.get(indexSymbolUp).makeInvisible();
             }
-    
+
             if (steps >= 0) {
-    
-                
                 if (indexSymbolUp == symbols.size() - 1) {
                     indexSymbolUp = 0;
                 } else {
                     indexSymbolUp++;
                 }
-    
             } else {
-    
-                
                 if (indexSymbolUp == 0) {
-                indexSymbolUp = symbols.size() - 1;
+                    indexSymbolUp = symbols.size() - 1;
                 } else {
                     indexSymbolUp--;
                 }
-            }
+            }   
             symbols.get(indexSymbolUp).seleccionComportar();
-                                        
-        }
-            
-         ok= true;
+
+            if (visible) {
+                Canvas.getCanvas().wait(300);   // <-- nuevo: pausa entre paso y paso
+            }
+        }   
+
+        ok = true;
     }
     
     

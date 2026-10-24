@@ -164,7 +164,7 @@ public class SlotMachine{
         } else if(type!= null && type.equals("rebel")){
             wheel = new RebelWheel("Rueda" + pos);
         } else {
-            wheel = new Wheel("Rueda" + pos);
+            wheel = new NormalWheel("Rueda" + pos);
         }
         // copiamos los simbolos si ya exiten otras ruedas
         if (!wheels.isEmpty()){
@@ -174,7 +174,7 @@ public class SlotMachine{
                 Symbol simboloOriginal = primeraRueda.getSymbol(i);
                 String tipoSimbolo = simboloOriginal.tipoFigura();
                 String tipoComportamiento = simboloOriginal.tipoComportamiento();
-                wheel.addSymbol(i,existingColors[i],tipoSimbolo, tipoComportamiento);
+                wheel.addSymbol(i + 1,existingColors[i],tipoSimbolo, tipoComportamiento);
             }
         }
         wheels.add(pos-1,wheel);
@@ -273,6 +273,24 @@ public class SlotMachine{
         ok = namewheel.ok();
         if (!ok){
             JOptionPane.showMessageDialog(null, "El simbolo no exite en esa rueda");
+        }else{
+            actualizarLefties();
+        }
+    }
+    
+    /**
+     * Método auxiliar para los spins y el comportamiento de lefty
+     */
+    private void girarRueda(int i) {
+        Wheel wheel = wheels.get(i);
+        if (wheel instanceof LeftyWheel) {
+            Wheel izquierda = null;
+            if (i > 0) {
+                izquierda = wheels.get(i - 1);
+            }
+            wheel.spin(izquierda);
+        } else {
+            wheel.spin();
         }
     }
     
@@ -283,23 +301,19 @@ public class SlotMachine{
      */
     public void spin(int wheel) {
         palanca();
-        if (wheel < 0 || wheel >= wheels.size()) {
+        int index = wheel - 1;
+            if (index < 0 || index >= wheels.size()) {
             ok = false;
             return;
         }
-    
-        Wheel namewheel = wheels.get(wheel);
-        if (!namewheel.isLocked()) {
-            Wheel izquierda = null;
-            if (wheel > 0){
-                izquierda = wheels.get(wheel - 1);
-            }
-            namewheel.spin();
+        if (!wheels.get(index).isLocked()) {
+            girarRueda(index);
+            actualizarLefties();
             ok = true;
         } else {
             ok = false;
         }
-    }  
+    }
     
     /**
      * spin () hace girar todas las ruedas de la maquina tragamonedas
@@ -308,19 +322,11 @@ public class SlotMachine{
     public void spin(){
         boolean algunaBloqueda = false;
         palanca();
-        
-        for (int i =0; i < wheels.size(); i++) {
-            Wheel wheel = wheels.get(i);
-            if (wheel.isLocked()== false) {
-                if (wheel instanceof LeftyWheel){
-                    Wheel izquierda = null;
-                    if(i > 0){
-                        izquierda = wheels.get(i - 1);
-                    }
-                    wheel.spin(izquierda);
-                }else{
-                    wheel.spin();
-                }
+    
+        for (int i = 0; i < wheels.size(); i++) {
+            if (wheels.get(i).isLocked() == false) {
+                girarRueda(i);
+                actualizarLefties();
             } else {
                 algunaBloqueda = true;
             }
@@ -343,7 +349,6 @@ public class SlotMachine{
     
     public void spinStep(int wheel, int steps) {
         int index;
-    
         if (wheel == 0) {
             index = 0;
         } else {
@@ -353,11 +358,15 @@ public class SlotMachine{
             ok = false;
             return;
         }
-    
         Wheel namewheel = wheels.get(index);
-    
+
         if (!namewheel.isLocked()) {
-            namewheel.spinS(steps);
+            if (namewheel instanceof LeftyWheel) {
+                girarRueda(index);      // la Lefty copia, ignora los pasos
+            } else {
+                namewheel.spinS(steps);
+            }
+            actualizarLefties();
             ok = true;
         } else {
             ok = false;
@@ -580,7 +589,8 @@ public class SlotMachine{
         
         if (r1 instanceof RebelWheel || r2 instanceof RebelWheel){
             ok = false;
-            return; 
+            JOptionPane.showMessageDialog(null, "La rueda Rebel no se deja cambiar de posicion.");
+            throw new IllegalStateException("La rueda Rebel no se deja cambiar de posicion.");
         }
         Wheel i = wheels.get(wheel1);
         wheels.set(wheel1, wheels.get(wheel2)); // asignamos la posicion que tenia w1 a w2
@@ -655,4 +665,17 @@ public class SlotMachine{
     
         } 
     } 
+    
+    /**
+     * Hace que cada LeftyWheel copie el simbolo visible de la rueda que tiene a su izquierda.
+     * Recorre de izquierda a derecha, asi si hay varias Lefty seguidas se actualizan en cadena.
+     */
+    private void actualizarLefties() {
+        for (int i = 1; i < wheels.size(); i++) {
+            Wheel wheel = wheels.get(i);
+            if (wheel instanceof LeftyWheel && !wheel.isLocked()) {
+                ((LeftyWheel) wheel).copiar(wheels.get(i - 1));
+            }
+        }
+    }
 } 

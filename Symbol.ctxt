@@ -1,5 +1,5 @@
 #BlueJ class context
-#Wed Oct 14 18:40:56 COT 2026
+#Sat Oct 24 11:54:29 COT 2026
 comment0.target=Symbol
 comment0.text=\r\n Representa un simbolo de la maquita tragamonedas, identificado por color. Se apoya en un Circulo\r\n del paquete de shapes para dibujarlo.\r\n \r\n @author Brenda Guerrero  - Alexandra Barragan \r\n @version 1.0\r\n
 comment1.params=color tipoFigura tipoComportamiento
@@ -20,6 +20,9 @@ comment15.target=void cambiaColor()
 comment15.text=\r\n Es el metodo auxiliar del comportamiento loquito, Cambia visualmete el color de la figura\r\n
 comment16.target=java.lang.String colorVisual()
 comment16.text=\r\n Retorna el color visual actual\r\n @ string colov , valor color visual\r\n
+comment17.params=otro
+comment17.target=void copiarColorVisual(Symbol)
+comment17.text=\r\n M\u00E9todo para ayudar en lefty a copiar el color de los simbolos \r\n
 comment2.params=tiempo
 comment2.target=void esperarS(int)
 comment2.text=\r\n \r\n
@@ -39,4 +42,4 @@ comment8.target=java.lang.String tipoFigura()
 comment8.text=\r\n Retrona el tipo de figura\r\n @return String tipo de figura\r\n
 comment9.target=java.lang.String tipoComportamiento()
 comment9.text=\r\n Retrona el tipo de figura\r\n @return String tipo de comportamiento\r\n
-numComments=17
+numComments=18
